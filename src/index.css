@@ -1,0 +1,56 @@
+::root {
+  --animationDistance: -100px;
+  --animationDuration: 12s;
+}
+
+.wrapper {
+  width: 85%;
+  position: relative;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.wrapper:before {
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  content: "";
+  background: linear-gradient(90deg, #fff, transparent 25px, transparent calc(100% - 25px), #fff);
+}
+
+.inner {
+  -webkit-animation-duration: var(--animationDuration);
+          animation-duration: var(--animationDuration);
+  -webkit-animation-timing-function: linear;
+          animation-timing-function: linear;
+}
+
+.inner.moving {
+  -webkit-animation-name: moveticker;
+          animation-name: moveticker;
+}
+
+.element {
+  display: inline-block;
+  padding: 0 20px;
+  font-family: "Quicksand";
+}
+
+@-webkit-keyframes moveticker {
+  0% {
+    transform: translateX(0px);
+  }
+  100% {
+    transform: translateX(var(--animationDistance));
+  }
+}
+
+@keyframes moveticker {
+  0% {
+    transform: translateX(0px);
+  }
+  100% {
+    transform: translateX(var(--animationDistance));
+  }
+}
