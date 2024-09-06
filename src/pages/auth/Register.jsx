@@ -10,9 +10,15 @@ import {
   Typography,
 } from "@mui/material";
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Register() {
+  const navigate = useNavigate();
+
+  const handleRegister = () => {
+    navigate("/dashboard");
+  };
+
   return (
     <Box>
       <Container maxWidth="xs" sx={{ py: 4, height: "100vh" }}>
@@ -69,7 +75,11 @@ export default function Register() {
                   </Stack>
                 </Stack>
 
-                <Button variant="contained" size="medium">
+                <Button
+                  onClick={handleRegister}
+                  variant="contained"
+                  size="medium"
+                >
                   Register Now
                 </Button>
               </Stack>

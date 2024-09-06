@@ -9,9 +9,16 @@ import {
   Typography,
 } from "@mui/material";
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Login() {
+
+    const navigate = useNavigate();
+
+    const handleLogin = () => {
+        navigate("/dashboard");
+    }
+
   return (
     <Box>
       <Container maxWidth="xs" sx={{ py: 4, height: "100vh" }}>
@@ -50,7 +57,7 @@ export default function Login() {
                   </Stack>
                 </Stack>
 
-                <Button variant="contained" size="medium">
+                <Button onClick={handleLogin} variant="contained" size="medium">
                   Login
                 </Button>
               </Stack>
