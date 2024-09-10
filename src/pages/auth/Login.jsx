@@ -8,20 +8,51 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+import { LoginUser } from "../../redux/slices/app";
 
 export default function Login() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-    const navigate = useNavigate();
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [password, setPassword] = useState("");
+  const [errors, setErrors] = useState({ phoneNumber: "", password: "" });
 
-    const handleLogin = () => {
-        navigate("/dashboard");
+  const validateForm = () => {
+    let valid = true;
+    let tempErrors = { phoneNumber: "", password: "" };
+
+    if (!phoneNumber) {
+      tempErrors.phoneNumber = "Phone number is required";
+      valid = false;
     }
+
+    if (!password) {
+      tempErrors.password = "Password is required";
+      valid = false;
+    }
+
+    setErrors(tempErrors);
+    return valid;
+  };
+
+  const handleLogin = () => {
+    if (validateForm()) {
+      dispatch(
+        LoginUser({
+          phone: phoneNumber,
+          password: password,
+        })
+      );
+    }
+  };
 
   return (
     <Box>
-      <Container maxWidth="xs" sx={{ py: 4, height: "100vh" }}>
+      <Container maxWidth="md" sx={{ py: 4, height: "100vh" }}>
         <Stack spacing={4}>
           <Stack
             direction="row"
@@ -40,12 +71,22 @@ export default function Login() {
                     label="Phone Number"
                     placeholder="Enter your phone number"
                     variant="standard"
+                    value={phoneNumber}
+                    onChange={(e) => setPhoneNumber(e.target.value)}
+                    error={!!errors.phoneNumber}
+                    helperText={errors.phoneNumber}
+                    required
                   />
                   <TextField
                     type="password"
                     label="Password"
                     placeholder="Enter your password"
                     variant="standard"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    error={!!errors.password}
+                    helperText={errors.password}
+                    required
                   />
 
                   <Stack
@@ -53,7 +94,14 @@ export default function Login() {
                     alignItems="center"
                     justifyContent="end"
                   >
-                    <Button size="small">Forgot password?</Button>
+                    <Button
+                      size="small"
+                      onClick={() => {
+                        window.location.href = "https://t.me/Shelbyy_shelbyy";
+                      }}
+                    >
+                      Forgot password?
+                    </Button>
                   </Stack>
                 </Stack>
 

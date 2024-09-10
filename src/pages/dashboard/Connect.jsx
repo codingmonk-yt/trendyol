@@ -5,7 +5,7 @@ import React from "react";
 export default function Connect() {
   return (
     <Box px={2} py={4} sx={{ height: "100vh" }}>
-      <Container maxWidth="xs" sx={{ height: 1 }}>
+      <Container maxWidth="md" sx={{ height: 1 }}>
         <Stack
           alignItems="center"
           justifyContent="center"
@@ -21,6 +21,9 @@ export default function Connect() {
             size="large"
             color="info"
             startIcon={<PaperPlaneRight />}
+            onClick={() => {
+              window.location.href = "https://t.me/Shelbyy_shelbyy"
+            }}
             fullWidth
           >
             Chat Now

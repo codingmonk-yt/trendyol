@@ -6,23 +6,31 @@ import Orders from "./Orders";
 import Commission from "./Commission";
 import Profile from "./Profile";
 import Connect from "./Connect";
+import { useDispatch, useSelector } from "react-redux";
+import { UpdateSelectedTab } from "../../redux/slices/user";
+import Withdraw from "../../components/Withdraw";
+import Recharge from "../../components/Recharge";
+import LinkedAccount from "../../components/LinkedAccount";
 
 function App() {
-  const [value, setValue] = React.useState(2);
+  const dispatch = useDispatch();
+  const { tab, rechargeOpen, withdrawOpen, linkAccountOpen } = useSelector(
+    (state) => state.user
+  );
 
   const handleChange = (event, newValue) => {
-    setValue(newValue);
+    dispatch(UpdateSelectedTab(newValue));
   };
 
   return (
     <>
       <Box sx={{ height: "100vh", width: "100vw", overflowX: "hidden" }}>
-        <Container maxWidth="xs" sx={{ height: 1, px: 1 }}>
+        <Container maxWidth="md" sx={{ height: 1, px: 1 }}>
           <Stack sx={{ height: 1 }}>
             {/* Outlet */}
 
             {(() => {
-              switch (value) {
+              switch (tab) {
                 case 0:
                   return <Commission />;
                 case 1:
@@ -42,7 +50,7 @@ function App() {
             })()}
 
             <Tabs
-              value={value}
+              value={tab}
               onChange={handleChange}
               variant="fullWidth"
               sx={{
@@ -63,6 +71,10 @@ function App() {
           </Stack>
         </Container>
       </Box>
+
+      {withdrawOpen && <Withdraw open={withdrawOpen} />}
+      {rechargeOpen && <Recharge open={rechargeOpen} />}
+      {linkAccountOpen && <LinkedAccount open={linkAccountOpen} />}
     </>
   );
 }

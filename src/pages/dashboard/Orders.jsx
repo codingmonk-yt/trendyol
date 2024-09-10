@@ -11,6 +11,7 @@ import {
 } from "@mui/material";
 import React from "react";
 import PropTypes from "prop-types";
+import { useSelector } from "react-redux";
 
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -44,6 +45,8 @@ function a11yProps(index) {
 export default function Orders() {
   const [value, setValue] = React.useState(0);
 
+  const { balance } = useSelector((state) => state.app.user);
+
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -65,7 +68,7 @@ export default function Orders() {
             </Typography>
           </Stack>
           <Stack maxWidth={"150px"} alignItems="end">
-            <Typography variant="subtitle1">$0.46</Typography>
+            <Typography variant="subtitle1">${balance}</Typography>
             <Typography variant="caption" textAlign="end">
               Remaining available assets(in USD)
             </Typography>

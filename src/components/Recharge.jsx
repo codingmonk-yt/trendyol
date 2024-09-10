@@ -13,74 +13,84 @@ import {
   Typography,
 } from "@mui/material";
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { RequestRecharge, UpdateRechargeDialog } from "../redux/slices/user";
 
 const RECHARGE_OPTIONS = [
-  {
-    value: 50,
-  },
-  {
-    value: 100,
-  },
-  {
-    value: 200,
-  },
-  {
-    value: 300,
-  },
-  {
-    value: 400,
-  },
-  {
-    value: 500,
-  },
-  {
-    value: 600,
-  },
-  {
-    value: 800,
-  },
-  {
-    value: 1000,
-  },
-  {
-    value: 2000,
-  },
-  {
-    value: 5000,
-  },
-  {
-    value: 10000,
-  },
-  {
-    value: 20000,
-  },
+  { value: 50 },
+  { value: 100 },
+  { value: 200 },
+  { value: 300 },
+  { value: 400 },
+  { value: 500 },
+  { value: 600 },
+  { value: 800 },
+  { value: 1000 },
+  { value: 2000 },
+  { value: 5000 },
+  { value: 10000 },
+  { value: 20000 },
 ];
 
-export default function Recharge({ open, handleClose }) {
+export default function Recharge({ open }) {
   const [val, setVal] = useState("");
+  const [error, setError] = useState(false);
+
+  const dispatch = useDispatch();
+
+  const handleClose = () => {
+    dispatch(UpdateRechargeDialog(false));
+  }
+
+  // Validate the input
+  const validateAmount = (value) => {
+    if (value < 10 || value > 20000 || value === "") {
+      setError(true);
+    } else {
+      setError(false);
+    }
+  };
+
+  const handleInputChange = (e) => {
+    const value = e.target.value;
+    setVal(value);
+    validateAmount(value);
+  };
+
+  const handleChipClick = (value) => {
+    setVal(value);
+    validateAmount(value);
+  };
+
+  const handleClickRecharge = () => {
+    dispatch(RequestRecharge(val));
+  }
 
   return (
-    <Dialog open={open} fullWidth maxWidth="xs">
+    <Dialog open={open} fullWidth maxWidth="md">
       <DialogTitle>Recharge Wallet</DialogTitle>
       <DialogContent>
         <Stack spacing={3}>
           <Card>
             <CardContent>
               <Typography variant="overline">Current balance</Typography>
-              <Typography sx={{mt: 2}} variant="subtitle1">$0.46</Typography>
+              <Typography sx={{ mt: 2 }} variant="subtitle1">
+                $0.46
+              </Typography>
             </CardContent>
           </Card>
           <TextField
             fullWidth
+            required
             type="number"
-            min={10}
-            max={20000}
             label="Recharge Amount"
             placeholder="Enter Recharge Amount"
             value={val}
-            onChange={(e) => {
-              setVal(e.target.value);
-            }}
+            onChange={handleInputChange}
+            error={error}
+            helperText={
+              error ? "Amount must be between 10 and 20000" : ""
+            }
           />
           <Stack
             direction="row"
@@ -95,10 +105,9 @@ export default function Recharge({ open, handleClose }) {
           <Stack direction="row" alignItems="center" gap={2} flexWrap="wrap">
             {RECHARGE_OPTIONS.map(({ value }, index) => (
               <Chip
+                key={index}
                 label={value}
-                onClick={() => {
-                  setVal(value);
-                }}
+                onClick={() => handleChipClick(value)}
                 variant="outlined"
                 color="secondary"
               />
@@ -107,7 +116,13 @@ export default function Recharge({ open, handleClose }) {
         </Stack>
       </DialogContent>
       <DialogActions>
-        <Button fullWidth variant="contained" color="primary">
+        <Button
+          fullWidth
+          variant="contained"
+          color="primary"
+          disabled={error || val === ""}
+          onClick={handleClickRecharge}
+        >
           Recharge Now
         </Button>
         <Button fullWidth variant="outlined" color="error" onClick={handleClose}>

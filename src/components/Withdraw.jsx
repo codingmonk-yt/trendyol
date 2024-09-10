@@ -2,7 +2,6 @@ import {
   Button,
   Card,
   CardContent,
-  Chip,
   Dialog,
   DialogActions,
   DialogContent,
@@ -13,81 +12,138 @@ import {
   Typography,
 } from "@mui/material";
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { RequestWithdraw, UpdateWithdrawDialog } from "../redux/slices/user";
 
-export default function Withdraw({ open, handleClose }) {
+export default function Withdraw({ open }) {
+  const dispatch = useDispatch();
+
+  const handleClose = () => {
+    dispatch(UpdateWithdrawDialog(false));
+  };
+
+  const { balance, withdrawalPassword } = useSelector(
+    (state) => state.app.user
+  );
+  const { withdrawalInProgress } = useSelector((state) => state.user);
+
   const [amount, setAmount] = useState("");
   const [usdtAddress, setUsdtAddress] = useState("");
   const [password, setPassword] = useState("");
 
+  const [formErrors, setFormErrors] = useState({
+    amount: false,
+    usdtAddress: false,
+    password: false,
+  });
+
+  const handleWithdraw = (e) => {
+    e.preventDefault();
+
+    // Basic form validation
+    const errors = {
+      amount: amount === "",
+      usdtAddress: usdtAddress === "",
+      password: password === "",
+    };
+    setFormErrors(errors);
+
+    // Proceed if no errors
+    if (!errors.amount && !errors.usdtAddress && !errors.password) {
+      // Dispatch the withdrawal action here
+      // dispatch(yourWithdrawalAction({ amount, usdtAddress, password }));
+      if (password === withdrawalPassword) {
+        dispatch(RequestWithdraw({ amount, usdtAddress, password }));
+      } else {
+        window.alert("Withdrawal password is not correct");
+      }
+      console.log("Withdraw:", { amount, usdtAddress, password });
+    }
+  };
+
   return (
-    <Dialog open={open} fullWidth maxWidth="xs">
-      <DialogTitle>Withdraw funds</DialogTitle>
-      <DialogContent>
-        <Stack spacing={3}>
-          <Card>
-            <CardContent>
-              <Stack spacing={2}>
-                <Typography variant="overline">Current balance</Typography>
-                <Typography variant="subtitle1">$0.46</Typography>
+    <Dialog open={open} fullWidth maxWidth="md">
+      <form onSubmit={handleWithdraw}>
+        <DialogTitle>Withdraw funds</DialogTitle>
+        <DialogContent>
+          <Stack spacing={3}>
+            <Card>
+              <CardContent>
+                <Stack spacing={2}>
+                  <Typography variant="overline">Current balance</Typography>
+                  <Typography variant="subtitle1">${balance}</Typography>
 
-                <Divider />
+                  <Divider />
 
-                <Typography variant="overline">
-                  Withdrawal application in progress
-                </Typography>
-                <Typography variant="subtitle1">$0</Typography>
-              </Stack>
-            </CardContent>
-          </Card>
-          <TextField
-            fullWidth
-            type="number"
-            label="Amount"
-            placeholder="Enter withdrawal Amount"
-            value={amount}
-            onChange={(e) => {
-              setAmount(e.target.value);
-            }}
-            required
-          />
+                  <Typography variant="overline">
+                    Withdrawal application in progress
+                  </Typography>
+                  <Typography variant="subtitle1">
+                    ${withdrawalInProgress}
+                  </Typography>
+                </Stack>
+              </CardContent>
+            </Card>
+            <TextField
+              fullWidth
+              type="number"
+              label="Amount"
+              placeholder="Enter withdrawal amount"
+              value={amount}
+              onChange={(e) => setAmount(e.target.value)}
+              required
+              error={formErrors.amount}
+              helperText={formErrors.amount && "Amount is required"}
+            />
 
-          <Button variant="outlined" fullWidth>
-            Withdraw all
+            <Button
+              variant="outlined"
+              fullWidth
+              onClick={() => setAmount(balance)}
+            >
+              Withdraw all
+            </Button>
+
+            <Divider />
+
+            <TextField
+              fullWidth
+              type="text"
+              label="USDT address"
+              placeholder="Enter USDT address"
+              required
+              value={usdtAddress}
+              onChange={(e) => setUsdtAddress(e.target.value)}
+              error={formErrors.usdtAddress}
+              helperText={formErrors.usdtAddress && "USDT address is required"}
+            />
+            <TextField
+              fullWidth
+              type="password"
+              label="Transaction password"
+              placeholder="Enter transaction password"
+              required
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              error={formErrors.password}
+              helperText={formErrors.password && "Password is required"}
+            />
+          </Stack>
+        </DialogContent>
+        <DialogActions>
+          <Button type="submit" fullWidth variant="contained" color="primary">
+            Withdraw now
           </Button>
-
-          <Divider />
-
-          <TextField
+          <Button
             fullWidth
-            type="text"
-            label="USDT address"
-            placeholder="Enter USDT address"
-            required
-            value={usdtAddress}
-            onChange={(e) => {
-              setUsdtAddress(e.target.value);
-            }}
-          />
-          <TextField
-            fullWidth
-            type="password"
-            label="Transaction password"
-            placeholder="Enter Transaction Password"
-            value={password}
-            onChange={(e) => {
-              setPassword(e.target.value);
-            }}
-          />
-        </Stack>
-      </DialogContent>
-      <DialogActions>
-        <Button fullWidth variant="contained" color="primary">
-          Withdraw now
-        </Button>
-        <Button fullWidth variant="outlined" color="error" onClick={handleClose}>
-          Cancel
-        </Button>
-      </DialogActions>
+            variant="outlined"
+            color="error"
+            onClick={handleClose}
+          >
+            Cancel
+          </Button>
+        </DialogActions>
+      </form>
     </Dialog>
   );
 }

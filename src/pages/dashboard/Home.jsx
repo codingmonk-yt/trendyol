@@ -14,23 +14,33 @@ import {
   HandWithdraw,
   Link,
   ShoppingCartSimple,
+  SignOut,
 } from "@phosphor-icons/react";
-import React, { useState } from "react";
-import Recharge from "../../components/Recharge";
-import Withdraw from "../../components/Withdraw";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { LogoutUser } from "../../redux/slices/app";
+import {
+  UpdateLinkAccountDialog,
+  UpdateRechargeDialog,
+  UpdateSelectedTab,
+  UpdateWithdrawDialog,
+} from "../../redux/slices/user";
+import { GetStats, GetWithdrawalInProgress } from "../../redux/slices/user";
 
 export default function Home() {
-  const USERNAME = "Shreyansh";
-  const [rechargeOpen, setRechargeOpen] = useState(false);
+  const dispatch = useDispatch();
 
-  const handleCloseRecharge = () => {
-    setRechargeOpen(false);
-  };
-  const [withdarwOpen, setWithdrawOpen] = useState(false);
+  // const USERNAME = "Shreyansh";
 
-  const handleCloseWithdraw = () => {
-    setWithdrawOpen(false);
-  };
+  const { balance, invitationCode } = useSelector((state) => state.app.user);
+  const { totalOrders, earningsToday, ordersToday } = useSelector(
+    (state) => state.user.stats
+  );
+
+  useEffect(() => {
+    dispatch(GetStats());
+    dispatch(GetWithdrawalInProgress());
+  }, []);
 
   return (
     <>
@@ -45,13 +55,19 @@ export default function Home() {
           }}
         >
           <Stack spacing={0.5}>
-            <Typography variant="h6">Hello {USERNAME}</Typography>
+            <Typography variant="h6">Hello {invitationCode}</Typography>
             <Typography variant="caption" maxWidth={240}>
               Trendyrol - Let Trendyrol open the path to your wealth
             </Typography>
           </Stack>
 
-          <Avatar />
+          <IconButton
+            onClick={() => {
+              dispatch(LogoutUser());
+            }}
+          >
+            <SignOut />
+          </IconButton>
         </Stack>
 
         <Box
@@ -72,21 +88,21 @@ export default function Home() {
                 >
                   <Stack spacing={0.5}>
                     <Typography variant="h6">My Assets</Typography>
-                    <Typography>$ 308.56</Typography>
+                    <Typography>$ {balance}</Typography>
                   </Stack>
 
                   <Stack spacing={1}>
                     <Button
                       variant="outlined"
                       onClick={() => {
-                        setRechargeOpen(true);
+                        dispatch(UpdateRechargeDialog(true));
                       }}
                     >
                       Recharge
                     </Button>
                     <Button
                       onClick={() => {
-                        setWithdrawOpen(true);
+                        dispatch(UpdateWithdrawDialog(true));
                       }}
                       variant="outlined"
                       color="error"
@@ -105,19 +121,21 @@ export default function Home() {
                     divider={<Divider style={{ width: "100%" }} />}
                   >
                     <Stack spacing={0.5} alignItems="center">
-                      <Typography variant="subtitle1">60</Typography>
+                      <Typography variant="subtitle1">{totalOrders}</Typography>
                       <Typography variant="caption">
                         Total Number of orders
                       </Typography>
                     </Stack>
                     <Stack spacing={0.5} alignItems="center">
-                      <Typography variant="subtitle1">0.0 $</Typography>
+                      <Typography variant="subtitle1">
+                        {earningsToday} $
+                      </Typography>
                       <Typography variant="caption">
                         Today's Earnings
                       </Typography>
                     </Stack>
                     <Stack spacing={0.5} alignItems="center">
-                      <Typography variant="subtitle1">0</Typography>
+                      <Typography variant="subtitle1">{ordersToday}</Typography>
                       <Typography variant="caption">Orders Today</Typography>
                     </Stack>
                   </Stack>
@@ -133,7 +151,14 @@ export default function Home() {
             gap={2}
             sx={{ mt: 4, mb: 4, flexWrap: "wrap" }}
           >
-            <Stack alignItems="center" spacing={1}>
+            <Stack
+              alignItems="center"
+              sx={{ cursor: "pointer" }}
+              spacing={1}
+              onClick={() => {
+                dispatch(UpdateSelectedTab(1));
+              }}
+            >
               <Box
                 sx={{
                   p: 2,
@@ -152,7 +177,14 @@ export default function Home() {
               </Box>
               <Typography variant="caption">Start taking orders</Typography>
             </Stack>
-            <Stack alignItems="center" spacing={1}>
+            <Stack
+              sx={{ cursor: "pointer" }}
+              alignItems="center"
+              spacing={1}
+              onClick={() => {
+                dispatch(UpdateRechargeDialog(true));
+              }}
+            >
               <Box
                 sx={{
                   p: 2,
@@ -171,7 +203,14 @@ export default function Home() {
               </Box>
               <Typography variant="caption">Quick Recharge</Typography>
             </Stack>
-            <Stack alignItems="center" spacing={1}>
+            <Stack
+              alignItems="center"
+              spacing={1}
+              sx={{ cursor: "pointer" }}
+              onClick={() => {
+                dispatch(UpdateWithdrawDialog(true));
+              }}
+            >
               <Box
                 sx={{
                   p: 2,
@@ -190,7 +229,14 @@ export default function Home() {
               </Box>
               <Typography variant="caption">Quick Withdraw</Typography>
             </Stack>
-            <Stack alignItems="center" spacing={1}>
+            <Stack
+              alignItems="center"
+              spacing={1}
+              sx={{ cursor: "pointer" }}
+              onClick={() => {
+                dispatch(UpdateLinkAccountDialog(true));
+              }}
+            >
               <Box
                 sx={{
                   p: 2,
@@ -225,7 +271,14 @@ export default function Home() {
                 >
                   <Stack spacing={2}>
                     <Typography variant="subtitle2">Trendyrol</Typography>
-                    <Button variant="outlined">Unlock</Button>
+                    <Button
+                      onClick={() => {
+                        dispatch(UpdateSelectedTab(1));
+                      }}
+                      variant="outlined"
+                    >
+                      Unlock
+                    </Button>
                   </Stack>
 
                   <img
@@ -238,13 +291,6 @@ export default function Home() {
           </Stack>
         </Box>
       </Stack>
-
-      {rechargeOpen && (
-        <Recharge open={rechargeOpen} handleClose={handleCloseRecharge} />
-      )}
-      {withdarwOpen && (
-        <Withdraw open={withdarwOpen} handleClose={handleCloseWithdraw} />
-      )}
     </>
   );
 }

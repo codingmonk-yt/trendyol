@@ -9,19 +9,51 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+import { RegisterUser } from "../../redux/slices/app";
 
 export default function Register() {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [loginPassword, setLoginPassword] = useState("");
+  const [withdrawalPassword, setWithdrawalPassword] = useState("");
+  const [invitationCode, setInvitationCode] = useState("");
+  const [isAcknowledged, setIsAcknowledged] = useState(false);
+  const [errors, setErrors] = useState({});
+
   const handleRegister = () => {
-    navigate("/dashboard");
+    const newErrors = {};
+
+    if (!phoneNumber) newErrors.phoneNumber = "Phone number is required";
+    if (!loginPassword) newErrors.loginPassword = "Login password is required";
+    if (!withdrawalPassword)
+      newErrors.withdrawalPassword = "Withdrawal password is required";
+    if (!isAcknowledged)
+      newErrors.isAcknowledged = "You must acknowledge the agreement";
+
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+    } else {
+      setErrors({});
+      // navigate("/dashboard");
+
+      dispatch(
+        RegisterUser({
+          phone: phoneNumber,
+          password: loginPassword,
+          withdrawalPassword: withdrawalPassword,
+        })
+      );
+    }
   };
 
   return (
     <Box>
-      <Container maxWidth="xs" sx={{ py: 4, height: "100vh" }}>
+      <Container maxWidth="md" sx={{ py: 4, height: "100vh" }}>
         <Stack spacing={4}>
           <Stack
             direction="row"
@@ -40,24 +72,40 @@ export default function Register() {
                     label="Phone Number"
                     placeholder="Enter your phone number"
                     variant="standard"
+                    value={phoneNumber}
+                    onChange={(e) => setPhoneNumber(e.target.value)}
+                    error={!!errors.phoneNumber}
+                    helperText={errors.phoneNumber}
                   />
                   <TextField
                     type="password"
                     label="Login Password"
                     placeholder="Choose your password"
                     variant="standard"
+                    value={loginPassword}
+                    onChange={(e) => setLoginPassword(e.target.value)}
+                    error={!!errors.loginPassword}
+                    helperText={errors.loginPassword}
                   />
                   <TextField
                     type="password"
                     label="Withdrawal Password"
                     placeholder="Choose your withdrawal password"
                     variant="standard"
+                    value={withdrawalPassword}
+                    onChange={(e) => setWithdrawalPassword(e.target.value)}
+                    error={!!errors.withdrawalPassword}
+                    helperText={errors.withdrawalPassword}
                   />
                   <TextField
-                    type="password"
+                    type="text"
                     label="Invitation Code"
                     placeholder="Enter your invitation code"
                     variant="standard"
+                    value={invitationCode}
+                    onChange={(e) => setInvitationCode(e.target.value)}
+                    error={!!errors.invitationCode}
+                    helperText={errors.invitationCode}
                   />
 
                   <Stack
@@ -66,13 +114,22 @@ export default function Register() {
                     justifyContent="start"
                     spacing={1}
                   >
-                    <Checkbox />
+                    <Checkbox
+                      checked={isAcknowledged}
+                      onChange={(e) => setIsAcknowledged(e.target.checked)}
+                      error={!!errors.isAcknowledged}
+                    />
                     <Typography variant="caption">
                       I acknowledge and{" "}
                       <Link to="#">Account opening agreement</Link> Various
                       agreements{" "}
                     </Typography>
                   </Stack>
+                  {errors.isAcknowledged && (
+                    <Typography variant="caption" color="error">
+                      {errors.isAcknowledged}
+                    </Typography>
+                  )}
                 </Stack>
 
                 <Button

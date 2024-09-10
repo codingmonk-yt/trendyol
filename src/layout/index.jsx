@@ -3,10 +3,9 @@ import React from 'react'
 const Layout = ({children}) => {
   return (
     <Box sx={{ height: "100vh", width: "100vw", overflowX: "hidden" }}>
-        <Container maxWidth="sm" sx={{ height: 1 }}>
+        <Container maxWidth="md" sx={{ height: 1 }}>
           <Stack sx={{ height: 1 }}>
             {/* Outlet */}
-            
 
             <Tabs
               value={value}
