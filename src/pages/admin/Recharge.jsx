@@ -4,22 +4,14 @@ import Paper from "@mui/material/Paper";
 import { Button } from "@mui/material";
 import ApproveRecharge from "./Dialogs/ApproveRecharge";
 import RejectRecharge from "./Dialogs/RejectRecharge";
-
-const rows = [
-  { id: 1, lastName: "Snow", firstName: "Jon", age: 35 },
-  { id: 2, lastName: "Lannister", firstName: "Cersei", age: 42 },
-  { id: 3, lastName: "Lannister", firstName: "Jaime", age: 45 },
-  { id: 4, lastName: "Stark", firstName: "Arya", age: 16 },
-  { id: 5, lastName: "Targaryen", firstName: "Daenerys", age: null },
-  { id: 6, lastName: "Melisandre", firstName: null, age: 150 },
-  { id: 7, lastName: "Clifford", firstName: "Ferrara", age: 44 },
-  { id: 8, lastName: "Frances", firstName: "Rossini", age: 36 },
-  { id: 9, lastName: "Roxie", firstName: "Harvey", age: 65 },
-];
+import { useDispatch, useSelector } from "react-redux";
+import { FetchAllRechargeRequests } from "../../redux/slices/admin";
 
 const paginationModel = { page: 0, pageSize: 5 };
 
 export default function Recharge() {
+  const dispatch = useDispatch();
+  const { rechargeReuests } = useSelector((state) => state.admin);
   const [requestId, setRequestId] = React.useState("");
 
   const [openApprove, setOpenApprove] = React.useState(false);
@@ -28,20 +20,28 @@ export default function Recharge() {
   const handleToggleApprove = () => {
     setOpenApprove((prev) => !prev);
   };
+
   const handleToggleReject = () => {
     setOpenReject((prev) => !prev);
   };
 
   const columns = [
     { field: "id", headerName: "ID", width: 70 },
-    { field: "phone", headerName: "Phone", width: 130 },
-    { field: "email", headerName: "Email", width: 130 },
+    {
+      field: "phone",
+      headerName: "Phone",
+      width: 130,
+
+      valueGetter: (value, row) => row?.user?.phone,
+    },
     {
       field: "amount",
       headerName: "Amount",
       type: "number",
-      width: 90,
+      width: 180,
+      valueGetter: (value, row) => `$${row?.amount}`,
     },
+    { field: "status", headerName: "Status", width: 180 },
     {
       field: "approve",
       headerName: "Approve",
@@ -51,6 +51,9 @@ export default function Recharge() {
       // valueGetter: (value, row) => `${row.firstName || ''} ${row.lastName || ''}`,
       renderCell: (params) => (
         <Button
+          disabled={
+            params.row.status === "approved" || params.row.status === "rejected"
+          }
           variant="contained"
           color="success"
           onClick={() => {
@@ -72,6 +75,9 @@ export default function Recharge() {
       // valueGetter: (value, row) => `${row.firstName || ''} ${row.lastName || ''}`,
       renderCell: (params) => (
         <Button
+          disabled={
+            params.row.status === "approved" || params.row.status === "rejected"
+          }
           variant="contained"
           color="error"
           onClick={() => {
@@ -85,6 +91,15 @@ export default function Recharge() {
       ),
     },
   ];
+
+  React.useEffect(() => {
+    dispatch(FetchAllRechargeRequests());
+  }, []);
+
+  const rows = rechargeReuests.map((element, index) => ({
+    id: index + 1,
+    ...element,
+  }));
 
   return (
     <Paper sx={{ height: 400, width: "100%" }}>

@@ -5,10 +5,20 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
+import { useDispatch } from "react-redux";
+import { ReviewRechargeRequest } from "../../../redux/slices/admin";
 
 export default function RejectRecharge({ open, handleClose, requestId }) {
+  const dispatch = useDispatch();
+
   const handleReject = () => {
     //
+    dispatch(
+      ReviewRechargeRequest({
+        requestId,
+        verdict: "reject",
+      })
+    );
   };
 
   return (

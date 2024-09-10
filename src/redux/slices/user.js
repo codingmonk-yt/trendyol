@@ -47,6 +47,16 @@ const slice = createSlice({
     updateLinkAccountOpen(state, action) {
       state.linkAccountOpen = action.payload;
     },
+    updateTask(state, action) {
+      const taskId = action.payload.taskId;
+      state.tasks = state.tasks.map((el) => {
+        if (el._id === taskId) {
+          return { ...el, status: action.payload.status };
+        } else {
+          return el;
+        }
+      });
+    },
   },
 });
 
@@ -63,6 +73,7 @@ const {
   updateLinkAccountOpen,
   updateRechargeOpen,
   updateWithdrawOpen,
+  updateTask,
 } = slice.actions;
 
 export function UpdateSelectedTab(value) {
@@ -167,6 +178,8 @@ export function RequestWithdraw(formValues) {
     dispatch(setError(null));
     dispatch(setLoading(true));
 
+    console.log(formValues);
+
     await axios
       .post(
         "/user/withdraw",
@@ -197,9 +210,73 @@ export function RequestWithdraw(formValues) {
   };
 }
 
-// TODO get tasks
+// get tasks
+export function GetMyTasks() {
+  return async (dispatch, getState) => {
+    dispatch(setError(null));
+    dispatch(setLoading(true));
+    await axios
+      .get("/user/tasks", {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${getState().app.token}`,
+        },
+      })
+      .then(function (response) {
+        // console.log(response);
+        const { data } = response.data;
+        console.log(data);
 
-// TODO update task
+        dispatch(fetchTaskSuccess(data.tasks));
+      })
+      .catch(function (error) {
+        console.log(error);
+        dispatch(setError(error));
+      })
+      .finally(() => {
+        dispatch(setLoading(false));
+      });
+  };
+}
+
+// update task
+
+export function UpdateTaskStatus(taskId) {
+  return async (dispatch, getState) => {
+    dispatch(setError(null));
+    dispatch(setLoading(true));
+
+    await axios
+      .patch(
+        "/user/update-task",
+        {
+          taskId,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${getState().app.token}`,
+          },
+        }
+      )
+      .then(function (response) {
+        // console.log(response);
+        const { data } = response.data;
+        console.log(data);
+
+        dispatch(updateTask({ status: data.task.status, taskId }));
+
+        window.alert("Task Completed Successfully!");
+      })
+      .catch(function (error) {
+        console.log(error);
+        dispatch(setError(error));
+      })
+      .finally(() => {
+        dispatch(setLoading(false));
+      });
+  };
+}
 
 // link account
 export function LinkAccount(formValues) {

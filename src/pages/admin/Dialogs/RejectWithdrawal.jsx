@@ -5,10 +5,20 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
+import { ReviewWithdrawRequest } from "../../../redux/slices/admin";
+import { useDispatch } from "react-redux";
 
 export default function RejectWithdrawal({ open, handleClose, requestId }) {
+  const dispatch = useDispatch();
+
   const handleReject = () => {
     //
+    dispatch(
+      ReviewWithdrawRequest({
+        requestId,
+        verdict: "reject",
+      })
+    );
   };
 
   return (

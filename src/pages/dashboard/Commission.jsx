@@ -40,7 +40,7 @@ export default function Commission() {
 
   return (
     <>
-      <Box p={2}>
+      <Box p={2} pb={16}>
         <Stack spacing={3}>
           <Typography variant="h3" textAlign="center" color="warning">
             Trendyol <br /> Keeping up with <br /> the times

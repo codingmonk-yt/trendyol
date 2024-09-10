@@ -5,10 +5,16 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
+import { useDispatch } from "react-redux";
+import { ApproveTaskCompleted } from "../../../redux/slices/admin";
 
 export default function ApproveTaskCompletion({ open, handleClose, taskId }) {
+  const dispatch = useDispatch();
+
   const handleApprove = () => {
     //
+    dispatch(ApproveTaskCompleted(taskId));
+    handleClose();
   };
 
   return (

@@ -53,6 +53,9 @@ export default function Withdraw({ open }) {
       // Dispatch the withdrawal action here
       // dispatch(yourWithdrawalAction({ amount, usdtAddress, password }));
       if (password === withdrawalPassword) {
+
+      
+
         dispatch(RequestWithdraw({ amount, usdtAddress, password }));
       } else {
         window.alert("Withdrawal password is not correct");

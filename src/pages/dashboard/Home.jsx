@@ -75,6 +75,7 @@ export default function Home() {
             flexGrow: 1,
             bgcolor: (theme) => theme.palette.grey[100],
             py: 4,
+            pb: 12,
             px: 2,
           }}
         >

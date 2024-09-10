@@ -3,15 +3,18 @@ import {
   Button,
   Card,
   CardContent,
+  Chip,
   Divider,
   Stack,
   Tab,
   Tabs,
   Typography,
 } from "@mui/material";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { GetMyTasks, UpdateTaskStatus } from "../../redux/slices/user";
+import { CheckCircle } from "@phosphor-icons/react";
 
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -23,6 +26,7 @@ function CustomTabPanel(props) {
       id={`simple-tabpanel-${index}`}
       aria-labelledby={`simple-tab-${index}`}
       {...other}
+      style={{ overflow: "auto", height: "Calc(100vh - 254px)" }}
     >
       {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
     </div>
@@ -43,6 +47,10 @@ function a11yProps(index) {
 }
 
 export default function Orders() {
+  const dispatch = useDispatch();
+
+  const { tasks } = useSelector((state) => state.user);
+
   const [value, setValue] = React.useState(0);
 
   const { balance } = useSelector((state) => state.app.user);
@@ -50,6 +58,10 @@ export default function Orders() {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+
+  useEffect(() => {
+    dispatch(GetMyTasks());
+  }, []);
 
   return (
     <Box>
@@ -90,13 +102,27 @@ export default function Orders() {
             </Tabs>
           </Box>
           <CustomTabPanel value={value} index={0}>
-            <OrderCard />
+            {tasks
+              .filter((e) => e.status === "pending")
+              .map((el) => (
+                <OrderCard {...el} key={el._id} />
+              ))}
+
+            {/* <OrderCard /> */}
           </CustomTabPanel>
           <CustomTabPanel value={value} index={1}>
-            <OrderCard />
+            {tasks
+              .filter((e) => e.status === "completed")
+              .map((el) => (
+                <OrderCard {...el} key={el._id} />
+              ))}
           </CustomTabPanel>
           <CustomTabPanel value={value} index={2}>
-            <OrderCard />
+            {tasks
+              .filter((e) => e.status === "frozen")
+              .map((el) => (
+                <OrderCard {...el} key={el._id} />
+              ))}
           </CustomTabPanel>
         </Box>
       </Stack>
@@ -104,18 +130,40 @@ export default function Orders() {
   );
 }
 
-const OrderCard = () => {
+const OrderCard = ({ ...el }) => {
+  const dispatch = useDispatch();
+
   return (
     <Card>
       <CardContent>
         <Stack spacing={2}>
-          <Stack spacing={1}>
-            <Typography variant="caption">
-              Second Purchase time: {new Date(Date.now()).toUTCString()}
-            </Typography>
-            <Typography variant="caption">
-              Second Purchase number: UB2408190158539518
-            </Typography>
+          <Stack
+            direction="row"
+            alignItems="center"
+            justifyContent="space-between"
+          >
+            <Stack spacing={1}>
+              <Typography variant="caption">
+                Second Purchase time: {el.purchaseTime}
+              </Typography>
+              <Typography variant="caption">
+                Second Purchase number: {el.purchaseNumber}
+              </Typography>
+            </Stack>
+
+            {el.approvedByAdmin && (
+              <Stack
+                sx={{
+                  color: (theme) => theme.palette.success.main,
+                  textAlign: "center",
+                }}
+                spacing={2}
+                alignItems="center"
+              >
+                <CheckCircle size={40} />
+                <Typography variant="caption">Approved By Admin</Typography>
+              </Stack>
+            )}
           </Stack>
           <Stack
             direction="row"
@@ -123,16 +171,13 @@ const OrderCard = () => {
             justifyContent="space-between"
           >
             <Stack direction="row" alignItems="center" spacing={2}>
-              <img
-                src="https://images.pexels.com/photos/90946/pexels-photo-90946.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-                style={{ maxWidth: "100px" }}
-              />
+              <img src={el.imgUrl} style={{ maxWidth: "100px" }} />
               <Stack spacing={0.5}>
-                <Typography variant="button">Product Name</Typography>
-                <Typography variant="body2">$1827</Typography>
+                <Typography variant="button">{el.name}</Typography>
+                <Typography variant="body2">${el.pricePerUnit}</Typography>
               </Stack>
             </Stack>
-            <Typography>X 1</Typography>
+            <Typography>X {el.quantity}</Typography>
           </Stack>
 
           <Divider />
@@ -146,7 +191,7 @@ const OrderCard = () => {
               Total order amount
             </Typography>
             <Typography variant="button" color="text.secondary">
-              $1827
+              ${el.totalAmount}
             </Typography>
           </Stack>
           <Stack
@@ -158,7 +203,7 @@ const OrderCard = () => {
               Commission
             </Typography>
             <Typography variant="button" color="text.secondary">
-              $5.24
+              ${el.commission}
             </Typography>
           </Stack>
           <Stack
@@ -170,10 +215,26 @@ const OrderCard = () => {
               Estimated commission return
             </Typography>
             <Typography variant="caption" fontSize={24} color="warning">
-              $1234
+              ${el.commissionReturn}
             </Typography>
           </Stack>
-          <Button variant="outlined">Mark as completed</Button>
+          {el.status === "pending" ? (
+            <Button
+              onClick={() => {
+                dispatch(UpdateTaskStatus(el._id));
+              }}
+              variant="outlined"
+            >
+              Mark as completed
+            </Button>
+          ) : (
+            <Chip
+              label="Completed"
+              variant="filled"
+              color="success"
+              sx={{ width: 1 }}
+            />
+          )}
         </Stack>
       </CardContent>
     </Card>

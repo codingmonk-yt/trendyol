@@ -57,7 +57,7 @@ export default function Profile() {
 
   return (
     <>
-      <Box p={2} py={4}>
+      <Box p={2} py={4} pb={16}>
         <Stack spacing={4}>
           <Stack
             direction="row"
