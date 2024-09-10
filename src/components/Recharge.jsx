@@ -13,7 +13,7 @@ import {
   Typography,
 } from "@mui/material";
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RequestRecharge, UpdateRechargeDialog } from "../redux/slices/user";
 
 const RECHARGE_OPTIONS = [
@@ -35,6 +35,8 @@ const RECHARGE_OPTIONS = [
 export default function Recharge({ open }) {
   const [val, setVal] = useState("");
   const [error, setError] = useState(false);
+
+  const { balance } = useSelector((state) => state.app.user);
 
   const dispatch = useDispatch();
 
@@ -75,7 +77,7 @@ export default function Recharge({ open }) {
             <CardContent>
               <Typography variant="overline">Current balance</Typography>
               <Typography sx={{ mt: 2 }} variant="subtitle1">
-                $0.46
+                ${balance}
               </Typography>
             </CardContent>
           </Card>
