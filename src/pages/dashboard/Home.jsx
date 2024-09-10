@@ -147,9 +147,9 @@ export default function Home() {
 
           <Stack
             direction="row"
-            alignItems="center"
+            alignItems="start"
             justifyContent="space-between"
-            gap={2}
+            gap={1}
             sx={{ mt: 4, mb: 4, flexWrap: "wrap" }}
           >
             <Stack
@@ -162,7 +162,7 @@ export default function Home() {
             >
               <Box
                 sx={{
-                  p: 2,
+                  p: 1,
                   bgcolor: "orange",
                   borderRadius: 2,
                   display: "flex",
@@ -176,7 +176,7 @@ export default function Home() {
                   <ShoppingCartSimple color="white" weight="bold" size={24} />
                 </IconButton>
               </Box>
-              <Typography variant="caption">Start taking orders</Typography>
+              <Typography variant="caption" sx={{textAlign: "center"}}>Start taking <br /> Orders</Typography>
             </Stack>
             <Stack
               sx={{ cursor: "pointer" }}
@@ -188,7 +188,7 @@ export default function Home() {
             >
               <Box
                 sx={{
-                  p: 2,
+                  p: 1,
                   bgcolor: "purple",
                   borderRadius: 2,
                   display: "flex",
@@ -202,7 +202,7 @@ export default function Home() {
                   <Coins color="white" weight="bold" size={24} />
                 </IconButton>
               </Box>
-              <Typography variant="caption">Quick Recharge</Typography>
+              <Typography variant="caption" textAlign="center">Quick <br /> Recharge</Typography>
             </Stack>
             <Stack
               alignItems="center"
@@ -214,7 +214,7 @@ export default function Home() {
             >
               <Box
                 sx={{
-                  p: 2,
+                  p: 1,
                   bgcolor: "yellow",
                   borderRadius: 2,
                   display: "flex",
@@ -228,7 +228,7 @@ export default function Home() {
                   <HandWithdraw color="black" weight="bold" size={24} />
                 </IconButton>
               </Box>
-              <Typography variant="caption">Quick Withdraw</Typography>
+              <Typography variant="caption" textAlign="center">Quick <br /> Withdraw</Typography>
             </Stack>
             <Stack
               alignItems="center"
@@ -240,7 +240,7 @@ export default function Home() {
             >
               <Box
                 sx={{
-                  p: 2,
+                  p: 1,
                   bgcolor: "palevioletred",
                   borderRadius: 2,
                   display: "flex",
@@ -254,7 +254,7 @@ export default function Home() {
                   <Link color="white" weight="bold" size={24} />
                 </IconButton>
               </Box>
-              <Typography variant="caption">Linked Accounts</Typography>
+              <Typography variant="caption" textAlign="center">Linked <br /> Accounts</Typography>
             </Stack>
           </Stack>
 
