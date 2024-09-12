@@ -51,7 +51,7 @@ export default function Home() {
           justifyContent="space-between"
           sx={{
             py: 4,
-            px: 0,
+            px: 2,
           }}
         >
           <Stack spacing={0.5}>
@@ -199,7 +199,7 @@ export default function Home() {
                 }}
               >
                 <IconButton>
-                  <Coins color="white" weight="bold" size={24} />
+                  <Coins color="white" weight="bold" size={20} />
                 </IconButton>
               </Box>
               <Typography variant="caption" textAlign="center">Quick <br /> Recharge</Typography>
@@ -225,7 +225,7 @@ export default function Home() {
                 }}
               >
                 <IconButton>
-                  <HandWithdraw color="black" weight="bold" size={24} />
+                  <HandWithdraw color="black" weight="bold" size={20} />
                 </IconButton>
               </Box>
               <Typography variant="caption" textAlign="center">Quick <br /> Withdraw</Typography>
@@ -251,7 +251,7 @@ export default function Home() {
                 }}
               >
                 <IconButton>
-                  <Link color="white" weight="bold" size={24} />
+                  <Link color="white" weight="bold" size={20} />
                 </IconButton>
               </Box>
               <Typography variant="caption" textAlign="center">Linked <br /> Accounts</Typography>

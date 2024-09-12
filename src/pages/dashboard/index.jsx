@@ -12,6 +12,8 @@ import Withdraw from "../../components/Withdraw";
 import Recharge from "../../components/Recharge";
 import LinkedAccount from "../../components/LinkedAccount";
 
+import {alpha} from "@mui/material/styles";
+
 function App() {
   const dispatch = useDispatch();
   const { tab, rechargeOpen, withdrawOpen, linkAccountOpen } = useSelector(
@@ -24,9 +26,9 @@ function App() {
 
   return (
     <>
-      <Box sx={{ height: "100vh", width: "100vw", overflowX: "hidden" }}>
+      <Box sx={{ height: "100vh", width: "100vw", overflowX: "hidden", bgcolor: (theme) => alpha(theme.palette.primary.lighter, 0.5) }}>
         <Container maxWidth="md" sx={{ height: 1, px: 1 }}>
-          <Stack sx={{ height: 1 }}>
+          <Stack sx={{ height: 1, bgcolor: "white" }}>
             {/* Outlet */}
 
             {(() => {

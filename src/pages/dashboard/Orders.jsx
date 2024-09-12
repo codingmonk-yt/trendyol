@@ -72,6 +72,7 @@ export default function Orders() {
           justifyContent="space-between"
           pt={2}
           pb={2}
+          px={2}
         >
           <Stack spacing={1} maxWidth="150px">
             <Typography variant="subtitle1">Second Purchase Record</Typography>
@@ -102,27 +103,33 @@ export default function Orders() {
             </Tabs>
           </Box>
           <CustomTabPanel value={value} index={0}>
-            {tasks
-              .filter((e) => e.status === "pending")
-              .map((el) => (
-                <OrderCard {...el} key={el._id} />
-              ))}
+            <Stack spacing={2}>
+              {tasks
+                .filter((e) => e.status === "pending")
+                .map((el) => (
+                  <OrderCard {...el} key={el._id} />
+                ))}
+            </Stack>
 
             {/* <OrderCard /> */}
           </CustomTabPanel>
           <CustomTabPanel value={value} index={1}>
-            {tasks
-              .filter((e) => e.status === "completed")
-              .map((el) => (
-                <OrderCard {...el} key={el._id} />
-              ))}
+            <Stack spacing={2}>
+              {tasks
+                .filter((e) => e.status === "completed")
+                .map((el) => (
+                  <OrderCard {...el} key={el._id} />
+                ))}
+            </Stack>
           </CustomTabPanel>
           <CustomTabPanel value={value} index={2}>
-            {tasks
-              .filter((e) => e.status === "frozen")
-              .map((el) => (
-                <OrderCard {...el} key={el._id} />
-              ))}
+            <Stack spacing={2}>
+              {tasks
+                .filter((e) => e.status === "frozen")
+                .map((el) => (
+                  <OrderCard {...el} key={el._id} />
+                ))}
+            </Stack>
           </CustomTabPanel>
         </Box>
       </Stack>
