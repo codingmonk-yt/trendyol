@@ -106,8 +106,8 @@ export default function Orders() {
             <Stack spacing={2}>
               {tasks
                 .filter((e) => e.status === "pending")
-                .map((el) => (
-                  <OrderCard {...el} key={el._id} />
+                .map((el, index) => (
+                  <OrderCard disabled={index !== 0} {...el} key={el._id} />
                 ))}
             </Stack>
 
@@ -137,7 +137,7 @@ export default function Orders() {
   );
 }
 
-const OrderCard = ({ ...el }) => {
+const OrderCard = ({ disabled, ...el }) => {
   const dispatch = useDispatch();
 
   return (
@@ -227,6 +227,7 @@ const OrderCard = ({ ...el }) => {
           </Stack>
           {el.status === "pending" ? (
             <Button
+              disabled={disabled}
               onClick={() => {
                 dispatch(UpdateTaskStatus(el._id));
               }}
@@ -234,13 +235,17 @@ const OrderCard = ({ ...el }) => {
             >
               Mark as completed
             </Button>
-          ) : (
+          ) : el.status === "completed" ? (
             <Chip
               label="Completed"
               variant="filled"
               color="success"
               sx={{ width: 1 }}
             />
+          ) : (
+            <Button variant="contained" disabled>
+              Frozen
+            </Button>
           )}
         </Stack>
       </CardContent>

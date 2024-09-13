@@ -88,37 +88,37 @@ export default function Tasks() {
       type: "number",
       width: 180,
     },
-    {
-      field: "approve",
-      headerName: "Approve",
-      description: "This column has a value getter and is not sortable.",
-      sortable: false,
-      width: 160,
-      // valueGetter: (value, row) => `${row.firstName || ""} ${row.lastName || ""}`,
+    // {
+    //   field: "approve",
+    //   headerName: "Approve",
+    //   description: "This column has a value getter and is not sortable.",
+    //   sortable: false,
+    //   width: 160,
+    //   // valueGetter: (value, row) => `${row.firstName || ""} ${row.lastName || ""}`,
 
-      renderCell: (params) =>
-        params.row.approvedByAdmin ? (
-          <Chip
-            sx={{ width: 1 }}
-            label="Approved"
-            icon={<CheckCircle />}
-            variant="outlined"
-            color="success"
-          />
-        ) : (
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={() => {
-              setTaskId(params.row._id);
-              handleToggleApprove();
-            }}
-            fullWidth
-          >
-            Approve
-          </Button>
-        ),
-    },
+    //   renderCell: (params) =>
+    //     params.row.approvedByAdmin ? (
+    //       <Chip
+    //         sx={{ width: 1 }}
+    //         label="Approved"
+    //         icon={<CheckCircle />}
+    //         variant="outlined"
+    //         color="success"
+    //       />
+    //     ) : (
+    //       <Button
+    //         variant="contained"
+    //         color="primary"
+    //         onClick={() => {
+    //           setTaskId(params.row._id);
+    //           handleToggleApprove();
+    //         }}
+    //         fullWidth
+    //       >
+    //         Approve
+    //       </Button>
+    //     ),
+    // },
   ];
 
   return (
