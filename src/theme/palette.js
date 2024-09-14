@@ -54,12 +54,12 @@ const SUCCESS = {
 };
 
 const WARNING = {
-  lighter: '#FFF5CC',
-  light: '#FFD666',
-  main: '#FFAB00',
-  dark: '#B76E00',
-  darker: '#7A4100',
-  contrastText: GREY[800],
+  lighter: '#FFEBD4',
+  light: '#FF9260',
+  main: '#ff602b',
+  dark: '#DB411F',
+  darker: '#B72715',
+  contrastText: '#fff',
 };
 
 const ERROR = {

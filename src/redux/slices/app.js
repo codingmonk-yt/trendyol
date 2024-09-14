@@ -132,3 +132,34 @@ export function LogoutUser() {
     window.location.href = "/";
   };
 }
+
+// get me
+export function GetMe() {
+  return async (dispatch, getState) => {
+    dispatch(setError(null));
+    dispatch(setLoading(true));
+    await axios
+      .get("/user/me", {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${getState().app.token}`,
+        },
+      })
+      .then(function (response) {
+        // console.log(response);
+        const { data } = response.data;
+        console.log(data);
+
+        console.log(data.user);
+
+        // dispatch(fetchUserSuccess(data.user));
+      })
+      .catch(function (error) {
+        console.log(error);
+        dispatch(setError(error));
+      })
+      .finally(() => {
+        dispatch(setLoading(false));
+      });
+  };
+}

@@ -17,6 +17,7 @@ import Withdraw from "./Withdraw";
 import { SignOut } from "@phosphor-icons/react";
 import { useDispatch } from "react-redux";
 import { LogoutUser } from "../../redux/slices/app";
+import { alpha } from "@mui/material/styles";
 
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -56,53 +57,55 @@ export default function Home() {
   };
 
   return (
-    <Container maxWidth="lg">
-      <Stack spacing={4} py={4}>
-        <Stack
-          direction="row"
-          alignItems="center"
-          justifyContent="space-between"
-        >
-          <Typography variant="h4">Admin</Typography>
-
-          <IconButton
-            onClick={() => {
-              dispatch(LogoutUser());
-            }}
+    <Box sx={{ bgcolor: (theme) => alpha(theme.palette.warning.lighter, 0.5), minHeight: "100vh" }}>
+      <Container maxWidth="lg">
+        <Stack spacing={4} py={4}>
+          <Stack
+            direction="row"
+            alignItems="center"
+            justifyContent="space-between"
           >
-            <SignOut />
-          </IconButton>
-        </Stack>
+            <Typography variant="h4">Admin</Typography>
 
-        <Divider />
-
-        <Box sx={{ width: "100%" }}>
-          <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-            <Tabs
-              value={value}
-              onChange={handleChange}
-              aria-label="basic tabs example"
+            <IconButton
+              onClick={() => {
+                dispatch(LogoutUser());
+              }}
             >
-              <Tab label="Users" {...a11yProps(0)} />
-              <Tab label="Tasks" {...a11yProps(1)} />
-              <Tab label="Recharge Requests" {...a11yProps(2)} />
-              <Tab label="Withdraw Requests" {...a11yProps(3)} />
-            </Tabs>
+              <SignOut />
+            </IconButton>
+          </Stack>
+
+          <Divider />
+
+          <Box sx={{ width: "100%" }}>
+            <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+              <Tabs
+                value={value}
+                onChange={handleChange}
+                aria-label="basic tabs example"
+              >
+                <Tab label="Users" {...a11yProps(0)} />
+                <Tab label="Tasks" {...a11yProps(1)} />
+                <Tab label="Recharge Requests" {...a11yProps(2)} />
+                <Tab label="Withdraw Requests" {...a11yProps(3)} />
+              </Tabs>
+            </Box>
+            <CustomTabPanel value={value} index={0}>
+              <Users />
+            </CustomTabPanel>
+            <CustomTabPanel value={value} index={1}>
+              <Tasks />
+            </CustomTabPanel>
+            <CustomTabPanel value={value} index={2}>
+              <Recharge />
+            </CustomTabPanel>
+            <CustomTabPanel value={value} index={3}>
+              <Withdraw />
+            </CustomTabPanel>
           </Box>
-          <CustomTabPanel value={value} index={0}>
-            <Users />
-          </CustomTabPanel>
-          <CustomTabPanel value={value} index={1}>
-            <Tasks />
-          </CustomTabPanel>
-          <CustomTabPanel value={value} index={2}>
-            <Recharge />
-          </CustomTabPanel>
-          <CustomTabPanel value={value} index={3}>
-            <Withdraw />
-          </CustomTabPanel>
-        </Box>
-      </Stack>
-    </Container>
+        </Stack>
+      </Container>
+    </Box>
   );
 }

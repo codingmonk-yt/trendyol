@@ -1,5 +1,5 @@
 import { Box, Container, Stack, Tab, Tabs } from "@mui/material";
-import React from "react";
+import React, { useEffect } from "react";
 import { Clock, Receipt, House, User, Chat } from "@phosphor-icons/react";
 import Home from "./Home";
 import Orders from "./Orders";
@@ -12,7 +12,8 @@ import Withdraw from "../../components/Withdraw";
 import Recharge from "../../components/Recharge";
 import LinkedAccount from "../../components/LinkedAccount";
 
-import {alpha} from "@mui/material/styles";
+import { alpha } from "@mui/material/styles";
+import { GetMe } from "../../redux/slices/app";
 
 function App() {
   const dispatch = useDispatch();
@@ -24,11 +25,31 @@ function App() {
     dispatch(UpdateSelectedTab(newValue));
   };
 
+  useEffect(() => {
+    // Initial dispatch
+    dispatch(GetMe());
+
+    // Set an interval to dispatch GetMe every 10 seconds
+    const interval = setInterval(() => {
+      dispatch(GetMe());
+    }, 10000);
+
+    // Cleanup interval on component unmount
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <>
-      <Box sx={{ height: "100vh", width: "100vw", overflowX: "hidden", bgcolor: (theme) => alpha(theme.palette.primary.lighter, 0.5) }}>
+      <Box
+        sx={{
+          height: "100vh",
+          width: "100vw",
+          overflowX: "hidden",
+          bgcolor: (theme) => alpha(theme.palette.warning.lighter, 0.5),
+        }}
+      >
         <Container maxWidth="md" sx={{ height: 1, px: 1 }}>
-          <Stack sx={{ height: 1, bgcolor: "white" }}>
+          <Stack sx={{ height: 1 }}>
             {/* Outlet */}
 
             {(() => {

@@ -26,7 +26,7 @@ export default function Avatar(theme) {
           '&:first-of-type': {
             fontSize: 12,
             color: theme.palette.primary.main,
-            backgroundColor: theme.palette.primary.lighter,
+            backgroundColor: theme.palette.warning.lighter,
           },
         },
       },

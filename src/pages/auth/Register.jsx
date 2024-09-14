@@ -13,6 +13,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { RegisterUser } from "../../redux/slices/app";
+import {alpha} from "@mui/material/styles"
 
 export default function Register() {
   const dispatch = useDispatch();
@@ -52,7 +53,7 @@ export default function Register() {
   };
 
   return (
-    <Box>
+    <Box sx={{bgcolor: (theme) => alpha(theme.palette.warning.lighter, 0.5)}}>
       <Container maxWidth="md" sx={{ py: 4, height: "100vh" }}>
         <Stack spacing={4}>
           <Stack
