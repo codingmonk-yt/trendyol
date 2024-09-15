@@ -28,7 +28,7 @@ const RULES = [
   {
     key: 3,
     content:
-      "4. Users at all membership levels can complete 60 orders per day and must receive 60 orders in order to withdraw cash. There is no time limit for withdrawals, and the specific arrival time is subject to system approval.",
+      "4. Users at all membership levels can complete 30 orders per day and must receive 60 orders in order to withdraw cash. There is no time limit for withdrawals, and the specific arrival time is subject to system approval.",
   },
   {
     key: 4,

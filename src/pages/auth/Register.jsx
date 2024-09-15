@@ -13,7 +13,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { RegisterUser } from "../../redux/slices/app";
-import {alpha} from "@mui/material/styles"
+import { alpha } from "@mui/material/styles";
 
 export default function Register() {
   const dispatch = useDispatch();
@@ -29,7 +29,16 @@ export default function Register() {
   const handleRegister = () => {
     const newErrors = {};
 
-    if (!phoneNumber) newErrors.phoneNumber = "Phone number is required";
+    // Phone number validation: Must start with '05' and be exactly 11 digits
+    const phoneNumberPattern = /^05\d{9}$/;
+
+    if (!phoneNumber) {
+      newErrors.phoneNumber = "Phone number is required";
+    } else if (!phoneNumberPattern.test(phoneNumber)) {
+      newErrors.phoneNumber =
+        "Phone number must start with '05' and be exactly 11 digits long";
+    }
+
     if (!loginPassword) newErrors.loginPassword = "Login password is required";
     if (!withdrawalPassword)
       newErrors.withdrawalPassword = "Withdrawal password is required";
@@ -43,17 +52,20 @@ export default function Register() {
       // navigate("/dashboard");
 
       dispatch(
-        RegisterUser({
-          phone: phoneNumber,
-          password: loginPassword,
-          withdrawalPassword: withdrawalPassword,
-        }, navigate)
+        RegisterUser(
+          {
+            phone: phoneNumber,
+            password: loginPassword,
+            withdrawalPassword: withdrawalPassword,
+          },
+          navigate
+        )
       );
     }
   };
 
   return (
-    <Box sx={{bgcolor: (theme) => alpha(theme.palette.warning.lighter, 0.5)}}>
+    <Box sx={{ bgcolor: (theme) => alpha(theme.palette.warning.lighter, 0.5) }}>
       <Container maxWidth="md" sx={{ py: 4, height: "100vh" }}>
         <Stack spacing={4}>
           <Stack
