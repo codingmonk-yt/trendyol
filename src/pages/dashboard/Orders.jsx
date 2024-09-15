@@ -169,7 +169,7 @@ export default function Orders() {
               ) : (
                 <Card>
                   <CardContent>
-                    <Stack spacing={2}>
+                    <Stack alignItems="center" justifyContent="center" spacing={2}>
                       <Typography variant="h6" color="primary">
                         No Pending Tasks
                       </Typography>
