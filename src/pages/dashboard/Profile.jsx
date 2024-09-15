@@ -95,7 +95,7 @@ export default function Profile() {
                   <Typography variant="button">Account balance</Typography>
 
                   <Typography variant="h6" color="textSecondary">
-                    ${balance}
+                    ${(balance * 1).toFixed(2)}
                   </Typography>
 
                   <Divider />

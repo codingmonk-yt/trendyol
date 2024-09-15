@@ -134,7 +134,7 @@ export default function Orders() {
                             Current Balance
                           </Typography>
                           <Typography variant="subtitle1" color="primary">
-                            ${balance}
+                            ${(balance * 1).toFixed(2)}
                           </Typography>
                         </Stack>
                         <Divider />
@@ -148,8 +148,8 @@ export default function Orders() {
                           </Typography>
                           <Typography variant="subtitle1" color="primary">
                             $
-                            {tasks.filter((e) => e.status === "pending")[0]
-                              ?.totalAmount * 1}
+                            {(tasks.filter((e) => e.status === "pending")[0]
+                              ?.totalAmount * 1).toFixed(2)}
                           </Typography>
                         </Stack>
                         <Divider />

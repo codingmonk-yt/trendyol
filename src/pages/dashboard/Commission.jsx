@@ -154,7 +154,7 @@ export default function Commission() {
                   justifyContent="space-between"
                 >
                   <Typography variant="h4" color="textPrimary">
-                    ${balance}
+                    ${(balance * 1).toFixed(2)}
                   </Typography>
                   <Button
                     onClick={() => {

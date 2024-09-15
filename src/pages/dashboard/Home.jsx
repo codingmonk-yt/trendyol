@@ -91,7 +91,7 @@ export default function Home() {
                 >
                   <Stack spacing={0.5}>
                     <Typography variant="h6">My Assets</Typography>
-                    <Typography>$ {balance}</Typography>
+                    <Typography>$ {(balance * 1).toFixed(2)}</Typography>
                   </Stack>
 
                   <Stack spacing={1}>

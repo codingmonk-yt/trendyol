@@ -77,7 +77,7 @@ export default function Recharge({ open }) {
             <CardContent>
               <Typography variant="overline">Current balance</Typography>
               <Typography sx={{ mt: 2 }} variant="subtitle1">
-                ${balance}
+                ${(balance * 1).toFixed(2)}
               </Typography>
             </CardContent>
           </Card>
