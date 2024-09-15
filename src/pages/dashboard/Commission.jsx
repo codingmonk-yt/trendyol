@@ -19,6 +19,7 @@ import {
   UpdateSelectedTab,
   UpdateWithdrawDialog,
 } from "../../redux/slices/user";
+import generateFakeData from "../../utils/fakeData";
 
 export default function Commission() {
   const dispatch = useDispatch();
@@ -217,8 +218,7 @@ export default function Commission() {
                   >
                     <Marquee>
                       <Typography variant="subtitle2">
-                        {" "}
-                        User[9053******7]Commission earned $1360.25{" "}
+                        {generateFakeData()}
                       </Typography>
                     </Marquee>
                   </Box>

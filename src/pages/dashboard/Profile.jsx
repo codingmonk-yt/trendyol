@@ -32,9 +32,11 @@ import {
   UpdateSelectedTab,
   UpdateWithdrawDialog,
 } from "../../redux/slices/user";
+import { useNavigate } from "react-router-dom";
 
 export default function Profile() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [openLink, setOpenLink] = useState(false);
   const [openQualifications, setOpenQualifications] = useState(false);
   const [accountDetailsOpen, setAccountDetailsOpen] = useState(false);
@@ -219,7 +221,7 @@ export default function Profile() {
 
           <Button
             onClick={() => {
-              dispatch(LogoutUser());
+              dispatch(LogoutUser(navigate));
             }}
             fullWidth
             variant="contained"

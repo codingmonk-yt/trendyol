@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 // ----------------------------------------------------------------------
 
 import axios from "../../utils/axios";
+import { toast } from "react-toastify";
 
 const initialState = {
   users: [],
@@ -206,14 +207,12 @@ export function ReviewRechargeRequest(formValues) {
             updatedRequest: data.request,
           })
         );
-
-        // dispatch(fetchWithdrawalInProgress(data.total));
-
-        window.alert("Recharge request reviewed successfully!");
+        toast.success("Recharge request reviewed successfully!");
       })
       .catch(function (error) {
         console.log(error);
         dispatch(setError(error));
+        toast.error(error?.message || "Something went wrong");
       })
       .finally(() => {
         dispatch(setLoading(false));
@@ -251,12 +250,12 @@ export function ReviewWithdrawRequest(formValues) {
         );
 
         // dispatch(fetchWithdrawalInProgress(data.total));
-
-        window.alert("Withdraw request reviewed successfully!");
+        toast.success("Withdraw request reviewed successfully!");
       })
       .catch(function (error) {
         console.log(error);
         dispatch(setError(error));
+        toast.error(error?.message || "Something went wrong");
       })
       .finally(() => {
         dispatch(setLoading(false));
@@ -288,11 +287,12 @@ export function CreateTask(formValues) {
 
         dispatch(addTaskSuccess(data.task));
 
-        window.alert("Task created successfully!");
+        toast.success("Task created successfully!");
       })
       .catch(function (error) {
         console.log(error);
         dispatch(setError(error));
+        toast.error(error.message || "Something went wrong");
       })
       .finally(() => {
         dispatch(setLoading(false));
@@ -320,12 +320,11 @@ export function FetchAllTasks() {
         console.log(data);
 
         dispatch(fetchTaskSuccess(data.tasks));
-
-        // window.alert("Recharge requested successfully!");
       })
       .catch(function (error) {
         console.log(error);
         dispatch(setError(error));
+        toast.error(error.message || "Something went wrong")
       })
       .finally(() => {
         dispatch(setLoading(false));
@@ -360,11 +359,12 @@ export function ApproveTaskCompleted(taskId) {
 
         dispatch(approveTask(taskId));
 
-        window.alert("Task Completion Approved Successfully!");
+        toast.success("Task completion approved successfully!");
       })
       .catch(function (error) {
         console.log(error);
         dispatch(setError(error));
+        toast.error(error.message || "Something went wrong");
       })
       .finally(() => {
         dispatch(setLoading(false));

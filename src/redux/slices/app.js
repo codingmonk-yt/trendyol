@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 // ----------------------------------------------------------------------
 
 import axios from "../../utils/axios";
+import { toast } from "react-toastify";
 
 const initialState = {
   role: "",
@@ -45,7 +46,7 @@ const { fetchUserSuccess, loginSuccess, logoutSuccess, setError, setLoading } =
 
 //
 
-export function RegisterUser(formValues) {
+export function RegisterUser(formValues, navigate) {
   return async (dispatch, getState) => {
     dispatch(setError(null));
     dispatch(setLoading(true));
@@ -68,25 +69,32 @@ export function RegisterUser(formValues) {
 
         dispatch(fetchUserSuccess(data.user));
         dispatch(loginSuccess(token));
+
+        toast.success("Account Created successfully!");
       })
       .catch(function (error) {
         console.log(error);
         dispatch(setError(error));
+        toast.error(error?.message || "Something went wrong");
       })
       .finally(() => {
         dispatch(setLoading(false));
         if (!getState().app.error) {
           if (getState().app.user?.role === "admin") {
-            window.location.href = "/admin";
+           
+            navigate("/admin")
+          
           } else {
-            window.location.href = "/dashboard";
+            
+            navigate("/dashboard")
+        
           }
         }
       });
   };
 }
 
-export function LoginUser(formValues) {
+export function LoginUser(formValues, navigate) {
   return async (dispatch, getState) => {
     // reset error
     dispatch(setError(null));
@@ -108,28 +116,35 @@ export function LoginUser(formValues) {
 
         dispatch(fetchUserSuccess(data.user));
         dispatch(loginSuccess(token));
+
+        toast.success("Logged in successfully!");
       })
       .catch(function (error) {
         console.log(error);
         dispatch(setError(error));
+        toast.error(error?.message || "Something went wrong");
       })
       .finally(() => {
         dispatch(setLoading(false));
         if (!getState().app.error) {
           if (getState().app.user?.role === "admin") {
-            window.location.href = "/admin";
+            navigate("/admin")
           } else {
-            window.location.href = "/dashboard";
+            navigate("/dashboard")
           }
         }
       });
   };
 }
 
-export function LogoutUser() {
+export function LogoutUser(navigate) {
   return async (dispatch, getState) => {
-    dispatch(logoutSuccess());
-    window.location.href = "/";
+    try {
+      navigate("/")
+      toast.error("Logged out successfully!");
+    } catch (error) {
+      console.log(error);
+    }
   };
 }
 
@@ -152,11 +167,12 @@ export function GetMe() {
 
         console.log(data.user);
 
-        // dispatch(fetchUserSuccess(data.user));
+        dispatch(fetchUserSuccess(data.user));
       })
       .catch(function (error) {
         console.log(error);
         dispatch(setError(error));
+        toast.error("Failed to get user details!");
       })
       .finally(() => {
         dispatch(setLoading(false));

@@ -46,7 +46,7 @@ export default function Login() {
         LoginUser({
           phone: phoneNumber,
           password: password,
-        })
+        }, navigate)
       );
     }
   };

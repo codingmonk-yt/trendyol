@@ -18,6 +18,7 @@ import { SignOut } from "@phosphor-icons/react";
 import { useDispatch } from "react-redux";
 import { LogoutUser } from "../../redux/slices/app";
 import { alpha } from "@mui/material/styles";
+import { useNavigate } from "react-router-dom";
 
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -49,6 +50,7 @@ function a11yProps(index) {
 }
 
 export default function Home() {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [value, setValue] = React.useState(0);
 
@@ -57,7 +59,12 @@ export default function Home() {
   };
 
   return (
-    <Box sx={{ bgcolor: (theme) => alpha(theme.palette.warning.lighter, 0.5), minHeight: "100vh" }}>
+    <Box
+      sx={{
+        bgcolor: (theme) => alpha(theme.palette.warning.lighter, 0.5),
+        minHeight: "100vh",
+      }}
+    >
       <Container maxWidth="lg">
         <Stack spacing={4} py={4}>
           <Stack
@@ -69,7 +76,7 @@ export default function Home() {
 
             <IconButton
               onClick={() => {
-                dispatch(LogoutUser());
+                dispatch(LogoutUser(navigate));
               }}
             >
               <SignOut />

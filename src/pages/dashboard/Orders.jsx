@@ -13,7 +13,11 @@ import {
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { useDispatch, useSelector } from "react-redux";
-import { GetMyTasks, UpdateTaskStatus } from "../../redux/slices/user";
+import {
+  GetMyTasks,
+  UpdateRechargeDialog,
+  UpdateTaskStatus,
+} from "../../redux/slices/user";
 import { CheckCircle } from "@phosphor-icons/react";
 
 function CustomTabPanel(props) {
@@ -104,11 +108,62 @@ export default function Orders() {
           </Box>
           <CustomTabPanel value={value} index={0}>
             <Stack spacing={2}>
-              {tasks
-                .filter((e) => e.status === "pending")
-                .map((el, index) => (
-                  <OrderCard disabled={index !== 0} {...el} key={el._id} />
-                ))}
+              {balance * 1 >=
+              tasks.filter((e) => e.status === "pending")[0].totalAmount * 1 ? (
+                tasks
+                  .filter((e) => e.status === "pending")
+                  .map((el, index) => (
+                    <OrderCard disabled={index !== 0} {...el} key={el._id} />
+                  ))
+              ) : (
+                <Card>
+                  <CardContent>
+                    <Stack spacing={2}>
+                      <Typography textAlign="center" variant="h6">
+                        Please recharge to take next task
+                      </Typography>
+                      <Divider />
+                      <Stack
+                        direction="row"
+                        alignItems="center"
+                        justifyContent="space-between"
+                      >
+                        <Typography variant="subtitle2">
+                          Current Balance
+                        </Typography>
+                        <Typography variant="subtitle1" color="primary">
+                          ${balance}
+                        </Typography>
+                      </Stack>
+                      <Divider />
+                      <Stack
+                        direction="row"
+                        alignItems="center"
+                        justifyContent="space-between"
+                      >
+                        <Typography variant="subtitle2">
+                          Min. required balance for next task
+                        </Typography>
+                        <Typography variant="subtitle1" color="primary">
+                          $
+                          {tasks.filter((e) => e.status === "pending")[0]
+                            .totalAmount * 1}
+                        </Typography>
+                      </Stack>
+                      <Divider />
+                      <Button
+                        variant="contained"
+                        fullWidth
+                        onClick={() => {
+                          dispatch(UpdateRechargeDialog(true));
+                        }}
+                      >
+                        Recharge
+                      </Button>
+                    </Stack>
+                  </CardContent>
+                </Card>
+              )}
             </Stack>
 
             {/* <OrderCard /> */}
@@ -233,7 +288,7 @@ const OrderCard = ({ disabled, ...el }) => {
               }}
               variant="outlined"
             >
-              Mark as completed
+              Siparişi onayla
             </Button>
           ) : el.status === "completed" ? (
             <Chip

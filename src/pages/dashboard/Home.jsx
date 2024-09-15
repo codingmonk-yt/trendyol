@@ -26,8 +26,10 @@ import {
   UpdateWithdrawDialog,
 } from "../../redux/slices/user";
 import { GetStats, GetWithdrawalInProgress } from "../../redux/slices/user";
+import { useNavigate } from "react-router-dom";
 
 export default function Home() {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   // const USERNAME = "Shreyansh";
@@ -63,7 +65,7 @@ export default function Home() {
 
           <IconButton
             onClick={() => {
-              dispatch(LogoutUser());
+              dispatch(LogoutUser(navigate));
             }}
           >
             <SignOut />

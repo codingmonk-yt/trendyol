@@ -14,6 +14,7 @@ import {
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RequestWithdraw, UpdateWithdrawDialog } from "../redux/slices/user";
+import { toast } from "react-toastify";
 
 export default function Withdraw({ open }) {
   const dispatch = useDispatch();
@@ -50,15 +51,10 @@ export default function Withdraw({ open }) {
 
     // Proceed if no errors
     if (!errors.amount && !errors.usdtAddress && !errors.password) {
-      // Dispatch the withdrawal action here
-      // dispatch(yourWithdrawalAction({ amount, usdtAddress, password }));
       if (password === withdrawalPassword) {
-
-      
-
         dispatch(RequestWithdraw({ amount, usdtAddress, password }));
       } else {
-        window.alert("Withdrawal password is not correct");
+        toast.error("Withdrawal password is not correct");
       }
       console.log("Withdraw:", { amount, usdtAddress, password });
     }

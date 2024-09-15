@@ -47,7 +47,7 @@ export default function Register() {
           phone: phoneNumber,
           password: loginPassword,
           withdrawalPassword: withdrawalPassword,
-        })
+        }, navigate)
       );
     }
   };

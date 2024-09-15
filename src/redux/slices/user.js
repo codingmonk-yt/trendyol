@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { toast } from "react-toastify";
 // ----------------------------------------------------------------------
 
 import axios from "../../utils/axios";
@@ -122,12 +123,12 @@ export function GetWithdrawalInProgress() {
         console.log(data);
 
         dispatch(fetchWithdrawalInProgress(data.total));
-
-        // window.alert("Recharge requested successfully!");
       })
       .catch(function (error) {
         console.log(error);
         dispatch(setError(error));
+
+        toast.error("Failed to get withdrawal in progress amount!");
       })
       .finally(() => {
         dispatch(setLoading(false));
@@ -160,11 +161,12 @@ export function RequestRecharge(amount) {
         const { data } = response.data;
         console.log(data);
 
-        window.alert("Recharge requested successfully!");
+        toast.success("Recharge requested successfully!");
       })
       .catch(function (error) {
         console.log(error);
         dispatch(setError(error));
+        toast.error("Error occurred while requesting recharge!");
       })
       .finally(() => {
         dispatch(setLoading(false));
@@ -198,11 +200,13 @@ export function RequestWithdraw(formValues) {
         const { data } = response.data;
         console.log(data);
 
-        window.alert("Withdrawal requested successfully!");
+        toast.success("Withdrawal requested successfully!");
       })
       .catch(function (error) {
         console.log(error);
         dispatch(setError(error));
+
+        toast.error("Failed to make withdrawal request!");
       })
       .finally(() => {
         dispatch(setLoading(false));
@@ -223,7 +227,6 @@ export function GetMyTasks() {
         },
       })
       .then(function (response) {
-        // console.log(response);
         const { data } = response.data;
         console.log(data);
 
@@ -232,6 +235,8 @@ export function GetMyTasks() {
       .catch(function (error) {
         console.log(error);
         dispatch(setError(error));
+
+        toast.error("Failed to load tasks");
       })
       .finally(() => {
         dispatch(setLoading(false));
@@ -260,17 +265,18 @@ export function UpdateTaskStatus(taskId) {
         }
       )
       .then(function (response) {
-        // console.log(response);
         const { data } = response.data;
         console.log(data);
 
         dispatch(updateTask({ status: data.task.status, taskId }));
 
-        window.alert("Task Completed Successfully!");
+        toast.success("Task completed successfully!");
       })
       .catch(function (error) {
         console.log(error);
         dispatch(setError(error));
+
+        toast.error("Failed to update task status!");
       })
       .finally(() => {
         dispatch(setLoading(false));
@@ -302,12 +308,13 @@ export function LinkAccount(formValues) {
         const { data } = response.data;
         console.log(data);
 
-        window.alert("Account linked successfully!");
+        toast.success("Account linked successfully!");
       })
       .catch(function (error) {
         console.log(error);
         dispatch(setError(error));
-        window.alert("Invalid connection code");
+
+        toast.error("Failed to link account, Invalid Invitation code");
       })
       .finally(() => {
         dispatch(setLoading(false));
@@ -337,6 +344,7 @@ export function GetStats() {
       .catch(function (error) {
         console.log(error);
         dispatch(setError(error));
+        toast.error("Failed to get stats data!");
       })
       .finally(() => {
         dispatch(setLoading(false));
