@@ -109,9 +109,9 @@ export default function Orders() {
           <CustomTabPanel value={value} index={0}>
             <Stack spacing={2}>
               {balance * 1 >=
-              tasks.filter((e) => e.status === "pending")[0].totalAmount * 1 ? (
+              tasks.filter((e) => e?.status === "pending")[0]?.totalAmount * 1 ? (
                 tasks
-                  .filter((e) => e.status === "pending")
+                  .filter((e) => e?.status === "pending")
                   .map((el, index) => (
                     <OrderCard disabled={index !== 0} {...el} key={el._id} />
                   ))
@@ -147,7 +147,7 @@ export default function Orders() {
                         <Typography variant="subtitle1" color="primary">
                           $
                           {tasks.filter((e) => e.status === "pending")[0]
-                            .totalAmount * 1}
+                            ?.totalAmount * 1}
                         </Typography>
                       </Stack>
                       <Divider />
@@ -253,7 +253,7 @@ const OrderCard = ({ disabled, ...el }) => {
               Total order amount
             </Typography>
             <Typography variant="button" color="text.secondary">
-              ${el.totalAmount}
+              ${el?.totalAmount}
             </Typography>
           </Stack>
           <Stack
