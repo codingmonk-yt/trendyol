@@ -19,6 +19,7 @@ import { useDispatch } from "react-redux";
 import { LogoutUser } from "../../redux/slices/app";
 import { alpha } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
+import Settings from "./Settings";
 
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -96,6 +97,7 @@ export default function Home() {
                 <Tab label="Tasks" {...a11yProps(1)} />
                 <Tab label="Recharge Requests" {...a11yProps(2)} />
                 <Tab label="Withdraw Requests" {...a11yProps(3)} />
+                <Tab label="Settings" {...a11yProps(4)} />
               </Tabs>
             </Box>
             <CustomTabPanel value={value} index={0}>
@@ -109,6 +111,9 @@ export default function Home() {
             </CustomTabPanel>
             <CustomTabPanel value={value} index={3}>
               <Withdraw />
+            </CustomTabPanel>
+            <CustomTabPanel value={value} index={4}>
+              <Settings />
             </CustomTabPanel>
           </Box>
         </Stack>

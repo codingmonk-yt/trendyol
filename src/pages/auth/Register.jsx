@@ -42,6 +42,10 @@ export default function Register() {
     if (!loginPassword) newErrors.loginPassword = "Login password is required";
     if (!withdrawalPassword)
       newErrors.withdrawalPassword = "Withdrawal password is required";
+    
+    // Invitation code validation
+    if (!invitationCode) newErrors.invitationCode = "Invitation code is required";
+
     if (!isAcknowledged)
       newErrors.isAcknowledged = "You must acknowledge the agreement";
 
@@ -54,6 +58,7 @@ export default function Register() {
       dispatch(
         RegisterUser(
           {
+            code: invitationCode,
             phone: phoneNumber,
             password: loginPassword,
             withdrawalPassword: withdrawalPassword,

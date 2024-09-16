@@ -81,13 +81,9 @@ export function RegisterUser(formValues, navigate) {
         dispatch(setLoading(false));
         if (!getState().app.error) {
           if (getState().app.user?.role === "admin") {
-           
-            navigate("/admin")
-          
+            navigate("/admin");
           } else {
-            
-            navigate("/dashboard")
-        
+            navigate("/dashboard");
           }
         }
       });
@@ -128,9 +124,9 @@ export function LoginUser(formValues, navigate) {
         dispatch(setLoading(false));
         if (!getState().app.error) {
           if (getState().app.user?.role === "admin") {
-            navigate("/admin")
+            navigate("/admin");
           } else {
-            navigate("/dashboard")
+            navigate("/dashboard");
           }
         }
       });
@@ -140,11 +136,48 @@ export function LoginUser(formValues, navigate) {
 export function LogoutUser(navigate) {
   return async (dispatch, getState) => {
     try {
-      navigate("/")
+      navigate("/");
       toast.error("Logged out successfully!");
     } catch (error) {
       console.log(error);
     }
+  };
+}
+
+// Update Admin Code
+export function UpdateAdminCode(code) {
+  return async (dispatch, getState) => {
+    // reset error
+    dispatch(setError(null));
+    dispatch(setLoading(true));
+
+    await axios
+      .patch(
+        "/admin/invitation",
+        {
+          code,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${getState().app.token}`,
+          },
+        }
+      )
+      .then(function (response) {
+        console.log(response);
+
+        const { data } = response.data;
+        console.log(data);
+
+        dispatch(fetchUserSuccess(data.user));
+        toast.success("Code updated successfully!");
+      })
+      .catch(function (error) {
+        console.log(error);
+        dispatch(setError(error));
+        toast.error(error?.message || "Something went wrong");
+      });
   };
 }
 

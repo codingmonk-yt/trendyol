@@ -85,7 +85,7 @@ export default function Orders() {
             </Typography>
           </Stack>
           <Stack maxWidth={"150px"} alignItems="end">
-            <Typography variant="subtitle1">${balance}</Typography>
+            <Typography variant="subtitle1">${(balance * 1).toFixed(2)}</Typography>
             <Typography variant="caption" textAlign="end">
               Remaining available assets(in USD)
             </Typography>
