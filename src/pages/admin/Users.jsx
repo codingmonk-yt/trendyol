@@ -4,6 +4,7 @@ import Paper from "@mui/material/Paper";
 import { useDispatch, useSelector } from "react-redux";
 import { FetchAllUsers } from "../../redux/slices/admin";
 import DeleteConfirmation from "./Dialogs/DeleteConfirmation";
+import { Button } from "@mui/material";
 
 const paginationModel = { page: 0, pageSize: 5 };
 

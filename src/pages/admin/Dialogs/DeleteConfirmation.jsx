@@ -6,7 +6,7 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { useDispatch } from "react-redux";
-import { ApproveTaskCompleted, DeleteUser } from "../../../redux/slices/admin";
+import { DeleteUser } from "../../../redux/slices/admin";
 
 export default function DeleteConfirmation({ open, handleClose, userId }) {
   const dispatch = useDispatch();
