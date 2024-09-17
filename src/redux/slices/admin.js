@@ -384,8 +384,8 @@ export function DeleteUser(userId) {
     dispatch(setLoading(true));
 
     await axios
-      .delete(
-        "/admin/user",
+      .post(
+        "/admin/delete-user",
         {
           userId,
         },
