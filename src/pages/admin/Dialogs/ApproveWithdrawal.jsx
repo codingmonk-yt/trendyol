@@ -19,6 +19,7 @@ export default function ApproveWithdrawal({ open, handleClose, requestId }) {
         verdict: "approve",
       })
     );
+    handleClose();
   };
 
   return (

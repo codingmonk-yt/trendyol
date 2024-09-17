@@ -38,6 +38,7 @@ export default function LinkedAccount({ open }) {
       // Add dispatch or further logic here
       console.log("Linking accounts with code:", connectionCode);
       dispatch(LinkAccount({ invitationCode: connectionCode }));
+      handleClose();
     }
   };
 

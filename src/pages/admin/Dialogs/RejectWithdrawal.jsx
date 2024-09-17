@@ -19,6 +19,7 @@ export default function RejectWithdrawal({ open, handleClose, requestId }) {
         verdict: "reject",
       })
     );
+    handleClose();
   };
 
   return (

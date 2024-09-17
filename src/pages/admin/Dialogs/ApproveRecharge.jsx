@@ -19,6 +19,8 @@ export default function ApproveRecharge({ open, handleClose, requestId }) {
         verdict: "approve",
       })
     );
+
+    handleClose();
   };
 
   return (

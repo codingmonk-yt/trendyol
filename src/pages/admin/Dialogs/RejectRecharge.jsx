@@ -19,6 +19,8 @@ export default function RejectRecharge({ open, handleClose, requestId }) {
         verdict: "reject",
       })
     );
+
+    handleClose();
   };
 
   return (

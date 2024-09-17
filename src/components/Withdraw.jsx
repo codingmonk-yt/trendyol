@@ -53,6 +53,7 @@ export default function Withdraw({ open }) {
     if (!errors.amount && !errors.usdtAddress && !errors.password) {
       if (password === withdrawalPassword) {
         dispatch(RequestWithdraw({ amount, usdtAddress, password }));
+        handleClose();
       } else {
         toast.error("Withdrawal password is not correct");
       }
