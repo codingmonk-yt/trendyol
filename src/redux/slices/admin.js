@@ -68,6 +68,9 @@ const slice = createSlice({
         }
       });
     },
+    removeUser(state, action) {
+      state.users = state.users.filter((el) => el._id != action.payload);
+    },
   },
 });
 
@@ -84,6 +87,7 @@ const {
   updateRechargeRequest,
   updateWithdrawRequest,
   approveTask,
+  removeUser,
 } = slice.actions;
 
 // Get users
@@ -324,7 +328,7 @@ export function FetchAllTasks() {
       .catch(function (error) {
         console.log(error);
         dispatch(setError(error));
-        toast.error(error.message || "Something went wrong")
+        toast.error(error.message || "Something went wrong");
       })
       .finally(() => {
         dispatch(setLoading(false));
@@ -360,6 +364,46 @@ export function ApproveTaskCompleted(taskId) {
         dispatch(approveTask(taskId));
 
         toast.success("Task completion approved successfully!");
+      })
+      .catch(function (error) {
+        console.log(error);
+        dispatch(setError(error));
+        toast.error(error.message || "Something went wrong");
+      })
+      .finally(() => {
+        dispatch(setLoading(false));
+      });
+  };
+}
+
+// Delete User
+
+export function DeleteUser(userId) {
+  return async (dispatch, getState) => {
+    dispatch(setError(null));
+    dispatch(setLoading(true));
+
+    await axios
+      .delete(
+        "/admin/user",
+        {
+          userId,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${getState().app.token}`,
+          },
+        }
+      )
+      .then(function (response) {
+        // console.log(response);
+        const { data } = response.data;
+        console.log(data);
+
+        dispatch(removeUser(userId));
+
+        toast.success("User deleted successfully!");
       })
       .catch(function (error) {
         console.log(error);
