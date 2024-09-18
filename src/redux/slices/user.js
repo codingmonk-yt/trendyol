@@ -53,6 +53,9 @@ const slice = createSlice({
       state.tasks = state.tasks.map((el) => {
         if (el._id === taskId) {
           return { ...el, status: action.payload.status };
+        }
+        if (!action.payload.isLast && el._id === action.payload.nextId) {
+          return action.payload.nextTask;
         } else {
           return el;
         }
@@ -246,7 +249,7 @@ export function GetMyTasks() {
 
 // update task
 
-export function UpdateTaskStatus(taskId) {
+export function UpdateTaskStatus({ id, nextId, isLast }) {
   return async (dispatch, getState) => {
     dispatch(setError(null));
     dispatch(setLoading(true));
@@ -255,7 +258,9 @@ export function UpdateTaskStatus(taskId) {
       .patch(
         "/user/update-task",
         {
-          taskId,
+          taskId: id,
+          nextId,
+          isLast,
         },
         {
           headers: {
@@ -268,7 +273,15 @@ export function UpdateTaskStatus(taskId) {
         const { data } = response.data;
         console.log(data);
 
-        dispatch(updateTask({ status: data.task.status, taskId }));
+        dispatch(
+          updateTask({
+            status: data.task.status,
+            taskId: id,
+            nextTask: data.nextTask,
+            isLast,
+            nextId,
+          })
+        );
 
         toast.success("Task completed successfully!");
       })

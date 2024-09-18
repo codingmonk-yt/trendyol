@@ -112,11 +112,18 @@ export default function Orders() {
                 balance * 1 >=
                 tasks.filter((e) => e?.status === "pending")[0]?.totalAmount *
                   1 ? (
-                  tasks
+                    tasks
                     .filter((e) => e?.status === "pending")
-                    .map((el, index) => (
-                      <OrderCard disabled={index !== 0} {...el} key={el._id} />
+                    .map((el, index, array) => (
+                      <OrderCard
+                        disabled={index !== 0}
+                        {...el}
+                        key={el._id}
+                        nextId={array[index + 1]?._id || null} // Pass the _id of the next element or null
+                        isLast={index === array.length - 1} // Check if it's the last element
+                      />
                     ))
+                  
                 ) : (
                   <Card>
                     <CardContent>
@@ -208,7 +215,7 @@ export default function Orders() {
   );
 }
 
-const OrderCard = ({ disabled, ...el }) => {
+const OrderCard = ({ disabled, nextId, isLast, ...el }) => {
   const dispatch = useDispatch();
 
   return (
@@ -222,7 +229,7 @@ const OrderCard = ({ disabled, ...el }) => {
           >
             <Stack spacing={1}>
               <Typography variant="caption">
-                Second Purchase time: {el.purchaseTime}
+                Second Purchase time: {el.status === "pending" && disabled ? "To be assigned" : el.purchaseTime}
               </Typography>
               <Typography variant="caption">
                 Second Purchase number: {el.purchaseNumber}
@@ -300,7 +307,7 @@ const OrderCard = ({ disabled, ...el }) => {
             <Button
               disabled={disabled}
               onClick={() => {
-                dispatch(UpdateTaskStatus(el._id));
+                dispatch(UpdateTaskStatus({id: el._id, nextId, isLast}));
               }}
               variant="outlined"
             >
