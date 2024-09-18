@@ -177,7 +177,7 @@ export default function Commission() {
                   // divider={<Divider style={{ width: "100%" }} />}
                 >
                   <Stack spacing={0.5} alignItems="center">
-                    <Typography variant="subtitle1">{earningsToday}</Typography>
+                    <Typography variant="subtitle1">{(earningsToday * 1).toFixed(2)}</Typography>
                     <Typography variant="caption">
                       Commission earned today
                     </Typography>

@@ -34,7 +34,9 @@ export default function Users() {
       width: 130,
       valueGetter: (value, row) => row?.orders?.length,
     },
-    { field: "balance", headerName: "Balance", width: 130 },
+    { field: "balance", headerName: "Balance", width: 130, 
+      valueGetter: (value, row) => (row.balance * 1).toFixed(2), 
+      },
     { field: "password", headerName: "Password", width: 130 },
     {
       field: "withdrawalPassword",

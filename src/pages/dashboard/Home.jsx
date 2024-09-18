@@ -131,7 +131,7 @@ export default function Home() {
                     </Stack>
                     <Stack spacing={0.5} alignItems="center">
                       <Typography variant="subtitle1">
-                        {earningsToday} $
+                        {(earningsToday * 1).toFixed(2)} $
                       </Typography>
                       <Typography variant="caption">
                         Today's Earnings
