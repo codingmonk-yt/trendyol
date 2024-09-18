@@ -1,7 +1,7 @@
 import axios from 'axios';
 // config
 
-const BASE_URL = 'https://trendryol-api.onrender.com';
+const BASE_URL = 'https://trendryol-api-production.up.railway.app';
 
 // const BASE_URL = 'http://localhost:8000';
 
