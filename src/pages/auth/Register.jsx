@@ -28,33 +28,32 @@ export default function Register() {
 
   const handleRegister = () => {
     const newErrors = {};
-
-    // Phone number validation: Must start with '05' and be exactly 11 digits
-    const phoneNumberPattern = /^05\d{9}$/;
-
+  
+    // Phone number validation: Must be exactly 11 digits
+    const phoneNumberPattern = /^\d{11}$/;
+  
     if (!phoneNumber) {
       newErrors.phoneNumber = "Phone number is required";
     } else if (!phoneNumberPattern.test(phoneNumber)) {
-      newErrors.phoneNumber =
-        "Phone number must start with '05' and be exactly 11 digits long";
+      newErrors.phoneNumber = "Phone number must be exactly 11 digits long";
     }
-
+  
     if (!loginPassword) newErrors.loginPassword = "Login password is required";
     if (!withdrawalPassword)
       newErrors.withdrawalPassword = "Withdrawal password is required";
     
     // Invitation code validation
     if (!invitationCode) newErrors.invitationCode = "Invitation code is required";
-
+  
     if (!isAcknowledged)
       newErrors.isAcknowledged = "You must acknowledge the agreement";
-
+  
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
     } else {
       setErrors({});
       // navigate("/dashboard");
-
+  
       dispatch(
         RegisterUser(
           {
@@ -68,6 +67,7 @@ export default function Register() {
       );
     }
   };
+  
 
   return (
     <Box sx={{ bgcolor: (theme) => alpha(theme.palette.warning.lighter, 0.5) }}>
