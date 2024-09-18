@@ -85,7 +85,9 @@ export default function Orders() {
             </Typography>
           </Stack>
           <Stack maxWidth={"150px"} alignItems="end">
-            <Typography variant="subtitle1">${(balance * 1).toFixed(2)}</Typography>
+            <Typography variant="subtitle1">
+              ${(balance * 1).toFixed(2)}
+            </Typography>
             <Typography variant="caption" textAlign="end">
               Remaining available assets(in USD)
             </Typography>
@@ -112,7 +114,7 @@ export default function Orders() {
                 balance * 1 >=
                 tasks.filter((e) => e?.status === "pending")[0]?.totalAmount *
                   1 ? (
-                    tasks
+                  tasks
                     .filter((e) => e?.status === "pending")
                     .map((el, index, array) => (
                       <OrderCard
@@ -123,7 +125,6 @@ export default function Orders() {
                         isLast={index === array.length - 1} // Check if it's the last element
                       />
                     ))
-                  
                 ) : (
                   <Card>
                     <CardContent>
@@ -155,8 +156,10 @@ export default function Orders() {
                           </Typography>
                           <Typography variant="subtitle1" color="primary">
                             $
-                            {(tasks.filter((e) => e.status === "pending")[0]
-                              ?.totalAmount * 1).toFixed(2)}
+                            {(
+                              tasks.filter((e) => e.status === "pending")[0]
+                                ?.totalAmount * 1
+                            ).toFixed(2)}
                           </Typography>
                         </Stack>
                         <Divider />
@@ -176,7 +179,11 @@ export default function Orders() {
               ) : (
                 <Card>
                   <CardContent>
-                    <Stack alignItems="center" justifyContent="center" spacing={2}>
+                    <Stack
+                      alignItems="center"
+                      justifyContent="center"
+                      spacing={2}
+                    >
                       <Typography variant="h6" color="primary">
                         No Pending Tasks
                       </Typography>
@@ -229,8 +236,19 @@ const OrderCard = ({ disabled, nextId, isLast, ...el }) => {
           >
             <Stack spacing={1}>
               <Typography variant="caption">
-                Second Purchase time: {el.status === "pending" && disabled ? "To be assigned" : el.purchaseTime}
+                Second Purchase time:
+                {el.status === "pending" && disabled
+                  ? "To be assigned"
+                  : new Date(el.purchaseTime).toLocaleString("tr-TR", {
+                      day: "numeric",
+                      month: "long",
+                      year: "numeric",
+                      hour: "numeric",
+                      minute: "numeric",
+                      second: "numeric",
+                    })}
               </Typography>
+
               <Typography variant="caption">
                 Second Purchase number: {el.purchaseNumber}
               </Typography>
@@ -307,7 +325,7 @@ const OrderCard = ({ disabled, nextId, isLast, ...el }) => {
             <Button
               disabled={disabled}
               onClick={() => {
-                dispatch(UpdateTaskStatus({id: el._id, nextId, isLast}));
+                dispatch(UpdateTaskStatus({ id: el._id, nextId, isLast }));
               }}
               variant="outlined"
             >
