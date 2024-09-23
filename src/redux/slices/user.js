@@ -14,6 +14,7 @@ const initialState = {
   rechargeOpen: false,
   withdrawOpen: false,
   linkAccountOpen: false,
+  waitTill: null,
 };
 
 const slice = createSlice({
@@ -60,6 +61,12 @@ const slice = createSlice({
           return el;
         }
       });
+
+      if (action.payload.isFifthTask) {
+        state.waitTill = new Date(Date.now() + 15 * 6 * 1000);
+      } else {
+        state.waitTill = null;
+      }
     },
   },
 });
@@ -280,6 +287,7 @@ export function UpdateTaskStatus({ id, nextId, isLast }) {
             nextTask: data.nextTask,
             isLast,
             nextId,
+            isFifthTask: data.isFifthTask,
           })
         );
 

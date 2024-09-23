@@ -50,6 +50,17 @@ function a11yProps(index) {
   };
 }
 
+const checkIf15MinutesElapsed = (waitTill) => {
+  const waitTillDate = new Date(waitTill); // Convert to Date object
+  const currentTime = new Date(); // Get current time
+
+  // Add 15 minutes to the waitTill time
+  const waitTillPlus15 = new Date(waitTillDate.getTime() + 15 * 60 * 1000);
+
+  // Compare current time with waitTill + 15 minutes
+  return currentTime >= waitTillPlus15;
+};
+
 export default function Orders() {
   const dispatch = useDispatch();
 
@@ -58,6 +69,21 @@ export default function Orders() {
   const [value, setValue] = React.useState(0);
 
   const { balance } = useSelector((state) => state.app.user);
+
+  const { waitTill } = useSelector((state) => state.user);
+
+  const [has15MinutesElapsed, setHas15MinutesElapsed] = useState(false);
+
+  useEffect(() => {
+    // Function to perform the check every 5 seconds
+    const interval = setInterval(() => {
+      const hasElapsed = checkIf15MinutesElapsed(waitTill);
+      setHas15MinutesElapsed(hasElapsed);
+    }, 5000); // Check every 5 seconds (5000 ms)
+
+    // Cleanup the interval when the component is unmounted
+    return () => clearInterval(interval);
+  }, [waitTill]);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -110,7 +136,36 @@ export default function Orders() {
           </Box>
           <CustomTabPanel value={value} index={0}>
             <Stack spacing={2}>
-              {tasks.filter((e) => e?.status === "pending").length > 0 ? (
+              {console.log(waitTill)}
+              {waitTill && !has15MinutesElapsed ? (
+                <Card>
+                  <CardContent>
+                    <Stack
+                      alignItems="center"
+                      justifyContent="center"
+                      spacing={2}
+                    >
+                      <Typography
+                        variant="h6"
+                        color="primary"
+                        textAlign="center"
+                      >
+                        Please wait for 15 Mins to get next task
+                      </Typography>
+                      <Typography
+                        variant="subtitle1"
+                        color="success"
+                        textAlign="center"
+                      >
+                        Congratulations you have successfully completed your
+                        first five tasks 🥳🥳!!
+                        <br />
+                        PLEASE CONTACT YOUR REPRESENTATIVE
+                      </Typography>
+                    </Stack>
+                  </CardContent>
+                </Card>
+              ) : tasks.filter((e) => e?.status === "pending").length > 0 ? (
                 balance * 1 >=
                 tasks.filter((e) => e?.status === "pending")[0]?.totalAmount *
                   1 ? (
