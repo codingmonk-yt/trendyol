@@ -53,13 +53,15 @@ function a11yProps(index) {
 }
 
 const checkIf15MinutesElapsed = (waitTill) => {
+  if (!waitTill) {
+    return false; // If waitTill is null or undefined, return false
+  }
   const waitTillDate = new Date(waitTill); // MongoDB timestamp with 15 minutes already added
   const currentTime = new Date();
-  console.log(waitTillDate, 'wait time');
-
+  
   return currentTime >= waitTillDate; // Check if current time has passed the waitTill time
-
 };
+
 
 export default function Orders() {
   const dispatch = useDispatch();
@@ -75,15 +77,18 @@ export default function Orders() {
   const [has15MinutesElapsed, setHas15MinutesElapsed] = useState(false);
 
   useEffect(() => {
+    if (!waitTill) return; // Exit early if waitTill is null
+  
     // Function to perform the check every 5 seconds
     const interval = setInterval(() => {
       const hasElapsed = checkIf15MinutesElapsed(waitTill);
       setHas15MinutesElapsed(hasElapsed);
     }, 5000); // Check every 5 seconds (5000 ms)
-
+  
     // Cleanup the interval when the component is unmounted
     return () => clearInterval(interval);
   }, [waitTill]);
+  
 
   useEffect(() => {
     // Initial dispatch
