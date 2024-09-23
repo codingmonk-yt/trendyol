@@ -27,6 +27,7 @@ import AccountDetails from "../../components/AccountDetails";
 import { useDispatch, useSelector } from "react-redux";
 import { LogoutUser } from "../../redux/slices/app";
 import {
+  ResetWaitTime,
   UpdateLinkAccountDialog,
   UpdateRechargeDialog,
   UpdateSelectedTab,
@@ -222,6 +223,7 @@ export default function Profile() {
           <Button
             onClick={() => {
               dispatch(LogoutUser(navigate));
+              dispatch(ResetWaitTime());
             }}
             fullWidth
             variant="contained"

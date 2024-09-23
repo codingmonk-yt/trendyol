@@ -68,6 +68,9 @@ const slice = createSlice({
         state.waitTill = null;
       }
     },
+    updateWaitTime(state, action) {
+      state.waitTill = action.payload;
+    },
   },
 });
 
@@ -85,7 +88,43 @@ const {
   updateRechargeOpen,
   updateWithdrawOpen,
   updateTask,
+  updateWaitTime,
 } = slice.actions;
+
+export function ResetWaitTime() {
+  return async (dispatch, getState) => {
+    dispatch(updateWaitTime(null));
+  };
+}
+
+export function GetWaitTill() {
+  return async (dispatch, getState) => {
+    dispatch(setError(null));
+    dispatch(setLoading(true));
+    await axios
+      .get("/user/wait-time", {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${getState().app.token}`,
+        },
+      })
+      .then(function (response) {
+        // console.log(response);
+        const result = response.data;
+        console.log(result.timestamp);
+
+        dispatch(updateWaitTime(result.timestamp));
+      })
+      .catch(function (error) {
+        console.log(error);
+        dispatch(setError(error));
+        toast.error("Failed to fetch!");
+      })
+      .finally(() => {
+        dispatch(setLoading(false));
+      });
+  };
+}
 
 export function UpdateSelectedTab(value) {
   return async (dispatch, getState) => {

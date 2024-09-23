@@ -20,6 +20,7 @@ import { LogoutUser } from "../../redux/slices/app";
 import { alpha } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
 import Settings from "./Settings";
+import { ResetWaitTime } from "../../redux/slices/user";
 
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -78,6 +79,7 @@ export default function Home() {
             <IconButton
               onClick={() => {
                 dispatch(LogoutUser(navigate));
+                dispatch(ResetWaitTime());
               }}
             >
               <SignOut />

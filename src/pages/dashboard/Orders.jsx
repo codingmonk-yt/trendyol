@@ -15,10 +15,12 @@ import PropTypes from "prop-types";
 import { useDispatch, useSelector } from "react-redux";
 import {
   GetMyTasks,
+  GetWaitTill,
   UpdateRechargeDialog,
   UpdateTaskStatus,
 } from "../../redux/slices/user";
 import { CheckCircle } from "@phosphor-icons/react";
+import OrderConfirmation from "./OrderConfirmation";
 
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -51,14 +53,12 @@ function a11yProps(index) {
 }
 
 const checkIf15MinutesElapsed = (waitTill) => {
-  const waitTillDate = new Date(waitTill); // Convert to Date object
-  const currentTime = new Date(); // Get current time
+  const waitTillDate = new Date(waitTill); // MongoDB timestamp with 15 minutes already added
+  const currentTime = new Date();
+  console.log(waitTillDate, 'wait time');
 
-  // Add 15 minutes to the waitTill time
-  const waitTillPlus15 = new Date(waitTillDate.getTime() + 15 * 60 * 1000);
+  return currentTime >= waitTillDate; // Check if current time has passed the waitTill time
 
-  // Compare current time with waitTill + 15 minutes
-  return currentTime >= waitTillPlus15;
 };
 
 export default function Orders() {
@@ -84,6 +84,19 @@ export default function Orders() {
     // Cleanup the interval when the component is unmounted
     return () => clearInterval(interval);
   }, [waitTill]);
+
+  useEffect(() => {
+    // Initial dispatch
+    dispatch(GetWaitTill());
+
+    // Set an interval to dispatch GetMe every 10 seconds
+    const interval = setInterval(() => {
+      dispatch(GetWaitTill());
+    }, 5000);
+
+    // Cleanup interval on component unmount
+    return () => clearInterval(interval);
+  }, []);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -145,13 +158,6 @@ export default function Orders() {
                       justifyContent="center"
                       spacing={2}
                     >
-                      <Typography
-                        variant="h6"
-                        color="primary"
-                        textAlign="center"
-                      >
-                        Please wait for 15 Mins to get next task
-                      </Typography>
                       <Typography
                         variant="subtitle1"
                         color="success"
@@ -282,128 +288,141 @@ export default function Orders() {
 }
 
 const OrderCard = ({ disabled, nextId, isLast, ...el }) => {
-  const dispatch = useDispatch();
-
+  const [open, setOpen] = useState(false);
+  const handleToggle = () => {
+    setOpen((prev) => !prev);
+  };
   return (
-    <Card>
-      <CardContent>
-        <Stack spacing={2}>
-          <Stack
-            direction="row"
-            alignItems="center"
-            justifyContent="space-between"
-          >
-            <Stack spacing={1}>
-              <Typography variant="caption">
-                Second Purchase time:
-                {el.status === "pending" && disabled
-                  ? "To be assigned"
-                  : new Date(el.purchaseTime).toLocaleString("tr-TR", {
-                      day: "numeric",
-                      month: "long",
-                      year: "numeric",
-                      hour: "numeric",
-                      minute: "numeric",
-                      second: "numeric",
-                    })}
-              </Typography>
+    <>
+      <Card>
+        <CardContent>
+          <Stack spacing={2}>
+            <Stack
+              direction="row"
+              alignItems="center"
+              justifyContent="space-between"
+            >
+              <Stack spacing={1}>
+                <Typography variant="caption">
+                  Second Purchase time:
+                  {el.status === "pending" && disabled
+                    ? "To be assigned"
+                    : new Date(el.purchaseTime).toLocaleString("tr-TR", {
+                        day: "numeric",
+                        month: "long",
+                        year: "numeric",
+                        hour: "numeric",
+                        minute: "numeric",
+                        second: "numeric",
+                      })}
+                </Typography>
 
-              <Typography variant="caption">
-                Second Purchase number: {el.purchaseNumber}
-              </Typography>
+                <Typography variant="caption">
+                  Second Purchase number: {el.purchaseNumber}
+                </Typography>
+              </Stack>
+
+              {el.approvedByAdmin && (
+                <Stack
+                  sx={{
+                    color: (theme) => theme.palette.success.main,
+                    textAlign: "center",
+                  }}
+                  spacing={2}
+                  alignItems="center"
+                >
+                  <CheckCircle size={40} />
+                  <Typography variant="caption">Approved By Admin</Typography>
+                </Stack>
+              )}
+            </Stack>
+            <Stack
+              direction="row"
+              alignItems="end"
+              justifyContent="space-between"
+            >
+              <Stack direction="row" alignItems="center" spacing={2}>
+                <img src={el.imgUrl} style={{ maxWidth: "100px" }} />
+                <Stack spacing={0.5}>
+                  <Typography variant="button">{el.name}</Typography>
+                  <Typography variant="body2">${el.pricePerUnit}</Typography>
+                </Stack>
+              </Stack>
+              <Typography>X {el.quantity}</Typography>
             </Stack>
 
-            {el.approvedByAdmin && (
-              <Stack
-                sx={{
-                  color: (theme) => theme.palette.success.main,
-                  textAlign: "center",
+            <Divider />
+
+            <Stack
+              direction="row"
+              alignItems="center"
+              justifyContent="space-between"
+            >
+              <Typography variant="body2" fontSize={14}>
+                Total order amount
+              </Typography>
+              <Typography variant="button" color="text.secondary">
+                ${el?.totalAmount}
+              </Typography>
+            </Stack>
+            <Stack
+              direction="row"
+              alignItems="center"
+              justifyContent="space-between"
+            >
+              <Typography variant="body2" fontSize={14}>
+                Commission
+              </Typography>
+              <Typography variant="button" color="text.secondary">
+                ${el.commission}
+              </Typography>
+            </Stack>
+            <Stack
+              direction="row"
+              alignItems="center"
+              justifyContent="space-between"
+            >
+              <Typography variant="body2" fontSize={14}>
+                Estimated commission return
+              </Typography>
+              <Typography variant="caption" fontSize={24} color="warning">
+                ${el.commissionReturn}
+              </Typography>
+            </Stack>
+            {el.status === "pending" ? (
+              <Button
+                disabled={disabled}
+                onClick={() => {
+                  handleToggle();
                 }}
-                spacing={2}
-                alignItems="center"
+                variant="outlined"
               >
-                <CheckCircle size={40} />
-                <Typography variant="caption">Approved By Admin</Typography>
-              </Stack>
+                Siparişi onayla
+              </Button>
+            ) : el.status === "completed" ? (
+              <Chip
+                label="Completed"
+                variant="filled"
+                color="success"
+                sx={{ width: 1 }}
+              />
+            ) : (
+              <Button variant="contained" disabled>
+                Frozen
+              </Button>
             )}
           </Stack>
-          <Stack
-            direction="row"
-            alignItems="end"
-            justifyContent="space-between"
-          >
-            <Stack direction="row" alignItems="center" spacing={2}>
-              <img src={el.imgUrl} style={{ maxWidth: "100px" }} />
-              <Stack spacing={0.5}>
-                <Typography variant="button">{el.name}</Typography>
-                <Typography variant="body2">${el.pricePerUnit}</Typography>
-              </Stack>
-            </Stack>
-            <Typography>X {el.quantity}</Typography>
-          </Stack>
-
-          <Divider />
-
-          <Stack
-            direction="row"
-            alignItems="center"
-            justifyContent="space-between"
-          >
-            <Typography variant="body2" fontSize={14}>
-              Total order amount
-            </Typography>
-            <Typography variant="button" color="text.secondary">
-              ${el?.totalAmount}
-            </Typography>
-          </Stack>
-          <Stack
-            direction="row"
-            alignItems="center"
-            justifyContent="space-between"
-          >
-            <Typography variant="body2" fontSize={14}>
-              Commission
-            </Typography>
-            <Typography variant="button" color="text.secondary">
-              ${el.commission}
-            </Typography>
-          </Stack>
-          <Stack
-            direction="row"
-            alignItems="center"
-            justifyContent="space-between"
-          >
-            <Typography variant="body2" fontSize={14}>
-              Estimated commission return
-            </Typography>
-            <Typography variant="caption" fontSize={24} color="warning">
-              ${el.commissionReturn}
-            </Typography>
-          </Stack>
-          {el.status === "pending" ? (
-            <Button
-              disabled={disabled}
-              onClick={() => {
-                dispatch(UpdateTaskStatus({ id: el._id, nextId, isLast }));
-              }}
-              variant="outlined"
-            >
-              Siparişi onayla
-            </Button>
-          ) : el.status === "completed" ? (
-            <Chip
-              label="Completed"
-              variant="filled"
-              color="success"
-              sx={{ width: 1 }}
-            />
-          ) : (
-            <Button variant="contained" disabled>
-              Frozen
-            </Button>
-          )}
-        </Stack>
-      </CardContent>
-    </Card>
+        </CardContent>
+      </Card>
+      {open && (
+        <OrderConfirmation
+          open={open}
+          handleClose={handleToggle}
+          {...el}
+          nextId={nextId}
+          isLast={isLast}
+        />
+      )}
+    </>
   );
 };

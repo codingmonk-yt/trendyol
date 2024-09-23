@@ -20,6 +20,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { LogoutUser } from "../../redux/slices/app";
 import {
+  ResetWaitTime,
   UpdateLinkAccountDialog,
   UpdateRechargeDialog,
   UpdateSelectedTab,
@@ -66,6 +67,7 @@ export default function Home() {
           <IconButton
             onClick={() => {
               dispatch(LogoutUser(navigate));
+              dispatch(ResetWaitTime());
             }}
           >
             <SignOut />
