@@ -116,15 +116,19 @@ export default function Orders() {
                   1 ? (
                   tasks
                     .filter((e) => e?.status === "pending")
-                    .map((el, index, array) => (
-                      <OrderCard
-                        disabled={index !== 0}
-                        {...el}
-                        key={el._id}
-                        nextId={array[index + 1]?._id || null} // Pass the _id of the next element or null
-                        isLast={index === array.length - 1} // Check if it's the last element
-                      />
-                    ))
+                    .map((el, index, array) =>
+                      index !== 0 ? (
+                        <div key={el._id}></div>
+                      ) : (
+                        <OrderCard
+                          disabled={index !== 0}
+                          {...el}
+                          key={el._id}
+                          nextId={array[index + 1]?._id || null} // Pass the _id of the next element or null
+                          isLast={index === array.length - 1} // Check if it's the last element
+                        />
+                      )
+                    )
                 ) : (
                   <Card>
                     <CardContent>
