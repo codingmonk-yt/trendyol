@@ -92,7 +92,7 @@ export default function Commission() {
                     color="warning"
                     variant="outlined"
                   >
-                    Siparişleri Eşle
+                    maç emirleri
                   </Button>
                 </Stack>
               </Stack>
@@ -125,7 +125,7 @@ export default function Commission() {
                         dispatch(UpdateRechargeDialog(true));
                       }}
                     >
-                      Yenile
+                      şarj etmek
                     </Button>
                     <Button
                       color="inherit"

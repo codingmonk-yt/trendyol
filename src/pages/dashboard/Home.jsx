@@ -139,7 +139,7 @@ export default function Home() {
                     </Stack>
                     <Stack spacing={0.5} alignItems="center">
                       <Typography variant="subtitle1">{ordersToday}</Typography>
-                      <Typography variant="caption">Bugünkü Siparişler</Typography>
+                      <Typography variant="caption">bugün siparişler</Typography>
                     </Stack>
                   </Stack>
                 </Card>

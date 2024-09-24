@@ -42,7 +42,7 @@ export default function Recharge({ open }) {
 
   const handleClose = () => {
     dispatch(UpdateRechargeDialog(false));
-  }
+  };
 
   // Validate the input
   const validateAmount = (value) => {
@@ -67,11 +67,11 @@ export default function Recharge({ open }) {
   const handleClickRecharge = () => {
     dispatch(RequestRecharge(val));
     handleClose();
-  }
+  };
 
   return (
     <Dialog open={open} fullWidth maxWidth="md">
-      <DialogTitle>Cüzdanı Doldur</DialogTitle>
+      <DialogTitle>şarj etmek</DialogTitle>
       <DialogContent>
         <Stack spacing={3}>
           <Card>
@@ -124,10 +124,15 @@ export default function Recharge({ open }) {
           disabled={error || val === ""}
           onClick={handleClickRecharge}
         >
-          Şimdi Doldur
+          şarj etmek
         </Button>
-        <Button fullWidth variant="outlined" color="error" onClick={handleClose}>
-          İptal
+        <Button
+          fullWidth
+          variant="outlined"
+          color="error"
+          onClick={handleClose}
+        >
+          kapalı
         </Button>
       </DialogActions>
     </Dialog>

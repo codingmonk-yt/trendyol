@@ -126,7 +126,7 @@ export default function Profile() {
                       dispatch(UpdateRechargeDialog(true));
                     }}
                   >
-                    Yenile
+                    şarj etmek
                   </Button>
                   <Button
                     variant="contained"
