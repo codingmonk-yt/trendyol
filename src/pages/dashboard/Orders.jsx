@@ -155,7 +155,9 @@ export default function Orders() {
           <CustomTabPanel value={value} index={0}>
             <Stack spacing={2}>
               {console.log(waitTill)}
-              {waitTill && !has15MinutesElapsed ? (
+              {/* {waitTill && !has15MinutesElapsed ?  */}
+              {false ? 
+              (
                 <Card>
                   <CardContent>
                     <Stack
