@@ -55,28 +55,28 @@ export default function Withdraw({ open }) {
         dispatch(RequestWithdraw({ amount, usdtAddress, password }));
         handleClose();
       } else {
-        toast.error("Withdrawal password is not correct");
+        toast.error("Çekim şifresi yanlış");
       }
-      console.log("Withdraw:", { amount, usdtAddress, password });
+      console.log("Çekim:", { amount, usdtAddress, password });
     }
   };
 
   return (
     <Dialog open={open} fullWidth maxWidth="md">
       <form onSubmit={handleWithdraw}>
-        <DialogTitle>Withdraw funds</DialogTitle>
+        <DialogTitle>Fon Çek</DialogTitle>
         <DialogContent>
           <Stack spacing={3}>
             <Card>
               <CardContent>
                 <Stack spacing={2}>
-                  <Typography variant="overline">Current balance</Typography>
+                  <Typography variant="overline">Güncel bakiye</Typography>
                   <Typography variant="subtitle1">${(balance * 1).toFixed(2)}</Typography>
 
                   <Divider />
 
                   <Typography variant="overline">
-                    Withdrawal application in progress
+                    Çekim başvurusu devam ediyor
                   </Typography>
                   <Typography variant="subtitle1">
                     ${withdrawalInProgress}
@@ -87,13 +87,13 @@ export default function Withdraw({ open }) {
             <TextField
               fullWidth
               type="number"
-              label="Amount"
-              placeholder="Enter withdrawal amount"
+              label="Tutar"
+              placeholder="Çekim tutarını girin"
               value={amount}
               onChange={(e) => setAmount(e.target.value)}
               required
               error={formErrors.amount}
-              helperText={formErrors.amount && "Amount is required"}
+              helperText={formErrors.amount && "Tutar zorunludur"}
             />
 
             <Button
@@ -101,7 +101,7 @@ export default function Withdraw({ open }) {
               fullWidth
               onClick={() => setAmount(balance)}
             >
-              Withdraw all
+              Hepsini Çek
             </Button>
 
             <Divider />
@@ -109,30 +109,30 @@ export default function Withdraw({ open }) {
             <TextField
               fullWidth
               type="text"
-              label="USDT address"
-              placeholder="Enter USDT address"
+              label="USDT adresi"
+              placeholder="USDT adresini girin"
               required
               value={usdtAddress}
               onChange={(e) => setUsdtAddress(e.target.value)}
               error={formErrors.usdtAddress}
-              helperText={formErrors.usdtAddress && "USDT address is required"}
+              helperText={formErrors.usdtAddress && "USDT adresi zorunludur"}
             />
             <TextField
               fullWidth
               type="password"
-              label="Transaction password"
-              placeholder="Enter transaction password"
+              label="İşlem şifresi"
+              placeholder="İşlem şifresini girin"
               required
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               error={formErrors.password}
-              helperText={formErrors.password && "Password is required"}
+              helperText={formErrors.password && "Şifre zorunludur"}
             />
           </Stack>
         </DialogContent>
         <DialogActions>
           <Button type="submit" fullWidth variant="contained" color="primary">
-            Withdraw now
+            Şimdi Çek
           </Button>
           <Button
             fullWidth
@@ -140,7 +140,7 @@ export default function Withdraw({ open }) {
             color="error"
             onClick={handleClose}
           >
-            Cancel
+            İptal
           </Button>
         </DialogActions>
       </form>

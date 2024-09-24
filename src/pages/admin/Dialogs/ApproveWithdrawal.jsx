@@ -33,17 +33,17 @@ export default function ApproveWithdrawal({ open, handleClose, requestId }) {
         fullWidth
       >
         <DialogTitle id="alert-dialog-title">
-          {"Withdrawal Approval Confirmation"}
+          {"Çekim Onayını Doğrulayın"}
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            Are your sure you want to approve this Withdrawal request?
+            Bu çekim talebini onaylamak istediğinizden emin misiniz?
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Close</Button>
+          <Button onClick={handleClose}>Kapat</Button>
           <Button onClick={handleApprove} autoFocus>
-            Approve
+            Onayla
           </Button>
         </DialogActions>
       </Dialog>

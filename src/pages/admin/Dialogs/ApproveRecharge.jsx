@@ -34,17 +34,17 @@ export default function ApproveRecharge({ open, handleClose, requestId }) {
         fullWidth
       >
         <DialogTitle id="alert-dialog-title">
-          {"Recharge Approval Confirmation"}
+          {"Yeniden Yükleme Onayını Doğrulayın"}
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            Are your sure you want to approve this recharge request?
+            Bu yeniden yükleme talebini onaylamak istediğinizden emin misiniz?
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Close</Button>
+          <Button onClick={handleClose}>Kapat</Button>
           <Button onClick={handleApprove} autoFocus>
-            Approve
+            Onayla
           </Button>
         </DialogActions>
       </Dialog>

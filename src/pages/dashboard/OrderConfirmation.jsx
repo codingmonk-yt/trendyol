@@ -30,7 +30,7 @@ export default function OrderConfirmation({
     >
       <Box sx={{ p: 4 }}>
         <Stack spacing={2}>
-          <Typography textAlign="center">Order</Typography>
+          <Typography textAlign="center">Sipariş</Typography>
 
           <Stack
             direction="row"
@@ -58,7 +58,7 @@ export default function OrderConfirmation({
             justifyContent="space-between"
           >
             <Typography variant="body2" fontSize={14}>
-              Total order amount
+              Toplam sipariş tutarı
             </Typography>
             <Typography variant="button" color="text.secondary">
               ${el?.totalAmount}
@@ -71,7 +71,7 @@ export default function OrderConfirmation({
             justifyContent="space-between"
           >
             <Typography variant="body2" fontSize={14}>
-              Commission
+              Komisyon
             </Typography>
             <Typography variant="button" color="text.secondary">
               ${el?.commission}
@@ -84,7 +84,7 @@ export default function OrderConfirmation({
             justifyContent="space-between"
           >
             <Typography variant="body2" fontSize={14}>
-              Estimated commission return
+              Tahmini komisyon iadesi
             </Typography>
             <Typography variant="caption" fontSize={20} color="warning">
               ${el?.commissionReturn}
@@ -96,10 +96,10 @@ export default function OrderConfirmation({
             justifyContent="space-between"
           >
             <Typography variant="body2" fontSize={14}>
-              Time Remaining
+              Kalan süre
             </Typography>
             <Typography variant="caption" color="warning">
-              0 hour: 0 minute: 0 seconds
+              0 saat: 0 dakika: 0 saniye
             </Typography>
           </Stack>
 
@@ -116,7 +116,7 @@ export default function OrderConfirmation({
               variant="outlined"
               fullWidth
             >
-              Not sent
+              Gönderilmedi
             </Button>
             <Button
               onClick={() => {
@@ -126,7 +126,7 @@ export default function OrderConfirmation({
               variant="contained"
               fullWidth
             >
-              Send now
+              Şimdi gönder
             </Button>
           </Stack>
 
@@ -134,7 +134,7 @@ export default function OrderConfirmation({
 
           <Stack direction="column" spacing={2}>
             <Typography variant="caption">
-              Second Purchase time:{" "}
+              İkinci satın alma zamanı:{" "}
               {new Date(el?.purchaseTime).toLocaleString("tr-TR", {
                 day: "numeric",
                 month: "long",
@@ -145,7 +145,7 @@ export default function OrderConfirmation({
               })}
             </Typography>
             <Typography variant="caption">
-              Second Purchase number: {el?.purchaseNumber}
+              İkinci satın alma numarası: {el?.purchaseNumber}
             </Typography>
           </Stack>
         </Stack>

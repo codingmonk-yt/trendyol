@@ -71,12 +71,12 @@ export default function Recharge({ open }) {
 
   return (
     <Dialog open={open} fullWidth maxWidth="md">
-      <DialogTitle>Recharge Wallet</DialogTitle>
+      <DialogTitle>Cüzdanı Doldur</DialogTitle>
       <DialogContent>
         <Stack spacing={3}>
           <Card>
             <CardContent>
-              <Typography variant="overline">Current balance</Typography>
+              <Typography variant="overline">Güncel Bakiye</Typography>
               <Typography sx={{ mt: 2 }} variant="subtitle1">
                 ${(balance * 1).toFixed(2)}
               </Typography>
@@ -86,14 +86,12 @@ export default function Recharge({ open }) {
             fullWidth
             required
             type="number"
-            label="Recharge Amount"
-            placeholder="Enter Recharge Amount"
+            label="Yükleme Tutarı"
+            placeholder="Yükleme Tutarını Girin"
             value={val}
             onChange={handleInputChange}
             error={error}
-            helperText={
-              error ? "Amount must be between 10 and 20000" : ""
-            }
+            helperText={error ? "Tutar 10 ile 20000 arasında olmalı" : ""}
           />
           <Stack
             direction="row"
@@ -102,7 +100,7 @@ export default function Recharge({ open }) {
             spacing={2}
           >
             <Divider sx={{ flexGrow: 1 }} />
-            <Typography>Or</Typography>
+            <Typography>Veya</Typography>
             <Divider sx={{ flexGrow: 1 }} />
           </Stack>
           <Stack direction="row" alignItems="center" gap={2} flexWrap="wrap">
@@ -126,10 +124,10 @@ export default function Recharge({ open }) {
           disabled={error || val === ""}
           onClick={handleClickRecharge}
         >
-          Recharge Now
+          Şimdi Doldur
         </Button>
         <Button fullWidth variant="outlined" color="error" onClick={handleClose}>
-          Cancel
+          İptal
         </Button>
       </DialogActions>
     </Dialog>

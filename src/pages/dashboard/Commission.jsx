@@ -44,7 +44,7 @@ export default function Commission() {
       <Box p={2} pb={16}>
         <Stack spacing={3}>
           <Typography variant="h3" textAlign="center" color="warning">
-            Trendyol <br /> Keeping up with <br /> the times
+            Trendyol <br /> Zamanla <br /> uyum sağlama
           </Typography>
 
           <Box
@@ -57,18 +57,7 @@ export default function Commission() {
           >
             <Marquee>
               <Typography variant="subtitle2">
-                Trendyol is a private e-commerce platform based in Turkey,
-                focusing on the fashion and retail sectors. Author: Demet Mutlu
-                is a Turkish entrepreneur. She is the founder and CEO of
-                Trendyol, an e-commerce company operating in Turkey and Europe.
-                Since the funds are entrusted to the asset management company,
-                user refund requests and e-commerce fund leakage can be
-                prevented, and the smart cloud client and user IP are used
-                according to the specified rules. Automatic order competition
-                will prevent sellers from being blocked, downgraded or blocked
-                due to errors during order taking. As an intermediary, we will
-                continue to work hard to increase trust and efficiency between
-                sellers and users when competing for orders!
+                Trendyol, Türkiye merkezli özel bir e-ticaret platformudur ve moda ile perakende sektörlerine odaklanmaktadır. Yazar: Demet Mutlu, Türk girişimcidir. Trendyol'un kurucusu ve CEO'sudur ve Türkiye ve Avrupa'da faaliyet gösteren bir e-ticaret şirketidir. Fonlar, varlık yönetim şirketine emanet edildiğinden, kullanıcı iade talepleri ve e-ticaret fon sızıntıları önlenebilir ve akıllı bulut istemcisi ve kullanıcı IP'si belirtilen kurallara göre kullanılmaktadır. Otomatik sipariş yarışması, satıcıların sipariş alma sırasında yapılan hatalardan dolayı engellenmesini, düşürülmesini veya bloke edilmesini önleyecektir. Bir aracı olarak, sipariş rekabetinde satıcılar ile kullanıcılar arasında güveni ve verimliliği artırmak için çalışmaya devam edeceğiz!
               </Typography>
             </Marquee>
           </Box>
@@ -94,7 +83,7 @@ export default function Commission() {
 
                 <Stack spacing={0.5}>
                   <Typography variant="h6">Trendyol</Typography>
-                  <Typography variant="caption">Commission(0.5%)</Typography>
+                  <Typography variant="caption">Komisyon (0.5%)</Typography>
                   <Button
                     onClick={() => {
                       dispatch(UpdateSelectedTab(1));
@@ -103,7 +92,7 @@ export default function Commission() {
                     color="warning"
                     variant="outlined"
                   >
-                    Match orders
+                    Siparişleri Eşle
                   </Button>
                 </Stack>
               </Stack>
@@ -123,7 +112,7 @@ export default function Commission() {
                       variant="overline"
                       sx={{ textTransform: "capitalize" }}
                     >
-                      Balance
+                      Bakiye
                     </Typography>
                     <IconButton color="info">
                       <ArrowClockwise size={16} />
@@ -136,7 +125,7 @@ export default function Commission() {
                         dispatch(UpdateRechargeDialog(true));
                       }}
                     >
-                      Recharge
+                      Yenile
                     </Button>
                     <Button
                       color="inherit"
@@ -144,7 +133,7 @@ export default function Commission() {
                         dispatch(UpdateWithdrawDialog(true));
                       }}
                     >
-                      Withdraw
+                      Çekim
                     </Button>
                   </Stack>
                 </Stack>
@@ -163,7 +152,7 @@ export default function Commission() {
                     color="inherit"
                     variant="outlined"
                   >
-                    Matching rules
+                    Eşleşme kuralları
                   </Button>
                 </Stack>
                 <Divider />
@@ -174,23 +163,22 @@ export default function Commission() {
                   alignItems="center"
                   justifyContent="center"
                   textAlign="center"
-                  // divider={<Divider style={{ width: "100%" }} />}
                 >
                   <Stack spacing={0.5} alignItems="center">
                     <Typography variant="subtitle1">{(earningsToday * 1).toFixed(2)}</Typography>
                     <Typography variant="caption">
-                      Commission earned today
+                      Bugün kazanılan komisyon
                     </Typography>
                   </Stack>
                   <Stack spacing={0.5} alignItems="center">
                     <Typography variant="subtitle1">{ordersToday}</Typography>
                     <Typography variant="caption">
-                      Orders grabbed today
+                      Bugün alınan siparişler
                     </Typography>
                   </Stack>
                   <Stack spacing={0.5} alignItems="center">
                     <Typography variant="subtitle1">{totalOrders}</Typography>
-                    <Typography variant="caption">Total orders</Typography>
+                    <Typography variant="caption">Toplam siparişler</Typography>
                   </Stack>
                 </Stack>
               </Stack>
@@ -207,7 +195,7 @@ export default function Commission() {
               >
                 <Trophy size={40} />
                 <Stack spacing={1} sx={{ width: "80%" }}>
-                  <Typography>Commission yesterday</Typography>
+                  <Typography>Dünkü komisyon</Typography>
                   <Box
                     sx={{
                       bgcolor: (theme) => theme.palette.warning.main,

@@ -13,39 +13,44 @@ const RULES = [
   {
     key: 0,
     content:
-      "1. Trendyol's order grabbing system is open 24 hours a day. The platform system automatically performs functions such as receiving orders, withdrawing cash, and loading.",
+      "1. Trendyol'un sipariş alma sistemi 24 saat açıktır. Platform sistemi, sipariş alma, para çekme ve yükleme gibi işlevleri otomatik olarak gerçekleştirir.",
   },
   {
     key: 1,
     content:
-      " 2. Users need to contact customer service to recharge and obtain a wallet address before placing an order. New users need to add a shipping address before placing an order for the first time.",
+      "2. Kullanıcıların sipariş vermeden önce müşteri hizmetleri ile iletişime geçerek cüzdan adresi alması ve bakiye yüklemesi gerekmektedir. Yeni kullanıcılar, ilk siparişlerini vermeden önce bir teslimat adresi eklemelidir.",
   },
   {
     key: 2,
     content:
-      "3. The order amount is automatically matched by the Trendyol system. The matched order amounts are among the account balances. The next replenishment round will be carried out after the order is received.",
+      "3. Sipariş tutarı, Trendyol sistemi tarafından otomatik olarak eşleştirilir. Eşleştirilen sipariş tutarları hesap bakiyeleri arasındadır. Sipariş alındıktan sonra bir sonraki bakiye yükleme turu gerçekleştirilecektir.",
   },
   {
     key: 3,
     content:
-      "4. Users at all membership levels can complete 30 orders per day and must receive 60 orders in order to withdraw cash. There is no time limit for withdrawals, and the specific arrival time is subject to system approval.",
+      "4. Tüm üyelik seviyelerindeki kullanıcılar günde 30 sipariş tamamlayabilir ve para çekme işlemi için 60 sipariş almalıdır. Para çekme işlemlerinde zaman sınırlaması yoktur ve spesifik varış zamanı sistem onayına tabidir.",
   },
   {
     key: 4,
-    content:
-      "5. If the order is not completed for a long time, the order is frozen.",
+    content: "5. Sipariş uzun süre tamamlanmazsa, sipariş dondurulur.",
   },
   {
     key: 5,
     content:
-      "6. Since the future development direction of the Trendyol platform is based in Europe, platform member businesses distribute a large number of orders. In order to become a popular member business, employees must comply with the platform disciplines and their businesses must not be damaged.",
+      "6. Trendyol platformunun gelecekteki gelişim yönü Avrupa merkezli olduğundan, platform üye işletmeleri büyük miktarda sipariş dağıtır. Popüler bir üye işletme olmak için çalışanların platform disiplinlerine uyması ve işletmelerinin zarar görmemesi gerekir.",
   },
 ];
 
 export default function MatchingRules({ open, handleClose }) {
   return (
-    <Dialog open={open} onClose={handleClose} maxWidth="md" fullWidth scroll="paper">
-      <DialogTitle>Matching Rules</DialogTitle>
+    <Dialog
+      open={open}
+      onClose={handleClose}
+      maxWidth="md"
+      fullWidth
+      scroll="paper"
+    >
+      <DialogTitle>Eşleştirme Kuralları</DialogTitle>
       <DialogContent>
         <Stack spacing={1}>
           {RULES.map(({ key, content }) => (
@@ -57,7 +62,7 @@ export default function MatchingRules({ open, handleClose }) {
       </DialogContent>
       <DialogActions>
         <Button variant="contained" onClick={handleClose}>
-          Close
+          Kapat
         </Button>
       </DialogActions>
     </Dialog>

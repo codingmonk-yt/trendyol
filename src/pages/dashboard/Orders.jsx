@@ -54,13 +54,14 @@ function a11yProps(index) {
 
 const checkIf15MinutesElapsed = (waitTill) => {
   if (!waitTill) {
-    return false; // If waitTill is null or undefined, return false
+    return false; // Eğer waitTill null veya undefined ise, false döner
   }
-  const waitTillDate = new Date(waitTill); // MongoDB timestamp with 15 minutes already added
+  const waitTillDate = new Date(waitTill); // MongoDB zaman damgası, 15 dakika eklenmiş
   const currentTime = new Date();
 
-  return currentTime >= waitTillDate; // Check if current time has passed the waitTill time
+  return currentTime >= waitTillDate; // Mevcut zamanın waitTill zamanını aşıp aşmadığını kontrol et
 };
+
 
 export default function Orders() {
   const dispatch = useDispatch();
@@ -76,28 +77,28 @@ export default function Orders() {
   const [has15MinutesElapsed, setHas15MinutesElapsed] = useState(false);
 
   useEffect(() => {
-    if (!waitTill) return; // Exit early if waitTill is null
+    if (!waitTill) return; // waitTill null ise erken çık
 
-    // Function to perform the check every 5 seconds
+    // Her 5 saniyede bir kontrol yapacak fonksiyon
     const interval = setInterval(() => {
       const hasElapsed = checkIf15MinutesElapsed(waitTill);
       setHas15MinutesElapsed(hasElapsed);
-    }, 5000); // Check every 5 seconds (5000 ms)
+    }, 5000); // Her 5 saniyede bir kontrol et (5000 ms)
 
-    // Cleanup the interval when the component is unmounted
+    // Bileşen unmount edildiğinde intervali temizle
     return () => clearInterval(interval);
   }, [waitTill]);
 
   useEffect(() => {
-    // Initial dispatch
+    // İlk dispatch
     dispatch(GetWaitTill());
 
-    // // Set an interval to dispatch GetMe every 10 seconds
+    // // Her 10 saniyede bir GetMe göndermek için bir interval ayarla
     // const interval = setInterval(() => {
     //   dispatch(GetWaitTill());
     // }, 5000);
 
-    // // Cleanup interval on component unmount
+    // // Bileşen unmount olduğunda intervali temizle
     // return () => clearInterval(interval);
   }, []);
 
@@ -121,9 +122,9 @@ export default function Orders() {
           px={2}
         >
           <Stack spacing={1} maxWidth="150px">
-            <Typography variant="subtitle1">Second Purchase Record</Typography>
+            <Typography variant="subtitle1">İkinci Satın Alma Kaydı</Typography>
             <Typography variant="caption">
-              This data is provided by major official cooperatives
+              Bu veri büyük resmi kooperatifler tarafından sağlanmaktadır
             </Typography>
           </Stack>
           <Stack maxWidth={"150px"} alignItems="end">
@@ -131,7 +132,7 @@ export default function Orders() {
               ${(balance * 1).toFixed(2)}
             </Typography>
             <Typography variant="caption" textAlign="end">
-              Remaining available assets(in USD)
+              Kalan kullanılabilir varlıklar (USD cinsinden)
             </Typography>
           </Stack>
         </Stack>
@@ -143,11 +144,11 @@ export default function Orders() {
               variant="fullWidth"
               value={value}
               onChange={handleChange}
-              aria-label="basic tabs example"
+              aria-label="temel sekmeler örneği"
             >
-              <Tab label="Pending" {...a11yProps(0)} />
-              <Tab label="Completed" {...a11yProps(1)} />
-              <Tab label="Frozen" {...a11yProps(2)} />
+              <Tab label="Bekleyen" {...a11yProps(0)} />
+              <Tab label="Tamamlanan" {...a11yProps(1)} />
+              <Tab label="Dondurulan" {...a11yProps(2)} />
             </Tabs>
           </Box>
           <CustomTabPanel value={value} index={0}>
@@ -166,10 +167,9 @@ export default function Orders() {
                         color="success"
                         textAlign="center"
                       >
-                        Congratulations you have successfully completed your
-                        first five tasks 🥳🥳!!
+                        Tebrikler, ilk beş görevinizi başarıyla tamamladınız 🥳🥳!!
                         <br />
-                        PLEASE CONTACT YOUR REPRESENTATIVE
+                        LÜTFEN TEMSİLCİNİZLE İLETİŞİME GEÇİN
                       </Typography>
                     </Stack>
                   </CardContent>
@@ -188,8 +188,8 @@ export default function Orders() {
                           disabled={index !== 0}
                           {...el}
                           key={el._id}
-                          nextId={array[index + 1]?._id || null} // Pass the _id of the next element or null
-                          isLast={index === array.length - 1} // Check if it's the last element
+                          nextId={array[index + 1]?._id || null} // Sonraki öğenin _id'sini veya null'ı geç
+                          isLast={index === array.length - 1} // Son öğe olup olmadığını kontrol et
                         />
                       )
                     )
@@ -198,7 +198,7 @@ export default function Orders() {
                     <CardContent>
                       <Stack spacing={2}>
                         <Typography textAlign="center" variant="h6">
-                          Please recharge to take next task
+                          Lütfen bir sonraki görevi almak için yeniden yükleyin
                         </Typography>
                         <Divider />
                         <Stack
@@ -207,7 +207,7 @@ export default function Orders() {
                           justifyContent="space-between"
                         >
                           <Typography variant="subtitle2">
-                            Current Balance
+                            Mevcut Bakiye
                           </Typography>
                           <Typography variant="subtitle1" color="primary">
                             ${(balance * 1).toFixed(2)}
@@ -220,7 +220,7 @@ export default function Orders() {
                           justifyContent="space-between"
                         >
                           <Typography variant="subtitle2">
-                            Min. required balance for next task
+                            Bir sonraki görev için gereken minimum bakiye
                           </Typography>
                           <Typography variant="subtitle1" color="primary">
                             $
@@ -238,7 +238,7 @@ export default function Orders() {
                             dispatch(UpdateRechargeDialog(true));
                           }}
                         >
-                          Recharge
+                          Yeniden Yükle
                         </Button>
                       </Stack>
                     </CardContent>
@@ -253,10 +253,10 @@ export default function Orders() {
                       spacing={2}
                     >
                       <Typography variant="h6" color="primary">
-                        No Pending Tasks
+                        Bekleyen Görev Yok
                       </Typography>
-                      <Typography variant="subtitle1" color="success  ">
-                        You have completed all tasks for today 🥳🥳!!
+                      <Typography variant="subtitle1" color="success">
+                        Bugün tüm görevlerinizi tamamladınız 🥳🥳!!
                       </Typography>
                     </Stack>
                   </CardContent>
@@ -290,6 +290,7 @@ export default function Orders() {
   );
 }
 
+
 const OrderCard = ({ disabled, nextId, isLast, ...el }) => {
   const [open, setOpen] = useState(false);
   const handleToggle = () => {
@@ -307,9 +308,9 @@ const OrderCard = ({ disabled, nextId, isLast, ...el }) => {
             >
               <Stack spacing={1}>
                 <Typography variant="caption">
-                  Second Purchase time:
+                  İkinci Satın Alma Zamanı:
                   {el.status === "pending" && disabled
-                    ? "To be assigned"
+                    ? "Atanacak"
                     : new Date(el.purchaseTime).toLocaleString("tr-TR", {
                         day: "numeric",
                         month: "long",
@@ -321,7 +322,7 @@ const OrderCard = ({ disabled, nextId, isLast, ...el }) => {
                 </Typography>
 
                 <Typography variant="caption">
-                  Second Purchase number: {el.purchaseNumber}
+                  İkinci Satın Alma Numarası: {el.purchaseNumber}
                 </Typography>
               </Stack>
 
@@ -335,7 +336,7 @@ const OrderCard = ({ disabled, nextId, isLast, ...el }) => {
                   alignItems="center"
                 >
                   <CheckCircle size={40} />
-                  <Typography variant="caption">Approved By Admin</Typography>
+                  <Typography variant="caption">Yönetici Tarafından Onaylandı</Typography>
                 </Stack>
               )}
             </Stack>
@@ -362,7 +363,7 @@ const OrderCard = ({ disabled, nextId, isLast, ...el }) => {
               justifyContent="space-between"
             >
               <Typography variant="body2" fontSize={14}>
-                Total order amount
+                Toplam Sipariş Tutarı
               </Typography>
               <Typography variant="button" color="text.secondary">
                 ${el?.totalAmount}
@@ -374,7 +375,7 @@ const OrderCard = ({ disabled, nextId, isLast, ...el }) => {
               justifyContent="space-between"
             >
               <Typography variant="body2" fontSize={14}>
-                Commission
+                Komisyon
               </Typography>
               <Typography variant="button" color="text.secondary">
                 ${el.commission}
@@ -386,7 +387,7 @@ const OrderCard = ({ disabled, nextId, isLast, ...el }) => {
               justifyContent="space-between"
             >
               <Typography variant="body2" fontSize={14}>
-                Estimated commission return
+                Tahmini Komisyon İadesi
               </Typography>
               <Typography variant="caption" fontSize={24} color="warning">
                 ${el.commissionReturn}
@@ -400,18 +401,18 @@ const OrderCard = ({ disabled, nextId, isLast, ...el }) => {
                 }}
                 variant="outlined"
               >
-                Siparişi onayla
+                Siparişi Onayla
               </Button>
             ) : el.status === "completed" ? (
               <Chip
-                label="Completed"
+                label="Tamamlandı"
                 variant="filled"
                 color="success"
                 sx={{ width: 1 }}
               />
             ) : (
               <Button variant="contained" disabled>
-                Frozen
+                Donmuş
               </Button>
             )}
           </Stack>

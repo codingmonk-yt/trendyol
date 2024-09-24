@@ -29,26 +29,25 @@ export default function Recharge() {
     { field: "id", headerName: "ID", width: 70 },
     {
       field: "phone",
-      headerName: "Phone",
+      headerName: "Telefon",
       width: 130,
 
       valueGetter: (value, row) => row?.user?.phone,
     },
     {
       field: "amount",
-      headerName: "Amount",
+      headerName: "Miktar",
       type: "number",
       width: 180,
       valueGetter: (value, row) => `$${row?.amount}`,
     },
-    { field: "status", headerName: "Status", width: 180 },
+    { field: "status", headerName: "Durum", width: 180 },
     {
       field: "approve",
-      headerName: "Approve",
-      description: "This column has a value getter and is not sortable.",
+      headerName: "Onayla",
+      description: "Bu sütunun bir değer alıcı ve sıralanabilir değil.",
       sortable: false,
       width: 160,
-      // valueGetter: (value, row) => `${row.firstName || ''} ${row.lastName || ''}`,
       renderCell: (params) => (
         <Button
           disabled={
@@ -62,17 +61,16 @@ export default function Recharge() {
           }}
           fullWidth
         >
-          Approve
+          Onayla
         </Button>
       ),
     },
     {
       field: "reject",
-      headerName: "Reject",
-      description: "This column has a value getter and is not sortable.",
+      headerName: "Reddet",
+      description: "Bu sütunun bir değer alıcı ve sıralanabilir değil.",
       sortable: false,
       width: 160,
-      // valueGetter: (value, row) => `${row.firstName || ''} ${row.lastName || ''}`,
       renderCell: (params) => (
         <Button
           disabled={
@@ -86,7 +84,7 @@ export default function Recharge() {
           }}
           fullWidth
         >
-          Reject
+          Reddet
         </Button>
       ),
     },

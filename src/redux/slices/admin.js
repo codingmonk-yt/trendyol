@@ -90,7 +90,7 @@ const {
   removeUser,
 } = slice.actions;
 
-// Get users
+// Kullanıcıları al
 
 export function FetchAllUsers() {
   return async (dispatch, getState) => {
@@ -121,7 +121,7 @@ export function FetchAllUsers() {
   };
 }
 
-// get recharges requests
+// Yeniden yükleme taleplerini al
 
 export function FetchAllRechargeRequests() {
   return async (dispatch, getState) => {
@@ -152,7 +152,7 @@ export function FetchAllRechargeRequests() {
   };
 }
 
-// get withdraw requests
+// Para çekme taleplerini al
 
 export function FetchAllWithdrawalRequests() {
   return async (dispatch, getState) => {
@@ -183,7 +183,7 @@ export function FetchAllWithdrawalRequests() {
   };
 }
 
-// Review Recharge
+// Yeniden yükleme inceleme
 export function ReviewRechargeRequest(formValues) {
   return async (dispatch, getState) => {
     dispatch(setError(null));
@@ -211,12 +211,12 @@ export function ReviewRechargeRequest(formValues) {
             updatedRequest: data.request,
           })
         );
-        toast.success("Recharge request reviewed successfully!");
+        toast.success("Yeniden yükleme talebi başarıyla incelendi!");
       })
       .catch(function (error) {
         console.log(error);
         dispatch(setError(error));
-        toast.error(error?.message || "Something went wrong");
+        toast.error(error?.message || "Bir şeyler ters gitti");
       })
       .finally(() => {
         dispatch(setLoading(false));
@@ -224,7 +224,8 @@ export function ReviewRechargeRequest(formValues) {
   };
 }
 
-// Review Withdraw
+
+// Para çekme inceleme
 export function ReviewWithdrawRequest(formValues) {
   return async (dispatch, getState) => {
     dispatch(setError(null));
@@ -254,12 +255,12 @@ export function ReviewWithdrawRequest(formValues) {
         );
 
         // dispatch(fetchWithdrawalInProgress(data.total));
-        toast.success("Withdraw request reviewed successfully!");
+        toast.success("Para çekme talebi başarıyla incelendi!");
       })
       .catch(function (error) {
         console.log(error);
         dispatch(setError(error));
-        toast.error(error?.message || "Something went wrong");
+        toast.error(error?.message || "Bir şeyler ters gitti");
       })
       .finally(() => {
         dispatch(setLoading(false));
@@ -267,7 +268,7 @@ export function ReviewWithdrawRequest(formValues) {
   };
 }
 
-// create task
+// Görev oluştur
 export function CreateTask(formValues) {
   return async (dispatch, getState) => {
     dispatch(setError(null));
@@ -291,12 +292,12 @@ export function CreateTask(formValues) {
 
         dispatch(addTaskSuccess(data.task));
 
-        toast.success("Task created successfully!");
+        toast.success("Görev başarıyla oluşturuldu!");
       })
       .catch(function (error) {
         console.log(error);
         dispatch(setError(error));
-        toast.error(error.message || "Something went wrong");
+        toast.error(error.message || "Bir şeyler ters gitti");
       })
       .finally(() => {
         dispatch(setLoading(false));
@@ -304,7 +305,7 @@ export function CreateTask(formValues) {
   };
 }
 
-// get tasks
+// Görevleri al
 
 export function FetchAllTasks() {
   return async (dispatch, getState) => {
@@ -328,7 +329,7 @@ export function FetchAllTasks() {
       .catch(function (error) {
         console.log(error);
         dispatch(setError(error));
-        toast.error(error.message || "Something went wrong");
+        toast.error(error.message || "Bir şeyler ters gitti");
       })
       .finally(() => {
         dispatch(setLoading(false));
@@ -336,7 +337,7 @@ export function FetchAllTasks() {
   };
 }
 
-// approve task
+// Görev onayla
 
 export function ApproveTaskCompleted(taskId) {
   return async (dispatch, getState) => {
@@ -363,12 +364,12 @@ export function ApproveTaskCompleted(taskId) {
 
         dispatch(approveTask(taskId));
 
-        toast.success("Task completion approved successfully!");
+        toast.success("Görev tamamlanması başarıyla onaylandı!");
       })
       .catch(function (error) {
         console.log(error);
         dispatch(setError(error));
-        toast.error(error.message || "Something went wrong");
+        toast.error(error.message || "Bir şeyler ters gitti");
       })
       .finally(() => {
         dispatch(setLoading(false));
@@ -376,7 +377,7 @@ export function ApproveTaskCompleted(taskId) {
   };
 }
 
-// Delete User
+// Kullanıcıyı sil
 
 export function DeleteUser(userId) {
   return async (dispatch, getState) => {
@@ -403,12 +404,12 @@ export function DeleteUser(userId) {
 
         dispatch(removeUser(userId));
 
-        toast.success("User deleted successfully!");
+        toast.success("Kullanıcı başarıyla silindi!");
       })
       .catch(function (error) {
         console.log(error);
         dispatch(setError(error));
-        toast.error(error.message || "Something went wrong");
+        toast.error(error.message || "Bir şeyler ters gitti");
       })
       .finally(() => {
         dispatch(setLoading(false));

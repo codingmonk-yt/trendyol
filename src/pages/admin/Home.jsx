@@ -74,7 +74,7 @@ export default function Home() {
             alignItems="center"
             justifyContent="space-between"
           >
-            <Typography variant="h4">Admin</Typography>
+            <Typography variant="h4">Yönetici</Typography>
 
             <IconButton
               onClick={() => {
@@ -95,11 +95,11 @@ export default function Home() {
                 onChange={handleChange}
                 aria-label="basic tabs example"
               >
-                <Tab label="Users" {...a11yProps(0)} />
-                <Tab label="Tasks" {...a11yProps(1)} />
-                <Tab label="Recharge Requests" {...a11yProps(2)} />
-                <Tab label="Withdraw Requests" {...a11yProps(3)} />
-                <Tab label="Settings" {...a11yProps(4)} />
+                <Tab label="Kullanıcılar" {...a11yProps(0)} />
+                <Tab label="Görevler" {...a11yProps(1)} />
+                <Tab label="Yeniden Yükleme Talepleri" {...a11yProps(2)} />
+                <Tab label="Çekim Talepleri" {...a11yProps(3)} />
+                <Tab label="Ayarlar" {...a11yProps(4)} />
               </Tabs>
             </Box>
             <CustomTabPanel value={value} index={0}>

@@ -29,24 +29,24 @@ export default function Register() {
   const handleRegister = () => {
     const newErrors = {};
   
-    // Phone number validation: Must be exactly 11 digits
+    // Telefon numarası doğrulama: Tam olarak 11 haneli olmalı
     const phoneNumberPattern = /^\d{11}$/;
   
     if (!phoneNumber) {
-      newErrors.phoneNumber = "Phone number is required";
+      newErrors.phoneNumber = "Telefon numarası gerekli";
     } else if (!phoneNumberPattern.test(phoneNumber)) {
-      newErrors.phoneNumber = "Phone number must be exactly 11 digits long";
+      newErrors.phoneNumber = "Telefon numarası tam olarak 11 haneli olmalıdır";
     }
   
-    if (!loginPassword) newErrors.loginPassword = "Login password is required";
+    if (!loginPassword) newErrors.loginPassword = "Giriş şifresi gerekli";
     if (!withdrawalPassword)
-      newErrors.withdrawalPassword = "Withdrawal password is required";
+      newErrors.withdrawalPassword = "Çekim şifresi gerekli";
     
-    // Invitation code validation
-    if (!invitationCode) newErrors.invitationCode = "Invitation code is required";
+    // Davet kodu doğrulama
+    if (!invitationCode) newErrors.invitationCode = "Davet kodu gerekli";
   
     if (!isAcknowledged)
-      newErrors.isAcknowledged = "You must acknowledge the agreement";
+      newErrors.isAcknowledged = "Sözleşmeyi kabul etmelisiniz";
   
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
@@ -78,7 +78,7 @@ export default function Register() {
             alignItems="center"
             justifyContent="space-between"
           >
-            <Typography variant="h5">Register</Typography>
+            <Typography variant="h5">Kayıt Ol</Typography>
           </Stack>
 
           <Card>
@@ -87,8 +87,8 @@ export default function Register() {
                 <Stack spacing={1.5}>
                   <TextField
                     type="tel"
-                    label="Phone Number"
-                    placeholder="Enter your phone number"
+                    label="Telefon Numarası"
+                    placeholder="Telefon numaranızı girin"
                     variant="standard"
                     value={phoneNumber}
                     onChange={(e) => setPhoneNumber(e.target.value)}
@@ -97,8 +97,8 @@ export default function Register() {
                   />
                   <TextField
                     type="password"
-                    label="Login Password"
-                    placeholder="Choose your password"
+                    label="Giriş Şifresi"
+                    placeholder="Şifrenizi seçin"
                     variant="standard"
                     value={loginPassword}
                     onChange={(e) => setLoginPassword(e.target.value)}
@@ -107,8 +107,8 @@ export default function Register() {
                   />
                   <TextField
                     type="password"
-                    label="Withdrawal Password"
-                    placeholder="Choose your withdrawal password"
+                    label="Çekim Şifresi"
+                    placeholder="Çekim şifrenizi seçin"
                     variant="standard"
                     value={withdrawalPassword}
                     onChange={(e) => setWithdrawalPassword(e.target.value)}
@@ -117,8 +117,8 @@ export default function Register() {
                   />
                   <TextField
                     type="text"
-                    label="Invitation Code"
-                    placeholder="Enter your invitation code"
+                    label="Davet Kodu"
+                    placeholder="Davet kodunuzu girin"
                     variant="standard"
                     value={invitationCode}
                     onChange={(e) => setInvitationCode(e.target.value)}
@@ -138,9 +138,9 @@ export default function Register() {
                       error={!!errors.isAcknowledged}
                     />
                     <Typography variant="caption">
-                      I acknowledge and{" "}
-                      <Link to="#">Account opening agreement</Link> Various
-                      agreements{" "}
+                      Sözleşmeyi kabul ediyorum ve{" "}
+                      <Link to="#">Hesap açma sözleşmesi</Link> Çeşitli
+                      sözleşmeler{" "}
                     </Typography>
                   </Stack>
                   {errors.isAcknowledged && (
@@ -155,7 +155,7 @@ export default function Register() {
                   variant="contained"
                   size="medium"
                 >
-                  Register Now
+                  Şimdi Kayıt Ol
                 </Button>
               </Stack>
             </CardContent>
@@ -168,8 +168,8 @@ export default function Register() {
             spacing={1}
             justifyContent="center"
           >
-            <Typography variant="button">Already have an account?</Typography>
-            <Link to="/">Login</Link>
+            <Typography variant="button">Zaten bir hesabınız var mı?</Typography>
+            <Link to="/">Giriş Yap</Link>
           </Stack>
         </Stack>
       </Container>

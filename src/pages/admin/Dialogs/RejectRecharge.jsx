@@ -34,17 +34,17 @@ export default function RejectRecharge({ open, handleClose, requestId }) {
         fullWidth
       >
         <DialogTitle id="alert-dialog-title">
-          {"Recharge Rejection Confirmation"}
+          {"Yeniden Yükleme Reddini Doğrulayın"}
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            Are your sure you want to reject this Recharge request?
+            Bu yeniden yükleme talebini reddetmek istediğinizden emin misiniz?
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Close</Button>
+          <Button onClick={handleClose}>Kapat</Button>
           <Button onClick={handleReject} autoFocus>
-            Yes Reject
+            Evet, Reddet
           </Button>
         </DialogActions>
       </Dialog>

@@ -33,25 +33,25 @@ export default function AccountDetails({ open, handleClose }) {
 
   return (
     <Dialog open={open} onClose={handleClose} fullWidth maxWidth="md">
-      <DialogTitle>Account Details</DialogTitle>
+      <DialogTitle>Hesap Bilgileri</DialogTitle>
       <DialogContent sx={{ py: 2 }}>
         {!show ? (
           <Card>
             <CardContent>
               <Stack spacing={2}>
                 <Typography textAlign="center" color="error">
-                  This page is encrypted
+                  Bu sayfa şifrelenmiştir
                 </Typography>
 
                 <TextField
                   type="password"
                   variant="standard"
-                  label="Withdrawal password"
-                  placeholder="Please enter the withdrawal password"
+                  label="Para çekme şifresi"
+                  placeholder="Lütfen para çekme şifresini girin"
                   value={enteredPassword}
                   onChange={(e) => setEnteredPassword(e.target.value)}
                   error={error}
-                  helperText={error ? "Password is incorrect" : ""}
+                  helperText={error ? "Şifre yanlış" : ""}
                   required // Makes the input required
                 />
 
@@ -63,7 +63,7 @@ export default function AccountDetails({ open, handleClose }) {
                   fullWidth
                   disabled={!enteredPassword} // Disable button if password is not entered
                 >
-                  View Details
+                  Bilgileri Görüntüle
                 </Button>
               </Stack>
             </CardContent>
@@ -77,7 +77,7 @@ export default function AccountDetails({ open, handleClose }) {
                   alignItems="center"
                   justifyContent="space-between"
                 >
-                  <Typography>Phone</Typography>
+                  <Typography>Telefon</Typography>
                   <Typography>{phone}</Typography>
                 </Stack>
                 <Divider />
@@ -86,7 +86,7 @@ export default function AccountDetails({ open, handleClose }) {
                   alignItems="center"
                   justifyContent="space-between"
                 >
-                  <Typography>Password</Typography>
+                  <Typography>Şifre</Typography>
                   <Typography>{password}</Typography>
                 </Stack>
                 <Divider />
@@ -95,7 +95,7 @@ export default function AccountDetails({ open, handleClose }) {
                   alignItems="center"
                   justifyContent="space-between"
                 >
-                  <Typography>Connection Code</Typography>
+                  <Typography>Bağlantı Kodu</Typography>
                   <Typography>{invitationCode}</Typography>
                 </Stack>
                 <Divider />
@@ -104,7 +104,7 @@ export default function AccountDetails({ open, handleClose }) {
                   alignItems="center"
                   justifyContent="space-between"
                 >
-                  <Typography>Withdrawal Password</Typography>
+                  <Typography>Para Çekme Şifresi</Typography>
                   <Typography>{withdrawalPassword}</Typography>
                 </Stack>
                 <Divider />
@@ -113,7 +113,7 @@ export default function AccountDetails({ open, handleClose }) {
                   alignItems="center"
                   justifyContent="space-between"
                 >
-                  <Typography>Balance</Typography>
+                  <Typography>Bakiye</Typography>
                   <Typography>${(balance * 1).toFixed(2)}</Typography>
                 </Stack>
                 <Divider />
@@ -125,7 +125,7 @@ export default function AccountDetails({ open, handleClose }) {
                   }}
                   fullWidth
                 >
-                  Close
+                  Kapat
                 </Button>
               </Stack>
             </CardContent>

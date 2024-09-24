@@ -38,87 +38,56 @@ export default function Tasks() {
 
   const columns = [
     { field: "id", headerName: "ID", width: 70 },
-    { field: "assignedTo", headerName: "Assigned To", width: 130 },
-    { field: "status", headerName: "Status", width: 130 },
+    { field: "assignedTo", headerName: "Atanan Kişi", width: 130 },
+    { field: "status", headerName: "Durum", width: 130 },
     {
       field: "purchaseTime",
-      headerName: "Purchase Time",
+      headerName: "Alım Zamanı",
       type: "number",
       width: 150,
     },
     {
       field: "purchaseNumber",
-      headerName: "Purchase Number",
+      headerName: "Alım Numarası",
       type: "number",
       width: 150,
     },
     {
       field: "name",
-      headerName: "Name",
+      headerName: "Ürün Adı",
       type: "number",
       width: 150,
     },
     {
       field: "pricePerUnit",
-      headerName: "Price per unit",
+      headerName: "Birim Fiyatı",
       type: "number",
       width: 150,
     },
     {
       field: "quantity",
-      headerName: "Quantity",
+      headerName: "Miktar",
       type: "number",
       width: 150,
     },
     {
       field: "totalAmount",
-      headerName: "Total Amount",
+      headerName: "Toplam Tutar",
       type: "number",
       width: 150,
     },
     {
       field: "commission",
-      headerName: "Commission",
+      headerName: "Komisyon",
       type: "number",
       width: 150,
     },
     {
       field: "commissionReturn",
-      headerName: "Commission Return",
+      headerName: "Komisyon İade",
       type: "number",
       width: 180,
     },
-    // {
-    //   field: "approve",
-    //   headerName: "Approve",
-    //   description: "This column has a value getter and is not sortable.",
-    //   sortable: false,
-    //   width: 160,
-    //   // valueGetter: (value, row) => `${row.firstName || ""} ${row.lastName || ""}`,
-
-    //   renderCell: (params) =>
-    //     params.row.approvedByAdmin ? (
-    //       <Chip
-    //         sx={{ width: 1 }}
-    //         label="Approved"
-    //         icon={<CheckCircle />}
-    //         variant="outlined"
-    //         color="success"
-    //       />
-    //     ) : (
-    //       <Button
-    //         variant="contained"
-    //         color="primary"
-    //         onClick={() => {
-    //           setTaskId(params.row._id);
-    //           handleToggleApprove();
-    //         }}
-    //         fullWidth
-    //       >
-    //         Approve
-    //       </Button>
-    //     ),
-    // },
   ];
 
   return (
@@ -130,7 +99,7 @@ export default function Tasks() {
           startIcon={<Plus />}
           variant="contained"
         >
-          Add Task
+          Görev Ekle
         </Button>
       </Stack>
 

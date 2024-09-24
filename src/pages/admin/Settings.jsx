@@ -15,8 +15,8 @@ export default function Settings() {
         <form>
           <TextField
             fullWidth
-            label="Invitation code"
-            placeholder="Please enter invitation code"
+            label="Davet Kodu"
+            placeholder="Lütfen davet kodunu girin"
             value={value}
             onChange={(e) => {
               setValue(e.target.value);
@@ -32,13 +32,13 @@ export default function Settings() {
               if (value) {
                 dispatch(UpdateAdminCode(value));
               } else {
-                toast.warning("Please enter a valid Invitation code");
+                toast.warning("Lütfen geçerli bir davet kodu girin");
               }
             }}
             variant="contained"
             fullWidth
           >
-            Submit
+            Gönder
           </Button>
         </form>
       </Stack>

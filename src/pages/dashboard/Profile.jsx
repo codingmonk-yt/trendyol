@@ -76,7 +76,7 @@ export default function Profile() {
                     variant="overline"
                     sx={{ textTransform: "capitalize" }}
                   >
-                    Trendyol reputation:
+                    Trendyol itibar:
                   </Typography>
                   <Crown size={24} weight="fill" />
                 </Stack>
@@ -93,7 +93,7 @@ export default function Profile() {
             <CardContent>
               <Stack spacing={2}>
                 <Stack spacing={1}>
-                  <Typography variant="button">Account balance</Typography>
+                  <Typography variant="button">Hesap Bakiyesi</Typography>
 
                   <Typography variant="h6" color="textSecondary">
                     ${(balance * 1).toFixed(2)}
@@ -102,7 +102,7 @@ export default function Profile() {
                   <Divider />
                 </Stack>
                 <Stack spacing={1}>
-                  <Typography variant="button">Frozen balance</Typography>
+                  <Typography variant="button">Donmuş Bakiye</Typography>
 
                   <Typography variant="h6" color="textSecondary">
                     $0.00
@@ -126,7 +126,7 @@ export default function Profile() {
                       dispatch(UpdateRechargeDialog(true));
                     }}
                   >
-                    Recharge
+                    Yenile
                   </Button>
                   <Button
                     variant="contained"
@@ -137,7 +137,7 @@ export default function Profile() {
                       dispatch(UpdateWithdrawDialog(true));
                     }}
                   >
-                    Withdraw
+                    Para Çek
                   </Button>
                 </Stack>
               </Stack>
@@ -157,7 +157,7 @@ export default function Profile() {
             >
               <Stack direction="row" alignItems="center" spacing={1}>
                 <UserPlus size={20} />
-                <Typography variant="button">I want to connect</Typography>
+                <Typography variant="button">Bağlantı Kurmak İstiyorum</Typography>
               </Stack>
               <IconButton>
                 <CaretRight />
@@ -176,7 +176,7 @@ export default function Profile() {
             >
               <Stack direction="row" alignItems="center" spacing={1}>
                 <Receipt size={20} />
-                <Typography variant="button">Second purchase record</Typography>
+                <Typography variant="button">İkinci Satın Alma Kaydı</Typography>
               </Stack>
               <IconButton>
                 <CaretRight />
@@ -193,7 +193,7 @@ export default function Profile() {
             >
               <Stack direction="row" alignItems="center" spacing={1}>
                 <UserCircle size={20} />
-                <Typography variant="button">Account Details</Typography>
+                <Typography variant="button">Hesap Detayları</Typography>
               </Stack>
               <IconButton>
                 <CaretRight />
@@ -210,7 +210,7 @@ export default function Profile() {
             >
               <Stack direction="row" alignItems="center" spacing={1}>
                 <Building size={20} />
-                <Typography variant="button">Company Qualifications</Typography>
+                <Typography variant="button">Şirket Nitelikleri</Typography>
               </Stack>
               <IconButton>
                 <CaretRight />
@@ -228,7 +228,7 @@ export default function Profile() {
             fullWidth
             variant="contained"
           >
-            Logout
+            Çıkış Yap
           </Button>
         </Stack>
       </Box>

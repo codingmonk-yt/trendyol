@@ -11,42 +11,40 @@ import React from "react";
 export default function CompanyQualifications({ open, handleClose }) {
   return (
     <Dialog open={open} onClose={handleClose} fullWidth maxWidth="md">
-      <DialogTitle>Company Qualifications</DialogTitle>
+      <DialogTitle>Şirket Yeterlilikleri</DialogTitle>
       <DialogContent>
         <Typography variant="body2">
-          Trendyol Group CEO Erdem İnan said, "We will enter the Eastern
-          European market as of the first quarter of 2024. We will start with
-          Romania, Greece, Hungary and the Czech Republic in the upcoming period
-          and increase the number of market countries. Our goal is to ensure
-          that all of our 300,000 sellers can sell products to regions such as
-          Europe, the Middle East and the Gulf countries." According to
-          NetEconomy Cross-Border E-Commerce Station (CBEC.100EC.CN), Trendyol
-          will sell products to Eastern Europe in 2024. Expanding the market is
-          part of the company's international expansion strategy. Erdem İnan
-          noted the following: "The quality approach, products and brand
-          positioning of our manufacturers offer great potential. Being a region
-          that we can enter from Turkey in a short time and at low cost is
-          advantageous in many ways. "This market offers, we will contribute to
-          the electronics export of Turkish manufacturers to international
-          markets. "He also added: "When our activities in key countries reach a
-          certain maturity, we will enter the Polish, Slovakian and Bulgarian
-          markets. Our goal is to reach. We plan to reach 2 million active
-          customers, over 4 million order volume and 350 million US dollars of
-          trade volume in the Eastern European market by the end of 2024." Erdem
-          İnan also emphasized that international expansion is also a goal.
-          Stating Germany, which is the top priority of his future vision, as
-          the first target, they exceeded their targets in the German market and
-          reached over 1 million customers in more than a year. He also spoke
-          about expanding into the Gulf Market and named the results achieved in
-          the region since August 2023, while mentioning the Strategic
-          Partnership with Cenomi Group, one of the main companies in the
-          region, to further expand its presence in the Gulf. the country is
-          achieving growth.
+          Trendyol Grubu CEO'su Erdem İnan, "2024'ün ilk çeyreği itibarıyla Doğu
+          Avrupa pazarına gireceğiz. Önümüzdeki dönemde Romanya, Yunanistan,
+          Macaristan ve Çek Cumhuriyeti ile başlayıp pazar ülkelerinin sayısını
+          artıracağız. Amacımız, 300.000 satıcımızın tümünün Avrupa, Orta Doğu
+          ve Körfez ülkeleri gibi bölgelere ürün satmasını sağlamaktır." dedi.
+          NetEconomy Sınır Ötesi E-Ticaret İstasyonu'na (CBEC.100EC.CN) göre,
+          Trendyol 2024'te Doğu Avrupa'ya ürün satacak. Pazar genişlemesi,
+          şirketin uluslararası genişleme stratejisinin bir parçasıdır. Erdem
+          İnan şu açıklamaları yaptı: "Üreticilerimizin kalite yaklaşımı, ürünler
+          ve marka konumlandırması büyük bir potansiyel sunuyor. Türkiye'den
+          kısa sürede ve düşük maliyetle girebileceğimiz bir bölge olması birçok
+          yönden avantajlıdır. Bu pazar, Türk üreticilerinin uluslararası
+          pazarlara elektronik ihracatına katkıda bulunmamızı sağlayacak." dedi.
+          Ayrıca şunu ekledi: "Anahtar ülkelerdeki faaliyetlerimiz belli bir
+          olgunluğa ulaştığında, Polonya, Slovakya ve Bulgaristan pazarlarına
+          da gireceğiz. Amacımız, 2024 sonuna kadar Doğu Avrupa pazarında 2
+          milyon aktif müşteri, 4 milyonun üzerinde sipariş hacmi ve 350 milyon
+          ABD doları ticaret hacmine ulaşmaktır." Erdem İnan, uluslararası
+          genişlemenin de bir hedef olduğunu vurguladı. Gelecek vizyonunun ilk
+          hedefi olarak Almanya'yı belirten İnan, Almanya pazarında
+          hedeflerini aştıklarını ve bir yıldan fazla bir sürede 1 milyonun
+          üzerinde müşteri sayısına ulaştıklarını belirtti. Ayrıca Körfez
+          Pazarı'na genişleme planlarından bahsederek, Ağustos 2023'ten bu yana
+          elde edilen sonuçlardan ve bölgedeki varlığını daha da genişletmek
+          için bölgenin ana şirketlerinden biri olan Cenomi Group ile yapılan
+          Stratejik Ortaklıktan söz etti. Ülke büyümeye devam ediyor.
         </Typography>
       </DialogContent>
       <DialogActions>
         <Button variant="outlined" fullWidth onClick={handleClose}>
-          Close
+          Kapat
         </Button>
       </DialogActions>
     </Dialog>

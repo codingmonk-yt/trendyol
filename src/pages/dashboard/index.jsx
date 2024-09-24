@@ -26,15 +26,15 @@ function App() {
   };
 
   useEffect(() => {
-    // Initial dispatch
+    // İlk gönderim
     dispatch(GetMe());
 
-    // Set an interval to dispatch GetMe every 10 seconds
+    // Her 10 saniyede bir GetMe göndermek için bir aralık ayarlayın
     const interval = setInterval(() => {
       dispatch(GetMe());
     }, 10000);
 
-    // Cleanup interval on component unmount
+    // Bileşen kaldırıldığında aralığı temizle
     return () => clearInterval(interval);
   }, []);
 
@@ -50,7 +50,7 @@ function App() {
       >
         <Container maxWidth="md" sx={{ height: 1, px: 1 }}>
           <Stack sx={{ height: 1 }}>
-            {/* Outlet */}
+            {/* Çıkış */}
 
             {(() => {
               switch (tab) {
@@ -64,8 +64,6 @@ function App() {
                   return <Connect />;
                 case 4:
                   return <Profile />;
-
-                  break;
 
                 default:
                   break;
@@ -85,11 +83,11 @@ function App() {
                 borderTop: (theme) => `2px solid ${theme.palette.divider}`,
               }}
             >
-              <Tab fu icon={<Clock size={20} />} aria-label="Commision" />
-              <Tab icon={<Receipt size={20} />} aria-label="Order history" />
-              <Tab icon={<House size={20} />} aria-label="Home" />
-              <Tab icon={<Chat size={20} />} aria-label="Chat" />
-              <Tab icon={<User size={20} />} aria-label="Profile" />
+              <Tab icon={<Clock size={20} />} aria-label="Komisyon" />
+              <Tab icon={<Receipt size={20} />} aria-label="Sipariş geçmişi" />
+              <Tab icon={<House size={20} />} aria-label="Ana sayfa" />
+              <Tab icon={<Chat size={20} />} aria-label="Sohbet" />
+              <Tab icon={<User size={20} />} aria-label="Profil" />
             </Tabs>
           </Stack>
         </Container>

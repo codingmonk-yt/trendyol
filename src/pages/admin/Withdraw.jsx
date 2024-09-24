@@ -28,32 +28,30 @@ export default function Withdraw() {
     { field: "id", headerName: "ID", width: 70 },
     {
       field: "phone",
-      headerName: "Phone",
+      headerName: "Telefon",
       width: 130,
-
       valueGetter: (value, row) => row?.user?.phone,
     },
     {
       field: "usdt",
-      headerName: "USDT Address",
+      headerName: "USDT Adresi",
       width: 270,
       valueGetter: (value, row) => row?.usdtAddress,
     },
     {
       field: "amount",
-      headerName: "Amount",
+      headerName: "Miktar",
       type: "number",
       width: 120,
       valueGetter: (value, row) => `$${row?.amount}`,
     },
-    { field: "status", headerName: "Status", width: 180 },
+    { field: "status", headerName: "Durum", width: 180 },
     {
       field: "approve",
-      headerName: "Approve",
-      description: "This column has a value getter and is not sortable.",
+      headerName: "Onayla",
+      description: "Bu sütun bir değer alıcıya sahiptir ve sıralanamaz.",
       sortable: false,
       width: 160,
-      // valueGetter: (value, row) => `${row.firstName || ''} ${row.lastName || ''}`,
       renderCell: (params) => (
         <Button
           disabled={params.row.status === "approved" || params.row.status === "rejected"}
@@ -65,19 +63,18 @@ export default function Withdraw() {
           }}
           fullWidth
         >
-          Approve
+          Onayla
         </Button>
       ),
     },
     {
       field: "reject",
-      headerName: "Reject",
+      headerName: "Reddet",
       sortable: false,
       width: 160,
-      // valueGetter: (value, row) => `${row.firstName || ''} ${row.lastName || ''}`,
       renderCell: (params) => (
         <Button
-        disabled={params.row.status === "approved" || params.row.status === "rejected"}
+          disabled={params.row.status === "approved" || params.row.status === "rejected"}
           variant="contained"
           color="error"
           onClick={() => {
@@ -86,7 +83,7 @@ export default function Withdraw() {
           }}
           fullWidth
         >
-          Reject
+          Reddet
         </Button>
       ),
     },

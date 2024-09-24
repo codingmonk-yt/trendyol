@@ -12,7 +12,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { LoginUser } from "../../redux/slices/app";
-import {alpha} from "@mui/material/styles"
+import { alpha } from "@mui/material/styles";
 
 export default function Login() {
   const dispatch = useDispatch();
@@ -27,12 +27,12 @@ export default function Login() {
     let tempErrors = { phoneNumber: "", password: "" };
 
     if (!phoneNumber) {
-      tempErrors.phoneNumber = "Phone number is required";
+      tempErrors.phoneNumber = "Telefon numarası gerekli";
       valid = false;
     }
 
     if (!password) {
-      tempErrors.password = "Password is required";
+      tempErrors.password = "Şifre gerekli";
       valid = false;
     }
 
@@ -52,7 +52,7 @@ export default function Login() {
   };
 
   return (
-    <Box sx={{bgcolor: (theme) => alpha(theme.palette.warning.lighter, 0.5)}}>
+    <Box sx={{ bgcolor: (theme) => alpha(theme.palette.warning.lighter, 0.5) }}>
       <Container maxWidth="md" sx={{ py: 4, height: "100vh" }}>
         <Stack spacing={4}>
           <Stack
@@ -60,7 +60,7 @@ export default function Login() {
             alignItems="center"
             justifyContent="space-between"
           >
-            <Typography variant="h5">Log In</Typography>
+            <Typography variant="h5">Giriş Yap</Typography>
           </Stack>
 
           <Card>
@@ -69,8 +69,8 @@ export default function Login() {
                 <Stack spacing={1.5}>
                   <TextField
                     type="tel"
-                    label="Phone Number"
-                    placeholder="Enter your phone number"
+                    label="Telefon Numarası"
+                    placeholder="Telefon numaranızı girin"
                     variant="standard"
                     value={phoneNumber}
                     onChange={(e) => setPhoneNumber(e.target.value)}
@@ -80,8 +80,8 @@ export default function Login() {
                   />
                   <TextField
                     type="password"
-                    label="Password"
-                    placeholder="Enter your password"
+                    label="Şifre"
+                    placeholder="Şifrenizi girin"
                     variant="standard"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
@@ -101,13 +101,13 @@ export default function Login() {
                         window.location.href = "https://t.me/Shelbyy_shelbyy";
                       }}
                     >
-                      Forgot password?
+                      Şifremi unuttum?
                     </Button>
                   </Stack>
                 </Stack>
 
                 <Button onClick={handleLogin} variant="contained" size="medium">
-                  Login
+                  Giriş Yap
                 </Button>
               </Stack>
             </CardContent>
@@ -120,8 +120,8 @@ export default function Login() {
             spacing={1}
             justifyContent="center"
           >
-            <Typography variant="button">Don't have an account yet?</Typography>
-            <Link to="/register">Go to register</Link>
+            <Typography variant="button">Hâlâ bir hesabınız yok mu?</Typography>
+            <Link to="/register">Kayıt ol</Link>
           </Stack>
         </Stack>
       </Container>

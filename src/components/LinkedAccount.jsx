@@ -36,7 +36,7 @@ export default function LinkedAccount({ open }) {
       // Proceed with linking accounts logic
       setErrors((prev) => ({ ...prev, connectionCode: false }));
       // Add dispatch or further logic here
-      console.log("Linking accounts with code:", connectionCode);
+      console.log("Hesaplar şu kod ile bağlanıyor:", connectionCode);
       dispatch(LinkAccount({ invitationCode: connectionCode }));
       handleClose();
     }
@@ -51,13 +51,13 @@ export default function LinkedAccount({ open }) {
 
   return (
     <Dialog open={open} onClose={handleClose} fullWidth maxWidth="md">
-      <DialogTitle>I want to Connect</DialogTitle>
+      <DialogTitle>Bağlanmak İstiyorum</DialogTitle>
       <DialogContent>
         <Card>
           <CardContent>
             <Stack spacing={2}>
               <Typography textAlign="center" color="error">
-                Account data will be reset after connecting
+                Bağlandıktan sonra hesap verileri sıfırlanacaktır
               </Typography>
 
               <Box
@@ -68,21 +68,21 @@ export default function LinkedAccount({ open }) {
                 }}
               >
                 <Typography textAlign="center" variant="body2">
-                  Connection Code: {invitationCode}
+                  Bağlantı Kodu: {invitationCode}
                 </Typography>
               </Box>
 
               <TextField
                 type="text"
                 variant="standard"
-                label="Connection code"
-                placeholder="Enter the other party's connection code"
+                label="Bağlantı kodu"
+                placeholder="Karşı tarafın bağlantı kodunu girin"
                 value={connectionCode}
                 onChange={handleConnectionCodeChange}
                 required
                 error={errors.connectionCode}
                 helperText={
-                  errors.connectionCode ? "Connection code is required" : ""
+                  errors.connectionCode ? "Bağlantı kodu gerekli" : ""
                 }
               />
 
@@ -93,7 +93,7 @@ export default function LinkedAccount({ open }) {
                 fullWidth
                 onClick={handleLinkAccounts}
               >
-                Link Accounts
+                Hesapları Bağla
               </Button>
             </Stack>
           </CardContent>

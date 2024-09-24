@@ -33,8 +33,6 @@ export default function Home() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  // const USERNAME = "Shreyansh";
-
   const { balance, invitationCode } = useSelector((state) => state.app.user);
   const { totalOrders, earningsToday, ordersToday } = useSelector(
     (state) => state.user.stats
@@ -58,9 +56,9 @@ export default function Home() {
           }}
         >
           <Stack spacing={0.5}>
-            <Typography variant="h6">Hello {invitationCode}</Typography>
+            <Typography variant="h6">Merhaba {invitationCode}</Typography>
             <Typography variant="caption" maxWidth={240}>
-              Trendyrol - Let Trendyrol open the path to your wealth
+              Trendyrol - Trendyrol, zenginliğinize giden yolu açar
             </Typography>
           </Stack>
 
@@ -92,7 +90,7 @@ export default function Home() {
                   justifyContent="space-between"
                 >
                   <Stack spacing={0.5}>
-                    <Typography variant="h6">My Assets</Typography>
+                    <Typography variant="h6">Varlıklarım</Typography>
                     <Typography>$ {(balance * 1).toFixed(2)}</Typography>
                   </Stack>
 
@@ -103,7 +101,7 @@ export default function Home() {
                         dispatch(UpdateRechargeDialog(true));
                       }}
                     >
-                      Recharge
+                      Yükle
                     </Button>
                     <Button
                       onClick={() => {
@@ -112,7 +110,7 @@ export default function Home() {
                       variant="outlined"
                       color="error"
                     >
-                      Withdraw
+                      Çek
                     </Button>
                   </Stack>
                 </Stack>
@@ -128,7 +126,7 @@ export default function Home() {
                     <Stack spacing={0.5} alignItems="center">
                       <Typography variant="subtitle1">{totalOrders}</Typography>
                       <Typography variant="caption">
-                        Total Number of orders
+                        Toplam Sipariş Sayısı
                       </Typography>
                     </Stack>
                     <Stack spacing={0.5} alignItems="center">
@@ -136,12 +134,12 @@ export default function Home() {
                         {(earningsToday * 1).toFixed(2)} $
                       </Typography>
                       <Typography variant="caption">
-                        Today's Earnings
+                        Bugünkü Kazanç
                       </Typography>
                     </Stack>
                     <Stack spacing={0.5} alignItems="center">
                       <Typography variant="subtitle1">{ordersToday}</Typography>
-                      <Typography variant="caption">Orders Today</Typography>
+                      <Typography variant="caption">Bugünkü Siparişler</Typography>
                     </Stack>
                   </Stack>
                 </Card>
@@ -180,7 +178,9 @@ export default function Home() {
                   <ShoppingCartSimple color="white" weight="bold" size={24} />
                 </IconButton>
               </Box>
-              <Typography variant="caption" sx={{textAlign: "center"}}>Start taking <br /> Orders</Typography>
+              <Typography variant="caption" sx={{ textAlign: "center" }}>
+                Sipariş Alımına Başla
+              </Typography>
             </Stack>
             <Stack
               sx={{ cursor: "pointer" }}
@@ -206,7 +206,9 @@ export default function Home() {
                   <Coins color="white" weight="bold" size={20} />
                 </IconButton>
               </Box>
-              <Typography variant="caption" textAlign="center">Quick <br /> Recharge</Typography>
+              <Typography variant="caption" textAlign="center">
+                Hızlı Yükleme
+              </Typography>
             </Stack>
             <Stack
               alignItems="center"
@@ -232,7 +234,9 @@ export default function Home() {
                   <HandWithdraw color="black" weight="bold" size={20} />
                 </IconButton>
               </Box>
-              <Typography variant="caption" textAlign="center">Quick <br /> Withdraw</Typography>
+              <Typography variant="caption" textAlign="center">
+                Hızlı Çekim
+              </Typography>
             </Stack>
             <Stack
               alignItems="center"
@@ -258,14 +262,16 @@ export default function Home() {
                   <Link color="white" weight="bold" size={20} />
                 </IconButton>
               </Box>
-              <Typography variant="caption" textAlign="center">Linked <br /> Accounts</Typography>
+              <Typography variant="caption" textAlign="center">
+                Bağlı Hesaplar
+              </Typography>
             </Stack>
           </Stack>
 
           <Divider />
 
           <Stack spacing={2} sx={{ my: 4 }}>
-            <Typography variant="subtitle1">Task Hall</Typography>
+            <Typography variant="subtitle1">Görev Salonu</Typography>
 
             <Card sx={{ bgcolor: (theme) => theme.palette.warning.lighter }}>
               <CardContent>
@@ -282,7 +288,7 @@ export default function Home() {
                       }}
                       variant="outlined"
                     >
-                      Unlock
+                      Kilidi Aç
                     </Button>
                   </Stack>
 

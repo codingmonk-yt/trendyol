@@ -118,7 +118,7 @@ export function GetWaitTill() {
       .catch(function (error) {
         console.log(error);
         dispatch(setError(error));
-        toast.error("Failed to fetch!");
+        toast.error("Veri alınamadı!");
       })
       .finally(() => {
         dispatch(setLoading(false));
@@ -128,31 +128,34 @@ export function GetWaitTill() {
 
 export function UpdateSelectedTab(value) {
   return async (dispatch, getState) => {
-    // reset error
+    // hata sıfırlama
     dispatch(updateTabValue(value * 1));
   };
 }
 
 export function UpdateLinkAccountDialog(value) {
   return async (dispatch, getState) => {
-    // reset error
+    // hata sıfırlama
     dispatch(updateLinkAccountOpen(value));
   };
 }
+
 export function UpdateRechargeDialog(value) {
   return async (dispatch, getState) => {
-    // reset error
+    // hata sıfırlama
     dispatch(updateRechargeOpen(value));
   };
 }
+
 export function UpdateWithdrawDialog(value) {
   return async (dispatch, getState) => {
-    // reset error
+    // hata sıfırlama
     dispatch(updateWithdrawOpen(value));
   };
 }
 
-// get withdrawal in progress
+
+// devam eden çekim işlemini al
 
 export function GetWithdrawalInProgress() {
   return async (dispatch, getState) => {
@@ -177,7 +180,7 @@ export function GetWithdrawalInProgress() {
         console.log(error);
         dispatch(setError(error));
 
-        toast.error("Failed to get withdrawal in progress amount!");
+        toast.error("Devam eden çekim miktarını almak başarısız oldu!");
       })
       .finally(() => {
         dispatch(setLoading(false));
@@ -185,7 +188,7 @@ export function GetWithdrawalInProgress() {
   };
 }
 
-// Recharge request
+// Yeniden yükleme talebi
 
 export function RequestRecharge(amount) {
   return async (dispatch, getState) => {
@@ -210,12 +213,12 @@ export function RequestRecharge(amount) {
         const { data } = response.data;
         console.log(data);
 
-        toast.success("Recharge requested successfully!");
+        toast.success("Yeniden yükleme talebi başarıyla yapıldı!");
       })
       .catch(function (error) {
         console.log(error);
         dispatch(setError(error));
-        toast.error("Error occurred while requesting recharge!");
+        toast.error("Yeniden yükleme talebi sırasında bir hata oluştu!");
       })
       .finally(() => {
         dispatch(setLoading(false));
@@ -223,7 +226,7 @@ export function RequestRecharge(amount) {
   };
 }
 
-// withdraw request
+// çekim talebi
 export function RequestWithdraw(formValues) {
   return async (dispatch, getState) => {
     dispatch(setError(null));
@@ -249,13 +252,13 @@ export function RequestWithdraw(formValues) {
         const { data } = response.data;
         console.log(data);
 
-        toast.success("Withdrawal requested successfully!");
+        toast.success("Çekim talebi başarıyla yapıldı!");
       })
       .catch(function (error) {
         console.log(error);
         dispatch(setError(error));
 
-        toast.error("Failed to make withdrawal request!");
+        toast.error("Çekim talebi yapma başarısız oldu!");
       })
       .finally(() => {
         dispatch(setLoading(false));
@@ -263,7 +266,7 @@ export function RequestWithdraw(formValues) {
   };
 }
 
-// get tasks
+// görevleri al
 export function GetMyTasks() {
   return async (dispatch, getState) => {
     dispatch(setError(null));
@@ -285,7 +288,7 @@ export function GetMyTasks() {
         console.log(error);
         dispatch(setError(error));
 
-        toast.error("Failed to load tasks");
+        toast.error("Görevleri yükleme başarısız oldu");
       })
       .finally(() => {
         dispatch(setLoading(false));
@@ -293,7 +296,8 @@ export function GetMyTasks() {
   };
 }
 
-// update task
+
+// görev güncelle
 
 export function UpdateTaskStatus({ id, nextId, isLast }) {
   return async (dispatch, getState) => {
@@ -330,13 +334,13 @@ export function UpdateTaskStatus({ id, nextId, isLast }) {
           })
         );
 
-        toast.success("Task completed successfully!");
+        toast.success("Görev başarıyla tamamlandı!");
       })
       .catch(function (error) {
         console.log(error);
         dispatch(setError(error));
 
-        toast.error("Failed to update task status!");
+        toast.error("Görev durumunu güncelleme başarısız oldu!");
       })
       .finally(() => {
         dispatch(setLoading(false));
@@ -344,7 +348,7 @@ export function UpdateTaskStatus({ id, nextId, isLast }) {
   };
 }
 
-// link account
+// hesap bağlantısı
 export function LinkAccount(formValues) {
   return async (dispatch, getState) => {
     dispatch(setError(null));
@@ -368,13 +372,13 @@ export function LinkAccount(formValues) {
         const { data } = response.data;
         console.log(data);
 
-        toast.success("Account linked successfully!");
+        toast.success("Hesap başarıyla bağlandı!");
       })
       .catch(function (error) {
         console.log(error);
         dispatch(setError(error));
 
-        toast.error("Failed to link account, Invalid Invitation code");
+        toast.error("Hesap bağlama başarısız oldu, Geçersiz davet kodu");
       })
       .finally(() => {
         dispatch(setLoading(false));
@@ -382,7 +386,7 @@ export function LinkAccount(formValues) {
   };
 }
 
-// get stats
+// istatistikleri al
 export function GetStats() {
   return async (dispatch, getState) => {
     dispatch(setError(null));
@@ -404,7 +408,7 @@ export function GetStats() {
       .catch(function (error) {
         console.log(error);
         dispatch(setError(error));
-        toast.error("Failed to get stats data!");
+        toast.error("İstatistik verilerini alma başarısız oldu!");
       })
       .finally(() => {
         dispatch(setLoading(false));

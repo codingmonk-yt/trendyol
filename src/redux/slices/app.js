@@ -70,12 +70,12 @@ export function RegisterUser(formValues, navigate) {
         dispatch(fetchUserSuccess(data.user));
         dispatch(loginSuccess(token));
 
-        toast.success("Account Created successfully!");
+        toast.success("Hesap başarıyla oluşturuldu!");
       })
       .catch(function (error) {
         console.log(error);
         dispatch(setError(error));
-        toast.error(error?.message || "Something went wrong");
+        toast.error(error?.message || "Bir şeyler ters gitti");
       })
       .finally(() => {
         dispatch(setLoading(false));
@@ -92,7 +92,7 @@ export function RegisterUser(formValues, navigate) {
 
 export function LoginUser(formValues, navigate) {
   return async (dispatch, getState) => {
-    // reset error
+    // hata sıfırlama
     dispatch(setError(null));
     dispatch(setLoading(true));
 
@@ -113,12 +113,12 @@ export function LoginUser(formValues, navigate) {
         dispatch(fetchUserSuccess(data.user));
         dispatch(loginSuccess(token));
 
-        toast.success("Logged in successfully!");
+        toast.success("Başarıyla giriş yapıldı!");
       })
       .catch(function (error) {
         console.log(error);
         dispatch(setError(error));
-        toast.error(error?.message || "Something went wrong");
+        toast.error(error?.message || "Bir şeyler ters gitti");
       })
       .finally(() => {
         dispatch(setLoading(false));
@@ -137,17 +137,17 @@ export function LogoutUser(navigate) {
   return async (dispatch, getState) => {
     try {
       navigate("/");
-      toast.error("Logged out successfully!");
+      toast.error("Başarıyla çıkış yapıldı!");
     } catch (error) {
       console.log(error);
     }
   };
 }
 
-// Update Admin Code
+// Yönetici Kodu Güncelle
 export function UpdateAdminCode(code) {
   return async (dispatch, getState) => {
-    // reset error
+    // hata sıfırlama
     dispatch(setError(null));
     dispatch(setLoading(true));
 
@@ -171,17 +171,17 @@ export function UpdateAdminCode(code) {
         console.log(data);
 
         dispatch(fetchUserSuccess(data.user));
-        toast.success("Code updated successfully!");
+        toast.success("Kod başarıyla güncellendi!");
       })
       .catch(function (error) {
         console.log(error);
         dispatch(setError(error));
-        toast.error(error?.message || "Something went wrong");
+        toast.error(error?.message || "Bir şeyler ters gitti");
       });
   };
 }
 
-// get me
+// beni al
 export function GetMe() {
   return async (dispatch, getState) => {
     dispatch(setError(null));
@@ -205,7 +205,7 @@ export function GetMe() {
       .catch(function (error) {
         console.log(error);
         dispatch(setError(error));
-        toast.error("Failed to get user details!");
+        toast.error("Kullanıcı detaylarını almak başarısız oldu!");
       })
       .finally(() => {
         dispatch(setLoading(false));

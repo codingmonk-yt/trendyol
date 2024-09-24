@@ -33,17 +33,17 @@ export default function RejectWithdrawal({ open, handleClose, requestId }) {
         fullWidth
       >
         <DialogTitle id="alert-dialog-title">
-          {"Withdrawal Rejection Confirmation"}
+          {"Çekim Reddini Doğrulayın"}
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            Are your sure you want to reject this Withdrawal request?
+            Bu çekim talebini reddetmek istediğinizden emin misiniz?
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Close</Button>
+          <Button onClick={handleClose}>Kapat</Button>
           <Button onClick={handleReject} autoFocus>
-            Yes Reject
+            Evet, Reddet
           </Button>
         </DialogActions>
       </Dialog>

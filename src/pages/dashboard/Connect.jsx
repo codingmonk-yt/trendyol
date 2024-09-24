@@ -13,7 +13,7 @@ export default function Connect() {
           sx={{ height: 1 }}
         >
           <Typography variant="h3" color="info" textAlign="center">
-            Get Support over Telegram
+            Telegram Üzerinden Destek Alın
           </Typography>
 
           <Button
@@ -26,7 +26,7 @@ export default function Connect() {
             }}
             fullWidth
           >
-            Chat Now
+            Şimdi Sohbet Et
           </Button>
         </Stack>
       </Container>

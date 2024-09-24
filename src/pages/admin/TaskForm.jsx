@@ -22,7 +22,7 @@ export default function TaskForm({ open, handleClose }) {
 
   const dispatch = useDispatch();
 
-  // State for each form field
+  // Her form alanı için state
   const [purchaseDateTime, setPurchaseDateTime] = React.useState("");
   const [purchaseNumber, setPurchaseNumber] = React.useState("");
   const [productName, setProductName] = React.useState("");
@@ -34,7 +34,7 @@ export default function TaskForm({ open, handleClose }) {
   const [imageLink, setImageLink] = React.useState("");
   const [assignedTo, setAssignedTo] = React.useState("");
 
-  // Handlers for each input change
+  // Her giriş değişikliği için handlerlar
   const handlePurchaseDateTimeChange = (event) => {
     setPurchaseDateTime(event.target.value);
   };
@@ -88,13 +88,13 @@ export default function TaskForm({ open, handleClose }) {
       !imageLink ||
       !assignedTo
     ) {
-      alert("Please fill out all required fields.");
+      alert("Lütfen tüm gerekli alanları doldurun.");
       return;
     }
 
-    // Create formValues object according to schema
+    // Schema'ya göre formValues nesnesini oluşturma
     const formValues = {
-      purchaseTime: new Date(purchaseDateTime), // converting to Date format
+      purchaseTime: new Date(purchaseDateTime), // Tarih formatına dönüştürme
       purchaseNumber,
       name: productName,
       pricePerUnit: parseFloat(pricePerUnit),
@@ -104,7 +104,7 @@ export default function TaskForm({ open, handleClose }) {
       commissionReturn: parseFloat(commissionReturn),
       imgUrl: imageLink,
       assignedTo,
-      status: "pending", // default status
+      status: "pending", // varsayılan durum
     };
 
     dispatch(CreateTask(formValues));
@@ -113,7 +113,7 @@ export default function TaskForm({ open, handleClose }) {
 
   return (
     <Dialog open={open} maxWidth="md" fullWidth>
-      <DialogTitle>Add Task</DialogTitle>
+      <DialogTitle>Görev Ekle</DialogTitle>
       <DialogContent>
         <Box sx={{ flexGrow: 1 }}>
           <Grid container spacing={2}>
@@ -122,7 +122,6 @@ export default function TaskForm({ open, handleClose }) {
                 type="date"
                 fullWidth
                 required
-                // label="Purchase Date Time"
                 value={purchaseDateTime}
                 onChange={handlePurchaseDateTimeChange}
               />
@@ -132,7 +131,7 @@ export default function TaskForm({ open, handleClose }) {
                 type="text"
                 fullWidth
                 required
-                label="Purchase Number"
+                label="Alış Numarası"
                 value={purchaseNumber}
                 onChange={handlePurchaseNumberChange}
               />
@@ -142,7 +141,7 @@ export default function TaskForm({ open, handleClose }) {
                 type="text"
                 fullWidth
                 required
-                label="Product Name"
+                label="Ürün Adı"
                 value={productName}
                 onChange={handleProductNameChange}
               />
@@ -153,7 +152,7 @@ export default function TaskForm({ open, handleClose }) {
                 min={0}
                 fullWidth
                 required
-                label="Price per unit"
+                label="Birimi Başına Fiyat"
                 value={pricePerUnit}
                 onChange={handlePricePerUnitChange}
               />
@@ -164,7 +163,7 @@ export default function TaskForm({ open, handleClose }) {
                 min={1}
                 fullWidth
                 required
-                label="Quantity"
+                label="Miktar"
                 value={quantity}
                 onChange={handleQuantityChange}
               />
@@ -175,7 +174,7 @@ export default function TaskForm({ open, handleClose }) {
                 min={0}
                 fullWidth
                 required
-                label="Total Amount"
+                label="Toplam Tutar"
                 value={totalAmount}
                 onChange={handleTotalAmountChange}
               />
@@ -186,7 +185,7 @@ export default function TaskForm({ open, handleClose }) {
                 min={0}
                 fullWidth
                 required
-                label="Commission"
+                label="Komisyon"
                 value={commission}
                 onChange={handleCommissionChange}
               />
@@ -197,7 +196,7 @@ export default function TaskForm({ open, handleClose }) {
                 min={0}
                 fullWidth
                 required
-                label="Commission Return"
+                label="Komisyon İadesi"
                 value={commissionReturn}
                 onChange={handleCommissionReturnChange}
               />
@@ -207,19 +206,19 @@ export default function TaskForm({ open, handleClose }) {
                 type="text"
                 fullWidth
                 required
-                label="Image Link"
+                label="Resim Bağlantısı"
                 value={imageLink}
                 onChange={handleImageLinkChange}
               />
             </Grid>
             <Grid size={12}>
               <FormControl fullWidth required>
-                <InputLabel id="demo-simple-select-label">Assign to</InputLabel>
+                <InputLabel id="demo-simple-select-label">Atanan</InputLabel>
                 <Select
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
                   value={assignedTo}
-                  label="Assign to"
+                  label="Atanan"
                   onChange={handleChangeAssignment}
                 >
                   {users.map(({ _id, phone }, index) => (
@@ -241,7 +240,7 @@ export default function TaskForm({ open, handleClose }) {
           variant="contained"
           color="primary"
         >
-          Submit
+          Gönder
         </Button>
         <Button
           onClick={handleClose}
@@ -249,7 +248,7 @@ export default function TaskForm({ open, handleClose }) {
           variant="outlined"
           color="error"
         >
-          Cancel
+          İptal
         </Button>
       </DialogActions>
     </Dialog>

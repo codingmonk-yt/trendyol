@@ -28,17 +28,17 @@ export default function DeleteConfirmation({ open, handleClose, userId }) {
         fullWidth
       >
         <DialogTitle id="alert-dialog-title">
-          {"Task Completion Approval Confirmation"}
+          {"Kullanıcı Silme Onayını Doğrulayın"}
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            Are your sure you want to delete this user?
+            Bu kullanıcıyı silmek istediğinizden emin misiniz?
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Close</Button>
+          <Button onClick={handleClose}>Kapat</Button>
           <Button onClick={handleApprove} autoFocus>
-            Yes
+            Evet
           </Button>
         </DialogActions>
       </Dialog>

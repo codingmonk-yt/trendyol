@@ -27,36 +27,38 @@ export default function Users() {
 
   const columns = [
     { field: "id", headerName: "ID", width: 70 },
-    { field: "phone", headerName: "Phone", width: 130 },
+    { field: "phone", headerName: "Telefon", width: 130 },
     {
       field: "totalTasks",
-      headerName: "Total tasks",
+      headerName: "Toplam Görev",
       width: 130,
       valueGetter: (value, row) => row?.orders?.length,
     },
-    { field: "balance", headerName: "Balance", width: 130, 
+    { 
+      field: "balance", 
+      headerName: "Bakiye", 
+      width: 130, 
       valueGetter: (value, row) => (row.balance * 1).toFixed(2), 
-      },
-    { field: "password", headerName: "Password", width: 130 },
+    },
+    { field: "password", headerName: "Şifre", width: 130 },
     {
       field: "withdrawalPassword",
-      headerName: "Withdrawal Password",
+      headerName: "Çekim Şifresi",
       width: 180,
     },
     {
       field: "connectionCode",
-      headerName: "Connection Code",
-      description: "This column has a value getter and is not sortable.",
+      headerName: "Bağlantı Kodu",
+      description: "Bu sütun bir değer alıcıya sahiptir ve sıralanamaz.",
       sortable: false,
       width: 160,
       valueGetter: (value, row) => row.invitationCode,
     },
     {
       field: "delete",
-      headerName: "Remove User",
+      headerName: "Kullanıcıyı Kaldır",
       sortable: false,
       width: 160,
-      // valueGetter: (value, row) => `${row.firstName || ''} ${row.lastName || ''}`,
       renderCell: (params) => (
         <Button
           variant="contained"
@@ -67,7 +69,7 @@ export default function Users() {
           }}
           fullWidth
         >
-          Delete 
+          Sil 
         </Button>
       ),
     },
@@ -80,16 +82,16 @@ export default function Users() {
 
   return (
     <>
-    <Paper sx={{ height: 400, width: "100%" }}>
-      <DataGrid
-        rows={rows}
-        columns={columns}
-        initialState={{ pagination: { paginationModel } }}
-        pageSizeOptions={[5, 10]}
-        checkboxSelection
-        sx={{ border: 0 }}
-      />
-    </Paper>
+      <Paper sx={{ height: 400, width: "100%" }}>
+        <DataGrid
+          rows={rows}
+          columns={columns}
+          initialState={{ pagination: { paginationModel } }}
+          pageSizeOptions={[5, 10]}
+          checkboxSelection
+          sx={{ border: 0 }}
+        />
+      </Paper>
       <DeleteConfirmation open={openDelete} handleClose={handleToggleDelete} userId={userId} />
     </>
   );
