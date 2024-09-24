@@ -27,16 +27,13 @@ Sentry.init({
   replaysOnErrorSampleRate: 1.0, // If you're not already sampling the entire session, change the sample rate to 100% when sampling sessions where errors occur.
 });
 
-
 createRoot(document.getElementById("root")).render(
-  <StrictMode>
-    <ReduxProvider store={store}>
-      <ThemeProvider>
-        <BrowserRouter>
-          <App />
-          <ToastContainer position="top-center" autoClose={5000} stacked />
-        </BrowserRouter>
-      </ThemeProvider>
-    </ReduxProvider>
-  </StrictMode>
+  <ReduxProvider store={store}>
+    <ThemeProvider>
+      <BrowserRouter>
+        <App />
+        <ToastContainer position="top-center" autoClose={5000} stacked />
+      </BrowserRouter>
+    </ThemeProvider>
+  </ReduxProvider>
 );
