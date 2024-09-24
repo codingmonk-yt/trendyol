@@ -125,7 +125,7 @@ export default function Commission() {
                         dispatch(UpdateRechargeDialog(true));
                       }}
                     >
-                      şarj etmek
+                      para yüklemek
                     </Button>
                     <Button
                       color="inherit"
