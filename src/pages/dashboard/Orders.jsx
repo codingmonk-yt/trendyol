@@ -58,10 +58,9 @@ const checkIf15MinutesElapsed = (waitTill) => {
   }
   const waitTillDate = new Date(waitTill); // MongoDB timestamp with 15 minutes already added
   const currentTime = new Date();
-  
+
   return currentTime >= waitTillDate; // Check if current time has passed the waitTill time
 };
-
 
 export default function Orders() {
   const dispatch = useDispatch();
@@ -78,29 +77,28 @@ export default function Orders() {
 
   useEffect(() => {
     if (!waitTill) return; // Exit early if waitTill is null
-  
+
     // Function to perform the check every 5 seconds
     const interval = setInterval(() => {
       const hasElapsed = checkIf15MinutesElapsed(waitTill);
       setHas15MinutesElapsed(hasElapsed);
     }, 5000); // Check every 5 seconds (5000 ms)
-  
+
     // Cleanup the interval when the component is unmounted
     return () => clearInterval(interval);
   }, [waitTill]);
-  
 
   useEffect(() => {
     // Initial dispatch
     dispatch(GetWaitTill());
 
-    // Set an interval to dispatch GetMe every 10 seconds
-    const interval = setInterval(() => {
-      dispatch(GetWaitTill());
-    }, 5000);
+    // // Set an interval to dispatch GetMe every 10 seconds
+    // const interval = setInterval(() => {
+    //   dispatch(GetWaitTill());
+    // }, 5000);
 
-    // Cleanup interval on component unmount
-    return () => clearInterval(interval);
+    // // Cleanup interval on component unmount
+    // return () => clearInterval(interval);
   }, []);
 
   const handleChange = (event, newValue) => {
@@ -155,9 +153,7 @@ export default function Orders() {
           <CustomTabPanel value={value} index={0}>
             <Stack spacing={2}>
               {console.log(waitTill)}
-              {/* {waitTill && !has15MinutesElapsed ?  */}
-              {false ? 
-              (
+              {waitTill && !has15MinutesElapsed ? (
                 <Card>
                   <CardContent>
                     <Stack
