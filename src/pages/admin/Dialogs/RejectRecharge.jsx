@@ -32,6 +32,7 @@ export default function RejectRecharge({ open, handleClose, requestId }) {
         aria-describedby="alert-dialog-description"
         maxWidth="sm"
         fullWidth
+        scroll="body"
       >
         <DialogTitle id="alert-dialog-title">
           {"Yeniden Yükleme Reddini Doğrulayın"}

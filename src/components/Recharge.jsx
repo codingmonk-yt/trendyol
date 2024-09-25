@@ -70,7 +70,7 @@ export default function Recharge({ open }) {
   };
 
   return (
-    <Dialog open={open} fullWidth maxWidth="md">
+    <Dialog open={open} fullWidth maxWidth="md" scroll="body">
       <DialogTitle>para yüklemek</DialogTitle>
       <DialogContent>
         <Stack spacing={3}>

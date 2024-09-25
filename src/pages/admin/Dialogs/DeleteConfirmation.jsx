@@ -26,6 +26,7 @@ export default function DeleteConfirmation({ open, handleClose, userId }) {
         aria-describedby="alert-dialog-description"
         maxWidth="sm"
         fullWidth
+        scroll="body"
       >
         <DialogTitle id="alert-dialog-title">
           {"Kullanıcı Silme Onayını Doğrulayın"}

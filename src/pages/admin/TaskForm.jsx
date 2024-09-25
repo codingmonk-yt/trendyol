@@ -112,7 +112,7 @@ export default function TaskForm({ open, handleClose }) {
   };
 
   return (
-    <Dialog open={open} maxWidth="md" fullWidth>
+    <Dialog open={open} maxWidth="md" fullWidth scroll="body">
       <DialogTitle>Görev Ekle</DialogTitle>
       <DialogContent>
         <Box sx={{ flexGrow: 1 }}>

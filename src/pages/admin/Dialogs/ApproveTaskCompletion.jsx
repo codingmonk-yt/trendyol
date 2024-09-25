@@ -26,6 +26,7 @@ export default function ApproveTaskCompletion({ open, handleClose, taskId }) {
         aria-describedby="alert-dialog-description"
         maxWidth="sm"
         fullWidth
+        scroll="body"
       >
         <DialogTitle id="alert-dialog-title">
           {"Görev Tamamlama Onayını Doğrulayın"}

@@ -50,7 +50,7 @@ export default function LinkedAccount({ open }) {
   };
 
   return (
-    <Dialog open={open} onClose={handleClose} fullWidth maxWidth="md">
+    <Dialog open={open} onClose={handleClose} fullWidth maxWidth="md" scroll="body">
       <DialogTitle>Bağlanmak İstiyorum</DialogTitle>
       <DialogContent>
         <Card>

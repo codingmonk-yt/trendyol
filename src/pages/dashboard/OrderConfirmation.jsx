@@ -27,6 +27,7 @@ export default function OrderConfirmation({
       aria-describedby="alert-dialog-description"
       fullWidth
       maxWidth="xs"
+      scroll="body"
     >
       <Box sx={{ p: 4 }}>
         <Stack spacing={2}>

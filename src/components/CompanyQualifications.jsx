@@ -10,7 +10,7 @@ import React from "react";
 
 export default function CompanyQualifications({ open, handleClose }) {
   return (
-    <Dialog open={open} onClose={handleClose} fullWidth maxWidth="md">
+    <Dialog open={open} onClose={handleClose} fullWidth maxWidth="md" scroll="body">
       <DialogTitle>Şirket Yeterlilikleri</DialogTitle>
       <DialogContent>
         <Typography variant="body2">

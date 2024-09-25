@@ -32,7 +32,7 @@ export default function AccountDetails({ open, handleClose }) {
   };
 
   return (
-    <Dialog open={open} onClose={handleClose} fullWidth maxWidth="md">
+    <Dialog open={open} onClose={handleClose} fullWidth maxWidth="md" scroll="body">
       <DialogTitle>Hesap Bilgileri</DialogTitle>
       <DialogContent sx={{ py: 2 }}>
         {!show ? (

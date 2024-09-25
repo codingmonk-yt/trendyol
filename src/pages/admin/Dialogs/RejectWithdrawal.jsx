@@ -31,6 +31,7 @@ export default function RejectWithdrawal({ open, handleClose, requestId }) {
         aria-describedby="alert-dialog-description"
         maxWidth="sm"
         fullWidth
+        scroll="body"
       >
         <DialogTitle id="alert-dialog-title">
           {"Çekim Reddini Doğrulayın"}
