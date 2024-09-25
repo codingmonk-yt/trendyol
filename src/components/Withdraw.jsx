@@ -62,7 +62,7 @@ export default function Withdraw({ open }) {
   };
 
   return (
-    <Dialog open={open} fullWidth maxWidth="md">
+    <Dialog open={open} fullWidth maxWidth="md" scroll="body">
       <form onSubmit={handleWithdraw}>
         <DialogTitle>para çekme</DialogTitle>
         <DialogContent>
