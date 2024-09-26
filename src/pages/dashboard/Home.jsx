@@ -28,6 +28,7 @@ import {
 } from "../../redux/slices/user";
 import { GetStats, GetWithdrawalInProgress } from "../../redux/slices/user";
 import { useNavigate } from "react-router-dom";
+import {alpha} from "@mui/material/styles";
 
 export default function Home() {
   const navigate = useNavigate();
@@ -75,7 +76,7 @@ export default function Home() {
         <Box
           sx={{
             flexGrow: 1,
-            bgcolor: (theme) => theme.palette.grey[100],
+            bgcolor: (theme) => alpha(theme.palette.grey[100], 0.7),
             py: 4,
             pb: 12,
             px: 2,

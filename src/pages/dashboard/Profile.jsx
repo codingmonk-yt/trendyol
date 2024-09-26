@@ -60,7 +60,7 @@ export default function Profile() {
 
   return (
     <>
-      <Box p={2} py={4} pb={16}>
+      <Box p={2} py={4} pb={16} sx={{height: "100%"}}>
         <Stack spacing={4}>
           <Stack
             direction="row"
