@@ -60,7 +60,7 @@ export default function Profile() {
 
   return (
     <>
-      <Box p={2} py={4} pb={16} sx={{height: "100%"}}>
+      <Box p={2} py={4} pb={16} sx={{ height: "100%" }}>
         <Stack spacing={4}>
           <Stack
             direction="row"
@@ -113,8 +113,12 @@ export default function Profile() {
 
                 <Stack
                   direction="row"
+                  sx={{
+                    xs: { flexDirection: "column" },
+                    md: { flexDirection: "row" },
+                  }}
                   alignItems="center"
-                  justifyContent="space-between"
+                  // justifyContent="space-between"
                   spacing={3}
                 >
                   <Button
@@ -157,7 +161,9 @@ export default function Profile() {
             >
               <Stack direction="row" alignItems="center" spacing={1}>
                 <UserPlus size={20} />
-                <Typography variant="button">Bağlantı Kurmak İstiyorum</Typography>
+                <Typography variant="button">
+                  Bağlantı Kurmak İstiyorum
+                </Typography>
               </Stack>
               <IconButton>
                 <CaretRight />
@@ -176,7 +182,9 @@ export default function Profile() {
             >
               <Stack direction="row" alignItems="center" spacing={1}>
                 <Receipt size={20} />
-                <Typography variant="button">İkinci Satın Alma Kaydı</Typography>
+                <Typography variant="button">
+                  İkinci Satın Alma Kaydı
+                </Typography>
               </Stack>
               <IconButton>
                 <CaretRight />
