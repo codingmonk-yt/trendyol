@@ -15,6 +15,10 @@ import LinkedAccount from "../../components/LinkedAccount";
 import { alpha } from "@mui/material/styles";
 import { GetMe } from "../../redux/slices/app";
 
+import BackgroundImageOne from "../../assets/bg-1.jpg";
+import BackgroundImageTwo from "../../assets/bg-2.jpg";
+import BackgroundImageThree from "../../assets/bg-3.jpg";
+
 function App() {
   const dispatch = useDispatch();
   const { tab, rechargeOpen, withdrawOpen, linkAccountOpen } = useSelector(
@@ -46,9 +50,19 @@ function App() {
           width: "100vw",
           overflowX: "hidden",
           bgcolor: (theme) => alpha(theme.palette.warning.lighter, 0.5),
+          background: (theme) =>
+            `linear-gradient(180deg, ${alpha(theme.palette.primary.main, 0.7)}, ${alpha(
+              theme.palette.primary.main,
+              0.3
+            )}), url(${
+              tab === 0 || tab === 2 || tab === 4 ? BackgroundImageTwo : BackgroundImageThree
+            })`,
+          backgroundSize: "cover", // Ensure the background image covers all space
+          backgroundRepeat: "no-repeat", // Prevent the image from repeating
+          backgroundPosition: "center", // Center the image
         }}
       >
-        <Container maxWidth="md" sx={{ height: 1, px: 1 }}>
+        <Container maxWidth="md" sx={{  px: 1, background: "white" }}>
           <Stack sx={{ height: 1 }}>
             {/* Çıkış */}
 

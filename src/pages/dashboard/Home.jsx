@@ -133,13 +133,13 @@ export default function Home() {
                       <Typography variant="subtitle1">
                         {(earningsToday * 1).toFixed(2)} $
                       </Typography>
-                      <Typography variant="caption">
-                        Bugünkü Kazanç
-                      </Typography>
+                      <Typography variant="caption">Bugünkü Kazanç</Typography>
                     </Stack>
                     <Stack spacing={0.5} alignItems="center">
                       <Typography variant="subtitle1">{ordersToday}</Typography>
-                      <Typography variant="caption">bugün siparişler</Typography>
+                      <Typography variant="caption">
+                        bugün siparişler
+                      </Typography>
                     </Stack>
                   </Stack>
                 </Card>
@@ -178,8 +178,11 @@ export default function Home() {
                   <ShoppingCartSimple color="white" weight="bold" size={24} />
                 </IconButton>
               </Box>
-              <Typography variant="caption" sx={{ textAlign: "center" }}>
-                Sipariş Alımına Başla
+              <Typography
+                variant="caption"
+                sx={{ textAlign: "center", textWrap: "wrap" }}
+              >
+                emir almak
               </Typography>
             </Stack>
             <Stack
@@ -206,7 +209,11 @@ export default function Home() {
                   <Coins color="white" weight="bold" size={20} />
                 </IconButton>
               </Box>
-              <Typography variant="caption" textAlign="center">
+              <Typography
+                variant="caption"
+                textAlign="center"
+                sx={{ textWrap: "wrap" }}
+              >
                 Hızlı Yükleme
               </Typography>
             </Stack>
@@ -234,7 +241,11 @@ export default function Home() {
                   <HandWithdraw color="black" weight="bold" size={20} />
                 </IconButton>
               </Box>
-              <Typography variant="caption" textAlign="center">
+              <Typography
+                variant="caption"
+                textAlign="center"
+                sx={{ textWrap: "wrap" }}
+              >
                 Hızlı Çekim
               </Typography>
             </Stack>
@@ -262,7 +273,11 @@ export default function Home() {
                   <Link color="white" weight="bold" size={20} />
                 </IconButton>
               </Box>
-              <Typography variant="caption" textAlign="center">
+              <Typography
+                variant="caption"
+                textAlign="center"
+                sx={{ textWrap: "wrap" }}
+              >
                 Bağlı Hesaplar
               </Typography>
             </Stack>
