@@ -195,7 +195,7 @@ export default function Commission() {
               >
                 <Trophy size={40} />
                 <Stack spacing={1} sx={{ width: "80%" }}>
-                  <Typography>Dünkü komisyon</Typography>
+                  <Typography>Bugün ve Bu Hafta Kazanan Başarılı Üyelerimiz</Typography>
                   <Box
                     sx={{
                       bgcolor: (theme) => theme.palette.warning.main,
