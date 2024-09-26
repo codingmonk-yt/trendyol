@@ -25,22 +25,22 @@
 
 const generateFakeData = () => {
   const userData = [
-    "User [053*****056] Earned Commission $450.00",
-    "User [054*****365] Earned Commission $650.00",
-    "User [055*****416] Earned commission $300.00",
-    "User [053*****843] Earned Commission $350.00",
-    "User [054*****888] Earned Commission $1750.00",
-    "User [054*****475] Earned Commission $750.00",
-    "User [053*****566] Earned commission $300.00",
-    "User [053*****056] Earned Commission $750.00",
-    "User [054*****756] Earned Commission $2350.00",
-    "User [055*****385] Earned Commission $650.00",
-    "User [050*****586] Earned Commission $300.00",
-    "User [055*****832] Earned Commission $1500.00",
-    "User [053*****206] Earned Commission $750.00",
-    "User [054*****365] Earned Commission $650.00",
-    "User [055*****456] Earned commission $700.00",
-    "User [053*****052] Earned Commission $450.00"
+    "Kullanıcı [053*****056] Komisyon Kazandı $450.00",
+    "Kullanıcı [054*****365] Komisyon Kazandı $650.00",
+    "Kullanıcı [055*****416] Komisyon Kazandı $300.00",
+    "Kullanıcı [053*****843] Komisyon Kazandı $350.00",
+    "Kullanıcı [054*****888] Komisyon Kazandı $1750.00",
+    "Kullanıcı [054*****475] Komisyon Kazandı $750.00",
+    "Kullanıcı [053*****566] Komisyon Kazandı $300.00",
+    "Kullanıcı [053*****056] Komisyon Kazandı $750.00",
+    "Kullanıcı [054*****756] Komisyon Kazandı $2350.00",
+    "Kullanıcı [055*****385] Komisyon Kazandı $650.00",
+    "Kullanıcı [050*****586] Komisyon Kazandı $300.00",
+    "Kullanıcı [055*****832] Komisyon Kazandı $1500.00",
+    "Kullanıcı [053*****206] Komisyon Kazandı $750.00",
+    "Kullanıcı [054*****365] Komisyon Kazandı $650.00",
+    "Kullanıcı [055*****456] Komisyon Kazandı $700.00",
+    "Kullanıcı [053*****052] Komisyon Kazandı $450.00"
   ];
 
   // Join the array into a single string with a space between each sentence
@@ -48,3 +48,4 @@ const generateFakeData = () => {
 };
 
 export default generateFakeData;
+
