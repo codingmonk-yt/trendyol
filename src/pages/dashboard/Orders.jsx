@@ -16,6 +16,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   GetMyTasks,
   GetWaitTill,
+  ResetWaitTime,
   UpdateRechargeDialog,
   UpdateTaskStatus,
 } from "../../redux/slices/user";
@@ -75,6 +76,10 @@ export default function Orders() {
   const { waitTill } = useSelector((state) => state.user);
 
   const [has15MinutesElapsed, setHas15MinutesElapsed] = useState(false);
+
+  useEffect(() => {
+    dispatch(ResetWaitTime())
+  }, []);
 
   useEffect(() => {
     if (!waitTill) return; // waitTill null ise erken çık
