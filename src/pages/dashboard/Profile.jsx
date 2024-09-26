@@ -112,14 +112,17 @@ export default function Profile() {
                 </Stack>
 
                 <Stack
-                  direction="row"
+                  // direction="row"
                   sx={{
-                    xs: { flexDirection: "column" },
-                    md: { flexDirection: "row" },
+                    flexDirection: {
+                      xs: "column",  // Column direction for extra-small screens and up
+                      sm: "row",     // Row direction for small screens and up
+                    },
                   }}
                   alignItems="center"
-                  // justifyContent="space-between"
-                  spacing={3}
+                  justifyContent="space-between"
+                  // spacing={3}
+                  gap={2}
                 >
                   <Button
                     variant="contained"
