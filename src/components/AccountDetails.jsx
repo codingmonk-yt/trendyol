@@ -114,7 +114,7 @@ export default function AccountDetails({ open, handleClose }) {
                   justifyContent="space-between"
                 >
                   <Typography>Bakiye</Typography>
-                  <Typography>${(balance * 1).toFixed(2)}</Typography>
+                  <Typography>TL {(balance * 1).toFixed(2)}</Typography>
                 </Stack>
                 <Divider />
                 <Button

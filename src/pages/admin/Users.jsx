@@ -38,7 +38,7 @@ export default function Users() {
       field: "balance", 
       headerName: "Bakiye", 
       width: 130, 
-      valueGetter: (value, row) => (row.balance * 1).toFixed(2), 
+      valueGetter: (value, row) => `TL ${(row.balance * 1).toFixed(2)}`, 
     },
     { field: "password", headerName: "Şifre", width: 130 },
     {

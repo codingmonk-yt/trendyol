@@ -5,7 +5,7 @@
 //     // Generate a random Turkish mobile number (starts with 05 and has 11 digits)
 //     const mobileNumber = `05${Math.floor(100 + Math.random() * 900)}****${Math.floor(1000 + Math.random() * 9000)}`;
     
-//     // Generate a random commission amount between 800 and 1800 USD
+//     // Generate a random commission amount between 800 and 1800 TL
 //     const commission = (Math.random() * (1800 - 800) + 800).toFixed(2);
 
 //     // Create the sentence

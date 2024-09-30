@@ -78,7 +78,7 @@ export default function Recharge({ open }) {
             <CardContent>
               <Typography variant="overline">Güncel Bakiye</Typography>
               <Typography sx={{ mt: 2 }} variant="subtitle1">
-                ${(balance * 1).toFixed(2)}
+                TL {(balance * 1).toFixed(2)}
               </Typography>
             </CardContent>
           </Card>

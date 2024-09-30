@@ -143,7 +143,7 @@ export default function Commission() {
                   justifyContent="space-between"
                 >
                   <Typography variant="h4" color="textPrimary">
-                    ${(balance * 1).toFixed(2)}
+                    TL {(balance * 1).toFixed(2)}
                   </Typography>
                   <Button
                     onClick={() => {
@@ -165,7 +165,7 @@ export default function Commission() {
                   textAlign="center"
                 >
                   <Stack spacing={0.5} alignItems="center">
-                    <Typography variant="subtitle1">{(earningsToday * 1).toFixed(2)}</Typography>
+                    <Typography variant="subtitle1">TL {(earningsToday * 1).toFixed(2)}</Typography>
                     <Typography variant="caption">
                       Bugün kazanılan komisyon
                     </Typography>

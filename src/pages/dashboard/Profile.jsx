@@ -96,7 +96,7 @@ export default function Profile() {
                   <Typography variant="button">Hesap Bakiyesi</Typography>
 
                   <Typography variant="h6" color="textSecondary">
-                    ${(balance * 1).toFixed(2)}
+                    TL {(balance * 1).toFixed(2)}
                   </Typography>
 
                   <Divider />

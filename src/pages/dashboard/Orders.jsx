@@ -86,10 +86,10 @@ export default function Orders() {
           </Stack>
           <Stack maxWidth={"150px"} alignItems="end">
             <Typography variant="subtitle1">
-              ${(balance * 1).toFixed(2)}
+              TL {(balance * 1).toFixed(2)}
             </Typography>
             <Typography variant="caption" textAlign="end">
-              Kalan kullanılabilir varlıklar (USD cinsinden)
+              Kalan kullanılabilir varlıklar (TL cinsinden)
             </Typography>
           </Stack>
         </Stack>
@@ -146,7 +146,7 @@ export default function Orders() {
                             Mevcut Bakiye
                           </Typography>
                           <Typography variant="subtitle1" color="primary">
-                            ${(balance * 1).toFixed(2)}
+                            TL {(balance * 1).toFixed(2)}
                           </Typography>
                         </Stack>
                         <Divider />
@@ -159,7 +159,7 @@ export default function Orders() {
                             Bir sonraki görev için gereken minimum bakiye
                           </Typography>
                           <Typography variant="subtitle1" color="primary">
-                            $
+                            TL
                             {(
                               tasks.filter((e) => e.status === "pending")[0]
                                 ?.totalAmount * 1

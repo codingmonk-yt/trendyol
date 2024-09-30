@@ -71,7 +71,7 @@ export default function Withdraw({ open }) {
               <CardContent>
                 <Stack spacing={2}>
                   <Typography variant="overline">cari denge</Typography>
-                  <Typography variant="subtitle1">${(balance * 1).toFixed(2)}</Typography>
+                  <Typography variant="subtitle1">TL {(balance * 1).toFixed(2)}</Typography>
 
                   <Divider />
 

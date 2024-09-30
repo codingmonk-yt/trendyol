@@ -92,7 +92,7 @@ export default function Home() {
                 >
                   <Stack spacing={0.5}>
                     <Typography variant="h6">Varlıklarım</Typography>
-                    <Typography>$ {(balance * 1).toFixed(2)}</Typography>
+                    <Typography>TL {(balance * 1).toFixed(2)}</Typography>
                   </Stack>
 
                   <Stack spacing={1}>
@@ -132,7 +132,7 @@ export default function Home() {
                     </Stack>
                     <Stack spacing={0.5} alignItems="center">
                       <Typography variant="subtitle1">
-                        {(earningsToday * 1).toFixed(2)} $
+                        {(earningsToday * 1).toFixed(2)} TL
                       </Typography>
                       <Typography variant="caption">Bugünkü Kazanç</Typography>
                     </Stack>
