@@ -15,10 +15,7 @@ import PropTypes from "prop-types";
 import { useDispatch, useSelector } from "react-redux";
 import {
   GetMyTasks,
-  GetWaitTill,
-  ResetWaitTime,
   UpdateRechargeDialog,
-  UpdateTaskStatus,
 } from "../../redux/slices/user";
 import { CheckCircle } from "@phosphor-icons/react";
 import OrderConfirmation from "./OrderConfirmation";
@@ -53,17 +50,6 @@ function a11yProps(index) {
   };
 }
 
-const checkIf15MinutesElapsed = (waitTill) => {
-  if (!waitTill) {
-    return false; // Eğer waitTill null veya undefined ise, false döner
-  }
-  const waitTillDate = new Date(waitTill); // MongoDB zaman damgası, 15 dakika eklenmiş
-  const currentTime = new Date();
-
-  return currentTime >= waitTillDate; // Mevcut zamanın waitTill zamanını aşıp aşmadığını kontrol et
-};
-
-
 export default function Orders() {
   const dispatch = useDispatch();
 
@@ -72,40 +58,6 @@ export default function Orders() {
   const [value, setValue] = React.useState(0);
 
   const { balance } = useSelector((state) => state.app.user);
-
-  const { waitTill } = useSelector((state) => state.user);
-
-  const [has15MinutesElapsed, setHas15MinutesElapsed] = useState(false);
-
-  useEffect(() => {
-    dispatch(ResetWaitTime())
-  }, []);
-
-  useEffect(() => {
-    if (!waitTill) return; // waitTill null ise erken çık
-
-    // Her 5 saniyede bir kontrol yapacak fonksiyon
-    const interval = setInterval(() => {
-      const hasElapsed = checkIf15MinutesElapsed(waitTill);
-      setHas15MinutesElapsed(hasElapsed);
-    }, 5000); // Her 5 saniyede bir kontrol et (5000 ms)
-
-    // Bileşen unmount edildiğinde intervali temizle
-    return () => clearInterval(interval);
-  }, [waitTill]);
-
-  useEffect(() => {
-    // İlk dispatch
-    dispatch(GetWaitTill());
-
-    // // Her 10 saniyede bir GetMe göndermek için bir interval ayarla
-    // const interval = setInterval(() => {
-    //   dispatch(GetWaitTill());
-    // }, 5000);
-
-    // // Bileşen unmount olduğunda intervali temizle
-    // return () => clearInterval(interval);
-  }, []);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -158,28 +110,7 @@ export default function Orders() {
           </Box>
           <CustomTabPanel value={value} index={0}>
             <Stack spacing={2}>
-              {console.log(waitTill)}
-              {waitTill && !has15MinutesElapsed ? (
-                <Card>
-                  <CardContent>
-                    <Stack
-                      alignItems="center"
-                      justifyContent="center"
-                      spacing={2}
-                    >
-                      <Typography
-                        variant="subtitle1"
-                        color="success"
-                        textAlign="center"
-                      >
-                        Tebrikler, ilk beş görevinizi başarıyla tamamladınız 🥳🥳!!
-                        <br />
-                        LÜTFEN TEMSİLCİNİZLE İLETİŞİME GEÇİN
-                      </Typography>
-                    </Stack>
-                  </CardContent>
-                </Card>
-              ) : tasks.filter((e) => e?.status === "pending").length > 0 ? (
+              {tasks.filter((e) => e?.status === "pending").length > 0 ? (
                 balance * 1 >=
                 tasks.filter((e) => e?.status === "pending")[0]?.totalAmount *
                   1 ? (
@@ -295,7 +226,6 @@ export default function Orders() {
   );
 }
 
-
 const OrderCard = ({ disabled, nextId, isLast, ...el }) => {
   const [open, setOpen] = useState(false);
   const handleToggle = () => {
@@ -341,7 +271,9 @@ const OrderCard = ({ disabled, nextId, isLast, ...el }) => {
                   alignItems="center"
                 >
                   <CheckCircle size={40} />
-                  <Typography variant="caption">Yönetici Tarafından Onaylandı</Typography>
+                  <Typography variant="caption">
+                    Yönetici Tarafından Onaylandı
+                  </Typography>
                 </Stack>
               )}
             </Stack>
