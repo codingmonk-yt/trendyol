@@ -105,7 +105,7 @@ export default function Profile() {
                   <Typography variant="button">Donmuş Bakiye</Typography>
 
                   <Typography variant="h6" color="textSecondary">
-                    $0.00
+                    TL 0.00
                   </Typography>
 
                   <Divider />

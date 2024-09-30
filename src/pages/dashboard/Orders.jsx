@@ -286,7 +286,7 @@ const OrderCard = ({ disabled, nextId, isLast, ...el }) => {
                 <img src={el.imgUrl} style={{ maxWidth: "100px" }} />
                 <Stack spacing={0.5}>
                   <Typography variant="button">{el.name}</Typography>
-                  <Typography variant="body2">${el.pricePerUnit}</Typography>
+                  <Typography variant="body2">TL {el.pricePerUnit}</Typography>
                 </Stack>
               </Stack>
               <Typography>X {el.quantity}</Typography>
@@ -303,7 +303,7 @@ const OrderCard = ({ disabled, nextId, isLast, ...el }) => {
                 Toplam Sipariş Tutarı
               </Typography>
               <Typography variant="button" color="text.secondary">
-                ${el?.totalAmount}
+                TL {el?.totalAmount}
               </Typography>
             </Stack>
             <Stack
@@ -315,7 +315,7 @@ const OrderCard = ({ disabled, nextId, isLast, ...el }) => {
                 Komisyon
               </Typography>
               <Typography variant="button" color="text.secondary">
-                ${el.commission}
+                TL {el.commission}
               </Typography>
             </Stack>
             <Stack
@@ -327,7 +327,7 @@ const OrderCard = ({ disabled, nextId, isLast, ...el }) => {
                 Tahmini Komisyon İadesi
               </Typography>
               <Typography variant="caption" fontSize={24} color="warning">
-                ${el.commissionReturn}
+                TL {el.commissionReturn}
               </Typography>
             </Stack>
             {el.status === "pending" ? (
