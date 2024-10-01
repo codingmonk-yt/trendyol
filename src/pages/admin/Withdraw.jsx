@@ -43,7 +43,7 @@ export default function Withdraw() {
       headerName: "Miktar",
       type: "number",
       width: 120,
-      valueGetter: (value, row) => `$${row?.amount}`,
+      valueGetter: (value, row) => `TL ${row?.amount}`,
     },
     { field: "status", headerName: "Durum", width: 180 },
     {

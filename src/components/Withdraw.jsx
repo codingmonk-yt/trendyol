@@ -79,7 +79,7 @@ export default function Withdraw({ open }) {
                     Çekim başvurusu devam ediyor
                   </Typography>
                   <Typography variant="subtitle1">
-                    ${withdrawalInProgress}
+                    TL {withdrawalInProgress}
                   </Typography>
                 </Stack>
               </CardContent>

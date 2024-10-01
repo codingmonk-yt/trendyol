@@ -47,7 +47,7 @@ export default function OrderConfirmation({
                 alignItems="center"
                 justifyContent="space-between"
               >
-                <Typography variant="body2">${el?.pricePerUnit}</Typography>
+                <Typography variant="body2">TL {el?.pricePerUnit}</Typography>
                 <Typography>X {el?.quantity}</Typography>
               </Stack>
             </Stack>
@@ -62,7 +62,7 @@ export default function OrderConfirmation({
               Toplam sipariş tutarı
             </Typography>
             <Typography variant="button" color="text.secondary">
-              ${el?.totalAmount}
+              TL {el?.totalAmount}
             </Typography>
           </Stack>
 
@@ -75,7 +75,7 @@ export default function OrderConfirmation({
               Komisyon
             </Typography>
             <Typography variant="button" color="text.secondary">
-              ${el?.commission}
+              TL {el?.commission}
             </Typography>
           </Stack>
 
@@ -88,7 +88,7 @@ export default function OrderConfirmation({
               Tahmini komisyon iadesi
             </Typography>
             <Typography variant="caption" fontSize={20} color="warning">
-              ${el?.commissionReturn}
+              TL {el?.commissionReturn}
             </Typography>
           </Stack>
           <Stack

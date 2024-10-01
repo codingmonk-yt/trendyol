@@ -39,7 +39,7 @@ export default function Recharge() {
       headerName: "Miktar",
       type: "number",
       width: 180,
-      valueGetter: (value, row) => `$${row?.amount}`,
+      valueGetter: (value, row) => `TL ${row?.amount}`,
     },
     { field: "status", headerName: "Durum", width: 180 },
     {
