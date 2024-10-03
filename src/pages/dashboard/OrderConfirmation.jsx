@@ -1,14 +1,9 @@
-import {
-  Box,
-  Button,
-  Dialog,
-  Divider,
-  Stack,
-  Typography,
-} from "@mui/material";
+import { Box, Button, Dialog, Divider, Stack, Typography } from "@mui/material";
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { UpdateTaskStatus } from "../../redux/slices/user";
+
+import { toast } from "react-toastify";
 
 export default function OrderConfirmation({
   open,
@@ -18,6 +13,8 @@ export default function OrderConfirmation({
   ...el
 }) {
   const dispatch = useDispatch();
+
+  const { balance } = useSelector((state) => state.app.user);
 
   return (
     <Dialog
@@ -121,8 +118,18 @@ export default function OrderConfirmation({
             </Button>
             <Button
               onClick={() => {
-                dispatch(UpdateTaskStatus({ id: el._id, nextId, isLast }));
-                handleClose();
+                if (balance * 1 >= el?.totalAmount * 1) {
+                  dispatch(UpdateTaskStatus({ id: el._id, nextId, isLast }));
+                  handleClose();
+                } else {
+                  // show warning using toast
+                  toast.warning(
+                    `Yetersiz Mevcut Bakiye, Lütfen ${Math.ceil(
+                      (el?.totalAmount * 1).toFixed(2) -
+                        (balance * 1).toFixed(2)
+                    ).toFixed(2)} TL Yükleyin`
+                  );
+                }
               }}
               variant="contained"
               fullWidth

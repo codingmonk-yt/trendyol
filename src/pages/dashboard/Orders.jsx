@@ -13,10 +13,7 @@ import {
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  GetMyTasks,
-  UpdateRechargeDialog,
-} from "../../redux/slices/user";
+import { GetMyTasks, UpdateRechargeDialog } from "../../redux/slices/user";
 import { CheckCircle } from "@phosphor-icons/react";
 import OrderConfirmation from "./OrderConfirmation";
 
@@ -111,75 +108,21 @@ export default function Orders() {
           <CustomTabPanel value={value} index={0}>
             <Stack spacing={2}>
               {tasks.filter((e) => e?.status === "pending").length > 0 ? (
-                balance * 1 >=
-                tasks.filter((e) => e?.status === "pending")[0]?.totalAmount *
-                  1 ? (
-                  tasks
-                    .filter((e) => e?.status === "pending")
-                    .map((el, index, array) =>
-                      index !== 0 ? (
-                        <div key={el._id}></div>
-                      ) : (
-                        <OrderCard
-                          disabled={index !== 0}
-                          {...el}
-                          key={el._id}
-                          nextId={array[index + 1]?._id || null} // Sonraki öğenin _id'sini veya null'ı geç
-                          isLast={index === array.length - 1} // Son öğe olup olmadığını kontrol et
-                        />
-                      )
+                tasks
+                  .filter((e) => e?.status === "pending")
+                  .map((el, index, array) =>
+                    index !== 0 ? (
+                      <div key={el._id}></div>
+                    ) : (
+                      <OrderCard
+                        disabled={index !== 0}
+                        {...el}
+                        key={el._id}
+                        nextId={array[index + 1]?._id || null} // Sonraki öğenin _id'sini veya null'ı geç
+                        isLast={index === array.length - 1} // Son öğe olup olmadığını kontrol et
+                      />
                     )
-                ) : (
-                  <Card>
-                    <CardContent>
-                      <Stack spacing={2}>
-                        <Typography textAlign="center" variant="h6">
-                          Lütfen bir sonraki görevi almak için yeniden yükleyin
-                        </Typography>
-                        <Divider />
-                        <Stack
-                          direction="row"
-                          alignItems="center"
-                          justifyContent="space-between"
-                        >
-                          <Typography variant="subtitle2">
-                            Mevcut Bakiye
-                          </Typography>
-                          <Typography variant="subtitle1" color="primary">
-                            TL {(balance * 1).toFixed(2)}
-                          </Typography>
-                        </Stack>
-                        <Divider />
-                        <Stack
-                          direction="row"
-                          alignItems="center"
-                          justifyContent="space-between"
-                        >
-                          <Typography variant="subtitle2">
-                            Bir sonraki görev için gereken minimum bakiye
-                          </Typography>
-                          <Typography variant="subtitle1" color="primary">
-                            TL
-                            {(
-                              tasks.filter((e) => e.status === "pending")[0]
-                                ?.totalAmount * 1
-                            ).toFixed(2)}
-                          </Typography>
-                        </Stack>
-                        <Divider />
-                        <Button
-                          variant="contained"
-                          fullWidth
-                          onClick={() => {
-                            dispatch(UpdateRechargeDialog(true));
-                          }}
-                        >
-                          Yeniden Yükle
-                        </Button>
-                      </Stack>
-                    </CardContent>
-                  </Card>
-                )
+                  )
               ) : (
                 <Card>
                   <CardContent>
