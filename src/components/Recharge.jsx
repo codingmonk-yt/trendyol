@@ -30,6 +30,8 @@ const RECHARGE_OPTIONS = [
   { value: 5000 },
   { value: 10000 },
   { value: 20000 },
+  { value: 50000 },
+  { value: 100000 },
 ];
 
 export default function Recharge({ open }) {
@@ -46,7 +48,7 @@ export default function Recharge({ open }) {
 
   // Validate the input
   const validateAmount = (value) => {
-    if (value < 10 || value > 20000 || value === "") {
+    if (value < 10 || value > 100000 || value === "") {
       setError(true);
     } else {
       setError(false);
@@ -91,7 +93,7 @@ export default function Recharge({ open }) {
             value={val}
             onChange={handleInputChange}
             error={error}
-            helperText={error ? "Tutar 10 ile 20000 arasında olmalı" : ""}
+            helperText={error ? "Tutar 10 ile 100000 arasında olmalı" : ""}
           />
           <Stack
             direction="row"
