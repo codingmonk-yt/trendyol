@@ -55,6 +55,7 @@ export default function Orders() {
   const { tasks } = useSelector((state) => state.user);
 
   const [value, setValue] = React.useState(0);
+
   const { balance } = useSelector((state) => state.app.user);
 
   const [timeLeft, setTimeLeft] = React.useState(null);
@@ -135,12 +136,12 @@ export default function Orders() {
           <CustomTabPanel value={value} index={0}>
             <Stack spacing={2}>
               {tasks.filter((e) => e?.status === "pending").length > 0 ? (
-                cooldown ? (
+                cooldown && timeLeft ? (
                   <Card>
                     <CardContent>
                       <Stack direction="column" spacing={3}>
                         <Typography variant="subtitle1">
-                          Please contact your Representative
+                        Lütfen Temsilcinizle iletişime geçin
                         </Typography>
                         {timeLeft && (
                           <Typography variant="h6" color="error">

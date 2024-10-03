@@ -30,7 +30,7 @@ function App() {
   };
 
   useEffect(() => {
-    dispatch(ResetCooldown());
+    // dispatch(ResetCooldown());
   }, []);
 
   useEffect(() => {
