@@ -12,6 +12,8 @@ const initialState = {
   error: null,
   isLoading: false,
   tab: 2,
+  cooldown: false,
+  cooldownTimestamp: null,
 };
 
 const slice = createSlice({
@@ -35,16 +37,48 @@ const slice = createSlice({
       state.isLoggedIn = false;
       state.token = null;
     },
+    startCooldownSuccess(state, action) {
+      state.cooldown = action.payload.cooldown;
+      state.cooldownTimestamp = action.payload.cooldownTimestamp;
+    },
+    resetCooldownSuccess(state, action) {
+      state.cooldown = false;
+      state.cooldownTimestamp = null;
+    },
   },
 });
 
 // Reducer
 export default slice.reducer;
 
-const { fetchUserSuccess, loginSuccess, logoutSuccess, setError, setLoading } =
-  slice.actions;
+const {
+  fetchUserSuccess,
+  loginSuccess,
+  logoutSuccess,
+  setError,
+  setLoading,
+  startCooldownSuccess,
+  resetCooldownSuccess,
+} = slice.actions;
 
 //
+
+export function StartCooldown(timestamp) {
+  return async (dispatch, getState) => {
+    dispatch(
+      startCooldownSuccess({
+        cooldown: true,
+        cooldownTimestamp: timestamp,
+      })
+    );
+  };
+}
+
+export function ResetCooldown() {
+  return async (dispatch, getState) => {
+    dispatch(resetCooldownSuccess());
+  };
+}
 
 export function RegisterUser(formValues, navigate) {
   return async (dispatch, getState) => {

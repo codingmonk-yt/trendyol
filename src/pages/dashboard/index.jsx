@@ -13,7 +13,7 @@ import Recharge from "../../components/Recharge";
 import LinkedAccount from "../../components/LinkedAccount";
 
 import { alpha } from "@mui/material/styles";
-import { GetMe } from "../../redux/slices/app";
+import { GetMe, ResetCooldown } from "../../redux/slices/app";
 
 import BackgroundImageOne from "../../assets/bg-1.jpg";
 import BackgroundImageTwo from "../../assets/bg-2.jpg";
@@ -28,6 +28,10 @@ function App() {
   const handleChange = (event, newValue) => {
     dispatch(UpdateSelectedTab(newValue));
   };
+
+  useEffect(() => {
+    dispatch(ResetCooldown());
+  }, []);
 
   useEffect(() => {
     // İlk gönderim

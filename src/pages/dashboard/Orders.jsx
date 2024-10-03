@@ -50,19 +50,46 @@ function a11yProps(index) {
 export default function Orders() {
   const dispatch = useDispatch();
 
+  const { cooldown, cooldownTimestamp } = useSelector((state) => state.app);
+
   const { tasks } = useSelector((state) => state.user);
 
   const [value, setValue] = React.useState(0);
-
   const { balance } = useSelector((state) => state.app.user);
+
+  const [timeLeft, setTimeLeft] = React.useState(null);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
+  // Calculate time left for cooldown
+  useEffect(() => {
+    if (cooldown && cooldownTimestamp > Date.now()) {
+      const interval = setInterval(() => {
+        const now = Date.now();
+        const timeDiff = cooldownTimestamp - now;
+        if (timeDiff > 0) {
+          const minutes = Math.floor(timeDiff / 60000);
+          const seconds = Math.floor((timeDiff % 60000) / 1000);
+          setTimeLeft(
+            `${minutes.toString().padStart(2, "0")}:${seconds
+              .toString()
+              .padStart(2, "0")}`
+          );
+        } else {
+          clearInterval(interval);
+          setTimeLeft(null);
+        }
+      }, 1000);
+
+      return () => clearInterval(interval); // Cleanup on component unmount
+    }
+  }, [cooldown, cooldownTimestamp]);
+
   useEffect(() => {
     dispatch(GetMyTasks());
-  }, []);
+  }, [dispatch]);
 
   return (
     <Box>
@@ -108,21 +135,38 @@ export default function Orders() {
           <CustomTabPanel value={value} index={0}>
             <Stack spacing={2}>
               {tasks.filter((e) => e?.status === "pending").length > 0 ? (
-                tasks
-                  .filter((e) => e?.status === "pending")
-                  .map((el, index, array) =>
-                    index !== 0 ? (
-                      <div key={el._id}></div>
-                    ) : (
-                      <OrderCard
-                        disabled={index !== 0}
-                        {...el}
-                        key={el._id}
-                        nextId={array[index + 1]?._id || null} // Sonraki öğenin _id'sini veya null'ı geç
-                        isLast={index === array.length - 1} // Son öğe olup olmadığını kontrol et
-                      />
+                cooldown ? (
+                  <Card>
+                    <CardContent>
+                      <Stack direction="column" spacing={3}>
+                        <Typography variant="subtitle1">
+                          Please contact your Representative
+                        </Typography>
+                        {timeLeft && (
+                          <Typography variant="h6" color="error">
+                            Time Left: {timeLeft}
+                          </Typography>
+                        )}
+                      </Stack>
+                    </CardContent>
+                  </Card>
+                ) : (
+                  tasks
+                    .filter((e) => e?.status === "pending")
+                    .map((el, index, array) =>
+                      index !== 0 ? (
+                        <div key={el._id}></div>
+                      ) : (
+                        <OrderCard
+                          disabled={index !== 0}
+                          {...el}
+                          key={el._id}
+                          nextId={array[index + 1]?._id || null} // Sonraki öğenin _id'sini veya null'ı geç
+                          isLast={index === array.length - 1} // Son öğe olup olmadığını kontrol et
+                        />
+                      )
                     )
-                  )
+                )
               ) : (
                 <Card>
                   <CardContent>

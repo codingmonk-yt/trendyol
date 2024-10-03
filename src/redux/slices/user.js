@@ -299,7 +299,7 @@ export function GetMyTasks() {
 
 // görev güncelle
 
-export function UpdateTaskStatus({ id, nextId, isLast }) {
+export function UpdateTaskStatus({ id, nextId, isLast, handleCooldown, handleClose }) {
   return async (dispatch, getState) => {
     dispatch(setError(null));
     dispatch(setLoading(true));
@@ -335,6 +335,8 @@ export function UpdateTaskStatus({ id, nextId, isLast }) {
         );
 
         toast.success("Görev başarıyla tamamlandı!");
+
+        handleCooldown();
       })
       .catch(function (error) {
         console.log(error);
@@ -344,6 +346,7 @@ export function UpdateTaskStatus({ id, nextId, isLast }) {
       })
       .finally(() => {
         dispatch(setLoading(false));
+        handleClose();
       });
   };
 }

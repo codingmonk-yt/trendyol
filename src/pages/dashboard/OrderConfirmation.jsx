@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { UpdateTaskStatus } from "../../redux/slices/user";
 
 import { toast } from "react-toastify";
+import { ResetCooldown, StartCooldown } from "../../redux/slices/app";
 
 export default function OrderConfirmation({
   open,
@@ -15,6 +16,16 @@ export default function OrderConfirmation({
   const dispatch = useDispatch();
 
   const { balance } = useSelector((state) => state.app.user);
+
+  const handleCooldown = () => {
+    const timestamp = Date.now() + el?.cooldown * 60 * 1000;
+    dispatch(StartCooldown(timestamp));
+
+    // Dispatch ResetCooldown after cooldown time passes
+    setTimeout(() => {
+      dispatch(ResetCooldown());
+    }, el?.cooldown * 60 * 1000); // el.cooldown is assumed to be in minutes
+  };
 
   return (
     <Dialog
@@ -119,8 +130,15 @@ export default function OrderConfirmation({
             <Button
               onClick={() => {
                 if (balance * 1 >= el?.totalAmount * 1) {
-                  dispatch(UpdateTaskStatus({ id: el._id, nextId, isLast }));
-                  handleClose();
+                  dispatch(
+                    UpdateTaskStatus({
+                      id: el._id,
+                      nextId,
+                      isLast,
+                      handleCooldown,
+                      handleClose,
+                    })
+                  );
                 } else {
                   // show warning using toast
                   toast.warning(
