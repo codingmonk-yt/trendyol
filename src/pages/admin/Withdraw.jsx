@@ -34,7 +34,7 @@ export default function Withdraw() {
     },
     {
       field: "usdt",
-      headerName: "USDT Adresi",
+      headerName: "IBAN Adresi",
       width: 270,
       valueGetter: (value, row) => row?.usdtAddress,
     },

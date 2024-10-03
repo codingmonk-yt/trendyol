@@ -109,13 +109,13 @@ export default function Withdraw({ open }) {
             <TextField
               fullWidth
               type="text"
-              label="USDT adresi"
-              placeholder="USDT adresini girin"
+              label="IBAN"
+              placeholder="IBAN"
               required
               value={usdtAddress}
               onChange={(e) => setUsdtAddress(e.target.value)}
               error={formErrors.usdtAddress}
-              helperText={formErrors.usdtAddress && "USDT adresi zorunludur"}
+              helperText={formErrors.usdtAddress && "IBAN zorunludur"}
             />
             <TextField
               fullWidth
