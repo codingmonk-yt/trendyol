@@ -22,7 +22,7 @@ export default function Connect() {
             color="info"
             startIcon={<PaperPlaneRight />}
             onClick={() => {
-              window.location.href = "https://t.me/Shelbyy_shelbyy"
+              window.location.href = "https://t.me/Trendyol_Avm"
             }}
             fullWidth
           >
