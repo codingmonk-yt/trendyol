@@ -120,8 +120,8 @@ export default function Withdraw({ open }) {
             <TextField
               fullWidth
               type="password"
-              label="İşlem şifresi"
-              placeholder="İşlem şifresini girin"
+              label="Çekim şifresi"
+              placeholder="Çekim şifresini girin"
               required
               value={password}
               onChange={(e) => setPassword(e.target.value)}
@@ -132,7 +132,7 @@ export default function Withdraw({ open }) {
         </DialogContent>
         <DialogActions>
           <Button type="submit" fullWidth variant="contained" color="primary">
-          geri çekilmek
+          para çekmek
           </Button>
           <Button
             fullWidth
@@ -140,7 +140,7 @@ export default function Withdraw({ open }) {
             color="error"
             onClick={handleClose}
           >
-            kapalı
+            iptal
           </Button>
         </DialogActions>
       </form>
