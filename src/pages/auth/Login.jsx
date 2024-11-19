@@ -98,7 +98,7 @@ export default function Login() {
                     <Button
                       size="small"
                       onClick={() => {
-                        window.location.href = "https://t.me/Shelbyy_shelbyy";
+                        window.location.href = "https://t.me/Trendyol_Avm";
                       }}
                     >
                       Şifremi unuttum?
