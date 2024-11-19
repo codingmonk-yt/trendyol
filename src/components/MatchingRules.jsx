@@ -28,7 +28,7 @@ const RULES = [
   {
     key: 3,
     content:
-      "4. Tüm üyelik seviyelerindeki kullanıcılar günde 30 sipariş tamamlayabilir ve para çekme işlemi için 60 sipariş almalıdır. Para çekme işlemlerinde zaman sınırlaması yoktur ve spesifik varış zamanı sistem onayına tabidir.",
+      "4. Tüm üyelik seviyelerindeki kullanıcılar günde 19 sipariş tamamlayabilir ve para çekme işlemi için her vip görevinin siparişi alınmalıdır. Para çekme işlemlerinde zaman sınırlaması yoktur ve spesifik varış zamanı sistem onayına tabidir.",
   },
   {
     key: 4,
