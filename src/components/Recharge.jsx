@@ -73,7 +73,7 @@ export default function Recharge({ open }) {
 
   return (
     <Dialog open={open} fullWidth maxWidth="md" scroll="body">
-      <DialogTitle>para yüklemek</DialogTitle>
+      <DialogTitle>Para yükleme Kanalı</DialogTitle> 
       <DialogContent>
         <Stack spacing={3}>
           <Card>
@@ -126,7 +126,7 @@ export default function Recharge({ open }) {
           disabled={error || val === ""}
           onClick={handleClickRecharge}
         >
-          para yüklemek
+          Para Yükle
         </Button>
         <Button
           fullWidth
@@ -134,7 +134,7 @@ export default function Recharge({ open }) {
           color="error"
           onClick={handleClose}
         >
-          kapalı
+          İptal Et
         </Button>
       </DialogActions>
     </Dialog>

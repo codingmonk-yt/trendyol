@@ -59,7 +59,7 @@ export default function Home() {
           <Stack spacing={0.5}>
             <Typography variant="h6">Merhaba {invitationCode}</Typography>
             <Typography variant="caption" maxWidth={240}>
-              Trendyrol - Trendyrol, zenginliğinize giden yolu açar
+              Trendyol - Trendyol, zenginliğinize giden yolu açar
             </Typography>
           </Stack>
 
@@ -139,7 +139,7 @@ export default function Home() {
                     <Stack spacing={0.5} alignItems="center">
                       <Typography variant="subtitle1">{ordersToday}</Typography>
                       <Typography variant="caption">
-                        bugün siparişler
+                        bugün alınan siparişler
                       </Typography>
                     </Stack>
                   </Stack>
@@ -183,7 +183,7 @@ export default function Home() {
                 variant="caption"
                 sx={{ textAlign: "center", textWrap: "wrap" }}
               >
-                emir almak
+                Sipariş Almak
               </Typography>
             </Stack>
             <Stack
@@ -279,7 +279,7 @@ export default function Home() {
                 textAlign="center"
                 sx={{ textWrap: "wrap" }}
               >
-                Bağlı Hesaplar
+                Hesapları Bağla
               </Typography>
             </Stack>
           </Stack>
@@ -297,7 +297,7 @@ export default function Home() {
                   justifyContent="space-between"
                 >
                   <Stack spacing={2}>
-                    <Typography variant="subtitle2">Trendyrol</Typography>
+                    <Typography variant="subtitle2">Trendyol</Typography>
                     <Button
                       onClick={() => {
                         dispatch(UpdateSelectedTab(1));

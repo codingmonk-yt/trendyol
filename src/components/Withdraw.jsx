@@ -64,13 +64,13 @@ export default function Withdraw({ open }) {
   return (
     <Dialog open={open} fullWidth maxWidth="md" scroll="body">
       <form onSubmit={handleWithdraw}>
-        <DialogTitle>para çekme</DialogTitle>
+        <DialogTitle>Para Çekme Kanalı</DialogTitle>
         <DialogContent>
           <Stack spacing={3}>
             <Card>
               <CardContent>
                 <Stack spacing={2}>
-                  <Typography variant="overline">cari denge</Typography>
+                  <Typography variant="overline">Tüm Bakiye</Typography>
                   <Typography variant="subtitle1">TL {(balance * 1).toFixed(2)}</Typography>
 
                   <Divider />
@@ -101,7 +101,7 @@ export default function Withdraw({ open }) {
               fullWidth
               onClick={() => setAmount(balance)}
             >
-              Hepsini Çek
+              Tüm Bakiyeyi Çek
             </Button>
 
             <Divider />
@@ -120,8 +120,8 @@ export default function Withdraw({ open }) {
             <TextField
               fullWidth
               type="password"
-              label="İşlem şifresi"
-              placeholder="İşlem şifresini girin"
+              label="Para Çekim şifresi"
+              placeholder="Para Çekim şifresini girin"
               required
               value={password}
               onChange={(e) => setPassword(e.target.value)}
@@ -132,7 +132,7 @@ export default function Withdraw({ open }) {
         </DialogContent>
         <DialogActions>
           <Button type="submit" fullWidth variant="contained" color="primary">
-          geri çekilmek
+          Para Çek
           </Button>
           <Button
             fullWidth
@@ -140,7 +140,7 @@ export default function Withdraw({ open }) {
             color="error"
             onClick={handleClose}
           >
-            kapalı
+            İptal Et
           </Button>
         </DialogActions>
       </form>

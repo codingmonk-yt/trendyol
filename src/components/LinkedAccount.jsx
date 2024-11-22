@@ -51,7 +51,7 @@ export default function LinkedAccount({ open }) {
 
   return (
     <Dialog open={open} onClose={handleClose} fullWidth maxWidth="md" scroll="body">
-      <DialogTitle>Bağlanmak İstiyorum</DialogTitle>
+      <DialogTitle>Bağlanmak İsteğini Onayla</DialogTitle>
       <DialogContent>
         <Card>
           <CardContent>
@@ -93,7 +93,7 @@ export default function LinkedAccount({ open }) {
                 fullWidth
                 onClick={handleLinkAccounts}
               >
-                Hesapları Bağla
+                Hesapları Bağlamayı Onayla
               </Button>
             </Stack>
           </CardContent>
