@@ -93,7 +93,7 @@ export default function OrderConfirmation({
             justifyContent="space-between"
           >
             <Typography variant="body2" fontSize={14}>
-              Tahmini komisyon iadesi
+              Tahmini Komisyon Getirisi
             </Typography>
             <Typography variant="caption" fontSize={20} color="warning">
               TL {el?.commissionReturn}
@@ -108,7 +108,7 @@ export default function OrderConfirmation({
               Kalan süre
             </Typography>
             <Typography variant="caption" color="warning">
-              0 saat: 0 dakika: 0 saniye
+              0 saat: 2 dakika: 59 saniye
             </Typography>
           </Stack>
 
@@ -125,7 +125,7 @@ export default function OrderConfirmation({
               variant="outlined"
               fullWidth
             >
-              Gönderilmedi
+              İptal Et
             </Button>
             <Button
               onClick={() => {
