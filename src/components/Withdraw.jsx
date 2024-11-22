@@ -132,7 +132,7 @@ export default function Withdraw({ open }) {
         </DialogContent>
         <DialogActions>
           <Button type="submit" fullWidth variant="contained" color="primary">
-          Çekme İsteğini Onayla
+          Para Çek
           </Button>
           <Button
             fullWidth
