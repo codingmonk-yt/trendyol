@@ -11,7 +11,7 @@ import React from "react";
 export default function CompanyQualifications({ open, handleClose }) {
   return (
     <Dialog open={open} onClose={handleClose} fullWidth maxWidth="md" scroll="body">
-      <DialogTitle>Şirket Yeterlilikleri</DialogTitle>
+      <DialogTitle>Şirket Nitelikleri</DialogTitle>
       <DialogContent>
         <Typography variant="body2">
           Trendyol Grubu CEO'su Erdem İnan, "2024'ün ilk çeyreği itibarıyla Doğu
