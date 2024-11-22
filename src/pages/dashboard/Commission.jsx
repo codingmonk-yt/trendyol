@@ -44,7 +44,7 @@ export default function Commission() {
       <Box p={2} pb={16}>
         <Stack spacing={3}>
           <Typography variant="h3" textAlign="center" color="warning">
-            Trendyol <br /> Zamanla <br /> uyum sağlama
+            Trendyol Zamanla Uyum Sağlama
           </Typography>
 
           <Box
@@ -92,7 +92,7 @@ export default function Commission() {
                     color="warning"
                     variant="outlined"
                   >
-                    maç emirleri
+                    Sipariş Emirleri
                   </Button>
                 </Stack>
               </Stack>
@@ -125,7 +125,7 @@ export default function Commission() {
                         dispatch(UpdateRechargeDialog(true));
                       }}
                     >
-                      para yüklemek
+                      Para Yükle
                     </Button>
                     <Button
                       color="inherit"
@@ -133,7 +133,7 @@ export default function Commission() {
                         dispatch(UpdateWithdrawDialog(true));
                       }}
                     >
-                      Çekim
+                      Para Çek
                     </Button>
                   </Stack>
                 </Stack>
@@ -152,7 +152,7 @@ export default function Commission() {
                     color="inherit"
                     variant="outlined"
                   >
-                    Eşleşme kuralları
+                    Kullanıcı Kuralları
                   </Button>
                 </Stack>
                 <Divider />
