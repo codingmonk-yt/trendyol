@@ -108,7 +108,7 @@ export default function OrderConfirmation({
               Kalan süre
             </Typography>
             <Typography variant="caption" color="warning">
-              0 saat: 2 dakika: 59 saniye
+              0 saat: 29 dakika: 59 saniye
             </Typography>
           </Stack>
 
