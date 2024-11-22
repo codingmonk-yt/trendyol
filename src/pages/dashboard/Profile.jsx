@@ -133,7 +133,7 @@ export default function Profile() {
                       dispatch(UpdateRechargeDialog(true));
                     }}
                   >
-                    para yüklemek
+                    Para Yükle
                   </Button>
                   <Button
                     variant="contained"
@@ -165,7 +165,7 @@ export default function Profile() {
               <Stack direction="row" alignItems="center" spacing={1}>
                 <UserPlus size={20} />
                 <Typography variant="button">
-                  Bağlantı Kurmak İstiyorum
+                  Hesaplar Arasında Bağlantı Kur
                 </Typography>
               </Stack>
               <IconButton>
