@@ -312,7 +312,7 @@ const OrderCard = ({ disabled, nextId, isLast, ...el }) => {
               justifyContent="space-between"
             >
               <Typography variant="body2" fontSize={14}>
-                Tahmini Komisyon İadesi
+                Tahmini Komisyon Getirisi
               </Typography>
               <Typography variant="caption" fontSize={24} color="warning">
                 TL {el.commissionReturn}
