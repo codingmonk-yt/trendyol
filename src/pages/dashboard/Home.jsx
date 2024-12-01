@@ -304,7 +304,7 @@ export default function Home() {
                       }}
                       variant="outlined"
                     >
-                      Kilidi Aç
+                      BUTONU AÇ
                     </Button>
                   </Stack>
 
