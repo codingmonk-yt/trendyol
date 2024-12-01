@@ -141,7 +141,7 @@ export default function Orders() {
                     <CardContent>
                       <Stack direction="column" spacing={3}>
                         <Typography variant="subtitle1">
-                        Lütfen Temsilcinizle iletişime geçin
+                        Bir Sonraki Görev İçin Kalan Zaman Lütfen Bekleyin
                         </Typography>
                         {timeLeft && (
                           <Typography variant="h6" color="error">
