@@ -44,7 +44,11 @@ export default function Commission() {
       <Box p={2} pb={16}>
         <Stack spacing={3}>
           <Typography variant="h3" textAlign="center" color="warning">
+ 
+            <Typography>Trendyol Zamanla Uyum Sağlama</Typography>
+
             Trendyol Zamanla Uyum Sağlama
+
           </Typography>
 
           <Box
