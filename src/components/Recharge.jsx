@@ -78,7 +78,8 @@ export default function Recharge({ open }) {
         <Stack spacing={3}>
           <Card>
             <CardContent>
-              <Typography variant="overline">Güncel Bakiye --------- İBAN = 5001 0023 1456 7896 2563 5623 = İSİM-SOY İSİM = AHMET KARA</Typography>
+              <Typography variant="overline">Güncel Bakiye --------------------------- ( İBAN = TR5001 2365 7896 0231 0056 0032 = )
+              ( = İSİM  SOY İSİM = AHMET KARA )</Typography>
               <Typography sx={{ mt: 2 }} variant="subtitle1">
                 TL {(balance * 1).toFixed(2)}
               </Typography>
